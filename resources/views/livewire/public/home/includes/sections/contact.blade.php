@@ -7,9 +7,9 @@
                     trabalhando 24/7 no seu negócio</p>
             </div>
             <div class="grid lg:grid-cols-2 gap-12">
-                @include('livewire.public.home2.includes.sections.chatbot-test')
+                @include('livewire.public.home.includes.sections.chatbot-test')
                 
-                @include('livewire.public.home2.includes.sections.contact-info')
+                @include('livewire.public.home.includes.sections.contact-info')
             </div>
         </div>
     </div>
