@@ -1,0 +1,123 @@
+/* Tailwind */
+@import "tailwindcss";     
+ 
+/* daisyUI */
+@plugin "daisyui" {         
+    themes: light --default, dark --prefersdark;
+}
+ 
+/* maryUI */
+@source "../../vendor/robsontenorio/mary/src/View/Components/**/*.php";
+ 
+/* Dark theme variant support */
+@custom-variant dark (&:where(.dark, .dark *));
+ 
+/* Laravel 12 defaults */
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+/* Custom CSS */
+@theme {
+    --background-image-whatsapp: url('/images/bg.avif');
+}
+
+@layer base {
+    hr {
+        @apply border-t border-t-base-content/10
+    }
+}
+
+@layer utilities {
+    .gradient-text {
+        background: linear-gradient(135deg, var(--color-primary), #c06);
+        -webkit-text-fill-color: transparent;
+        color: var(--color-primary);
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: var(--animate-pulse);
+        /* animation-duration: 3s; */
+    }
+    .bg-gradient-card {
+        background: linear-gradient(135deg, #fff, #0066cc03);
+    }
+    .animate-pause:hover {
+        animation-play-state: paused;
+    }
+    /* .fade-in {
+        animation: fade-in var(--tw-duration, 0.7s); animation-fill-mode: forwards;
+    }
+    .fade-in-up {
+        animation: fade-in-up var(--tw-duration, 0.7s) cubic-bezier(.25,.46,.45,.94) both;
+    } */
+}
+
+@layer components {
+    .mockup-iphone {
+        @apply absolute inset-0 bg-black rounded-[48px] overflow-hidden border-8 border-black blur-[0.03px];
+    }
+    .mockup-iphone.mockup-left {
+        @apply transition-all duration-500 lg:transform-3d lg:-rotate-z-12 lg:hover:rotate-z-0 lg:rotate-y-12 lg:hover:rotate-y-0 lg:shadow-[-7px_0px_0px_0px_rgb(75,75,75),-10px_10px_10px_0px_rgba(0,0,0,0.5)] lg:hover:shadow-none;
+    }
+    .mockup-iphone.mockup-right {
+        @apply transition-all duration-500 lg:transform-3d lg:rotate-z-12 lg:hover:rotate-z-0 lg:-rotate-y-12 lg:hover:rotate-y-0 lg:shadow-[7px_0px_0px_0px_rgb(75,75,75),10px_10px_10px_0px_rgba(0,0,0,0.5)] lg:hover:shadow-none;
+    }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes fade-in-up {
+    0% { transform: translateY(1000px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes fade-in-down {
+    0% { transform: translateY(-1000px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes fade-in-left {
+    0% { transform: translateX(-1000px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes fade-in-right {
+    0% { transform: translateX(1000px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@utility animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+@utility animate-wiggle {
+    animation: wiggle 1s ease-in-out infinite;
+}
+@utility fade-in {
+    animation: fade-in var(--tw-duration, 0.7s) var(--tw-delay, 0.3s) var(--tw-easing, ease-in-out);
+    animation-fill-mode: forwards;
+}
+@utility fade-in-up {
+    animation: fade-in-up var(--tw-duration, 0.7s) var(--tw-delay, 0.3s) var(--tw-easing, cubic-bezier(.25,.46,.45,.94));
+    animation-fill-mode: forwards;
+}
+@utility fade-in-down {
+    animation: fade-in-down var(--tw-duration, 0.7s) var(--tw-delay, 0.3s) var(--tw-easing, cubic-bezier(.25,.46,.45,.94));
+    animation-fill-mode: forwards;
+}
+@utility fade-in-left {
+    animation: fade-in-left var(--tw-duration, 0.7s) var(--tw-delay, 0.3s) var(--tw-easing, cubic-bezier(.25,.46,.45,.94));
+    animation-fill-mode: forwards;
+}
+@utility fade-in-right {
+    animation: fade-in-right var(--tw-duration, 0.7s) var(--tw-delay, 0.3s) var(--tw-easing, cubic-bezier(.25,.46,.45,.94));
+    animation-fill-mode: forwards;
+}
