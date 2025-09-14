@@ -127,7 +127,7 @@ stop_horizon() {
 # Verifica a ação (start ou stop)
 case "$1" in
     start)
-        start_server
+        start_server "$@"
         ;;
     stop)
         stop_server
