@@ -18,8 +18,12 @@
 
                 {{-- Action Buttons --}}
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <x-button label="Solicitar Demonstração" class="btn-primary" icon-right="o-arrow-right" />
-                    <x-button label="Fale com a W.M." class="btn-outline btn-primary" />
+                    <x-button label="Solicitar Demonstração" class="btn-primary" icon-right="o-arrow-right"
+                        no-wire-navigate target="_blank" rel="noopener noreferrer" link="{{ $url_whatsapp.'&text= Olá, gostaria de solicitar uma demonstração!' }}"
+                    />
+                    <x-button label="Fale com a W.M." class="btn-outline btn-primary" 
+                        no-wire-navigate target="_blank" rel="noopener noreferrer" link="{{ $url_whatsapp.'&text= Olá, gostaria de falar com a W.M.!' }}"
+                    />
                 </div>
 
                 {{-- Stats --}}

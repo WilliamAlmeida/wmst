@@ -13,9 +13,9 @@
                 <div class="space-y-3">
                     <h4 class="font-semibold text-primary">Conecte-se Conosco</h4>
                     <div class="flex gap-3">
-                        <x-button label="LinkedIn" icon="phosphor.linkedin-logo" />
+                        {{-- <x-button label="LinkedIn" icon="phosphor.linkedin-logo" /> --}}
                         <x-button label="Instagram" icon="phosphor.instagram-logo" />
-                        <x-button label="GitHub" icon="phosphor.github-logo" />
+                        {{-- <x-button label="GitHub" icon="phosphor.github-logo" /> --}}
                     </div>
                 </div>
             </div>

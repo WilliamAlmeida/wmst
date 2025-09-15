@@ -13,7 +13,9 @@
                 <a href="#solucoes" class="text-sm hover:text-primary transition-colors">Soluções</a>
                 <a href="#cases" class="text-sm hover:text-primary transition-colors">Cases</a>
                 <a href="#contato" class="text-sm hover:text-primary transition-colors">Contato</a>
-                <x-button label="Solicitar Demonstração" class="animate-pulse hover:animate-none bg-[#50ac43] text-white" />
+                <x-button label="Agende sua Consultoria" class="animate-pulse hover:animate-none bg-[#50ac43] text-white" icon="phosphor.whatsapp-logo"
+                    no-wire-navigate target="_blank" rel="noopener noreferrer" link="{{ $url_whatsapp.'&text= Olá, gostaria de agendar uma consultoria!' }}"
+                />
             </nav>
         </div>
     </div>

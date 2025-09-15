@@ -49,7 +49,11 @@
         </div>
     </div>
     <div class="grid grid-cols-2 gap-3">
-        <x-button label="Fale com a W.M." class="btn-primary" />
-        <x-button label="Agende uma Reunião" class="btn-primary btn-outline" />
+        <x-button label="Fale com a W.M." class="btn-primary" 
+            no-wire-navigate target="_blank" rel="noopener noreferrer" link="{{ $url_whatsapp.'&text= Olá, gostaria de falar com a W.M.!' }}"
+        />
+        <x-button label="Agende uma Reunião" class="btn-primary btn-outline"
+            no-wire-navigate target="_blank" rel="noopener noreferrer" link="{{ $url_whatsapp.'&text= Olá, gostaria de agendar uma reunião!' }}"
+        />
     </div>
 </div>

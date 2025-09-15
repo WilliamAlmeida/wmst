@@ -83,6 +83,9 @@
             </div>
             <x-button icon="phosphor.paper-plane-tilt" class="btn-primary" />
         </div>
-        <x-button label="Solicitar Demonstração Real" class="btn-primary w-full" icon-right="o-arrow-right" />
+        
+        <x-button label="Solicitar Demonstração Real" class="btn-primary w-full" icon-right="o-arrow-right"
+            no-wire-navigate target="_blank" rel="noopener noreferrer" link="{{ $url_whatsapp.'&text= Olá, gostaria de agendar uma demonstração real dos serviços da W.M.!' }}"
+        />
     </div>
 </div>

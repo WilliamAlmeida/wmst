@@ -35,7 +35,9 @@
                                     <div class="flex items-center gap-x-2 bg-primary/5 rounded px-2 py-1"><x-icon name="phosphor.printer" class="text-primary h-5 w-5" /><span class="text-sm">Impressão Pedidos Automáticos</span></div>
                                 </div>
                                 <div class="flex flex-col sm:flex-row gap-3 mt-2">
-                                    <x-button label="Solicitar Demonstração" class="btn-primary" icon-right="o-arrow-right" />
+                                    <x-button label="Solicitar Demonstração" class="btn-primary" icon-right="o-arrow-right"
+                                        no-wire-navigate target="_blank" rel="noopener noreferrer" link="{{ $url_whatsapp.'&text= Olá, gostaria de solicitar uma demonstração do IBOX Delivery!' }}"
+                                    />
                                     <x-button label="Nossos Clientes" class="btn-primary btn-outline" link="https://ibox.delivery/v2/delivery" target="_blank" no-wire-navigate />
                                     <x-button label="Registrar sua loja" class="btn-success" link="https://ibox.delivery/" target="_blank" icon-right="o-arrow-left" />
                                 </div>

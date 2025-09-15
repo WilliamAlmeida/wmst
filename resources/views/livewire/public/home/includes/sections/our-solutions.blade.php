@@ -5,42 +5,54 @@
             'title' => 'Automação WhatsApp Business',
             'highlight' => '300% mais conversões',
             'description' => 'Atendimento 24/7, qualificação de leads automática, agendamentos inteligentes e vendas sem intervenção humana',
-            'badge' => 'WhatsApp API + IA + N8N'
+            'badge' => 'WhatsApp API + IA + N8N',
+            'action_label' => 'Quero turbinar meu WhatsApp',
+            'action_message' => 'Olá, gostaria de saber mais sobre a Automação WhatsApp Business'
         ],
         [
             'icon' => 'instagram',
             'title' => 'Automação Instagram',
             'highlight' => '500% mais leads qualificados',
             'description' => 'Captura de leads, respostas automáticas inteligentes, direcionamento personalizado e engajamento automatizado',
-            'badge' => 'Instagram API + AI + IA'
+            'badge' => 'Instagram API + AI + IA',
+            'action_label' => 'Quero impulsionar meu Instagram',
+            'action_message' => 'Olá, gostaria de saber mais sobre a Automação Instagram'
         ],
         [
             'icon' => 'workflow',
             'title' => 'Automação de Processos Internos',
             'highlight' => '40h economizadas por semana',
             'description' => 'Fluxos de aprovação automáticos, integração entre sistemas, relatórios em tempo real e eliminação total de tarefas manuais',
-            'badge' => 'N8N + APIs + Webhooks + IA'
+            'badge' => 'N8N + APIs + Webhooks + IA',
+            'action_label' => 'Quero automatizar meus processos',
+            'action_message' => 'Olá, gostaria de saber mais sobre a Automação de Processos Internos'
         ],
         [
             'icon' => 'database',
             'title' => 'Integração de Sistemas Legados',
             'highlight' => 'Zero downtime garantido',
             'description' => 'Conectamos sistemas antigos com novas tecnologias, migrações seguras e modernização gradual sem parar operações',
-            'badge' => 'Laravel + APIs REST + Microserviços'
+            'badge' => 'Laravel + APIs REST + Microserviços',
+            'action_label' => 'Quero integrar meus sistemas',
+            'action_message' => 'Olá, gostaria de saber mais sobre a Integração de Sistemas'
         ],
         [
             'icon' => 'brain',
             'title' => 'IA para Análise Preditiva',
             'highlight' => '85% precisão em previsões',
             'description' => 'Insights automáticos, previsões de vendas precisas, análise de comportamento do cliente e decisões baseadas em dados',
-            'badge' => 'OpenAI / Claude / Gemini + Analytics'
+            'badge' => 'OpenAI / Claude / Gemini + Analytics',
+            'action_label' => 'Quero prever meus resultados',
+            'action_message' => 'Olá, gostaria de saber mais sobre IA para Análise'
         ],
         [
             'icon' => 'globe',
             'title' => 'Sistemas Web Sob Medida',
             'highlight' => '100% adequação ao negócio',
             'description' => 'Plataformas customizadas, dashboards interativos em tempo real, portais de cliente e sistemas de gestão completos',
-            'badge' => 'Laravel + Livewire + IA'
+            'badge' => 'Laravel + Livewire + IA',
+            'action_label' => 'Quero um sistema sob medida',
+            'action_message' => 'Olá, gostaria de saber mais sobre Sistemas Web Sob Medida'
         ]
     ],
 ])
@@ -74,7 +86,9 @@
                             <div class="pt-2 border-t border-neutral-content group-hover:opacity-0 transition-opacity duration-200">
                                 <span class="font-medium text-xs rounded-md px-2 py-0.5 border border-primary/20 text-primary">{{ $card['badge'] }}</span>
                             </div>
-                            <x-button label="Agende uma Reunião" class="btn-primary translate-y-10 opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 transition-all absolute ease-in-out" />
+                            <x-button :label="$card['action_label']" icon-right="o-arrow-right" no-wire-navigate target="_blank" rel="noopener noreferrer"
+                                :link="$url_whatsapp . '&text=' . urlencode($card['action_message'])"
+                                class="btn-primary lg:translate-y-10 lg:opacity-0 group-hover:opacity-100 group-hover:-translate-y-10 lg:transition-all lg:absolute lg:ease-in-out" />
                         </div>
                     </div>
                 </div>

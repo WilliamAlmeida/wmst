@@ -20,9 +20,9 @@
 @source "../**/*.vue";
 
 /* Custom CSS */
-@theme {
-    --background-image-whatsapp: url('/images/bg.avif');
-}
+/* @theme { */
+    /* --background-image-whatsapp: url('../../images/bg.avif'); */
+/* } */
 
 @layer base {
     hr {
@@ -39,6 +39,11 @@
         background-clip: text;
         animation: var(--animate-pulse);
         /* animation-duration: 3s; */
+    }
+    .bg-whatsapp {
+        background-image: url('../images/bg.avif');
+        background-size: cover;
+        background-position: center;
     }
     .bg-gradient-card {
         background: linear-gradient(135deg, #fff, #0066cc03);
