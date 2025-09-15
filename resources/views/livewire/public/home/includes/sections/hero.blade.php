@@ -2,12 +2,12 @@
     <div class="container mx-auto px-4">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
             {{-- Left: Textual Content --}}
-            <div class="fade-in-left">
+            <div>
                 {{-- Badge --}}
                 <span class="text-xs mb-6 badge bg-primary/10 text-primary border-primary/20 font-medium py-0.5 px-2 rounded-md">+15 Anos Transformando Negócios com Técnologia</span>
 
                 {{-- Title --}}
-                <h1 class="text-4xl lg:text-6xl font-bold mb-6 min-h-30 lg:min-h-48">
+                <h1 class="text-4xl lg:text-6xl font-bold mb-6 min-h-40 lg:min-h-48">
                     <span class="hero-typed-text"></span>
                 </h1>
 
