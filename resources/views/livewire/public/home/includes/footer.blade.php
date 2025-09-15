@@ -22,12 +22,24 @@
             <div>
                 <h4 class="font-semibold mb-4 text-primary">Nossos Sistemas</h4>
                 <ul class="space-y-2 text-sm text-muted-foreground">
-                    <li class="hover:text-primary cursor-pointer transition-colors">IBOX DELIVERY</li>
-                    <li class="hover:text-primary cursor-pointer transition-colors">AI CLINIC</li>
-                    <li class="hover:text-primary cursor-pointer transition-colors">Automação WhatsApp</li>
-                    <li class="hover:text-primary cursor-pointer transition-colors">Sistemas Customizados</li>
-                    <li class="hover:text-primary cursor-pointer transition-colors">Consultoria em IA</li>
-                    <li class="hover:text-primary cursor-pointer transition-colors">Integração de Sistemas</li>
+                    <li class="hover:text-primary cursor-pointer transition-colors">
+                        <a href="#ibox-delivery">IBOX DELIVERY</a>
+                    </li>
+                    <li class="hover:text-primary cursor-pointer transition-colors">
+                        <a href="#agenda-clinic">AI CLINIC</a>
+                    </li>
+                    <li class="hover:text-primary cursor-pointer transition-colors">
+                        <a href="#solucoes">Automação WhatsApp</a>
+                    </li>
+                    <li class="hover:text-primary cursor-pointer transition-colors">
+                        <a href="#solucoes">Sistemas Customizados</a>
+                    </li>
+                    <li class="hover:text-primary cursor-pointer transition-colors">
+                        <a href="#solucoes">Consultoria em IA</a>
+                    </li>
+                    <li class="hover:text-primary cursor-pointer transition-colors">
+                        <a href="#solucoes">Integração de Sistemas</a>
+                    </li>
                 </ul>
             </div>
             <div>

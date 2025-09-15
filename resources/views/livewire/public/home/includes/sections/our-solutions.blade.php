@@ -48,7 +48,7 @@
 <section id="solucoes" class="py-20 bg-card/30">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Soluções que Transformam Negócios</h2>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4 gradient-text">Soluções que Transformam Negócios</h2>
             <p class="text-xl text-muted-foreground max-w-2xl mx-auto">Não vendemos apenas tecnologia, entregamos
                 soluções completas que resolvem problemas reais e geram resultados mensuráveis</p>
         </div>

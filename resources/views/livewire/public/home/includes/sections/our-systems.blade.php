@@ -1,12 +1,12 @@
 <section id="sistemas" class="py-20 bg-gray-50 overflow-y-clip">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16 opacity-0 duration-[1s]" x-data="{shown:false}" x-intersect="shown=true" :class="{'fade-in':shown}">
-            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Nossos Sistemas <span class="gradient-text">Inteligentes</span></h2>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Nossos <span class="gradient-text">Sistemas Inteligentes</span></h2>
             <p class="text-xl max-w-2xl mx-auto">Cada sistema foi desenvolvido para resolver problemas específicos e gerar resultados mensuráveis</p>
         </div>
 
         <div class="space-y-20">
-            <div class="opacity-0 delay-500 duration-1000" x-data="{shown:false}" x-intersect="shown=true" :class="{'fade-in':shown}">
+            <div id="ibox-delivery" class="opacity-0 delay-500 duration-1000" x-data="{shown:false}" x-intersect="shown=true" :class="{'fade-in':shown}">
                 <div class="flex flex-col gap-6 rounded-xl border py-6 shadow-sm overflow-hidden border-neutral-content/50 hover:border-primary/30 transition-all duration-300">
                     <div class="grid lg:grid-cols-2 gap-0">
                         <div class="p-8 lg:p-12 lg:order-last">
@@ -61,7 +61,7 @@
                 </div>
             </div>
     
-            <div class="opacity-0 delay-500 duration-1000" x-data="{shown:false}" x-intersect="shown=true" :class="{'fade-in':shown}">
+            <div id="agenda-clinic" class="opacity-0 delay-500 duration-1000" x-data="{shown:false}" x-intersect="shown=true" :class="{'fade-in':shown}">
                 <div class="flex flex-col gap-6 rounded-xl border py-6 shadow-sm overflow-hidden border-neutral-content/50 hover:border-primary/30 transition-all duration-300">
                     <div class="grid lg:grid-cols-2 gap-0">
                         <div class="p-8 lg:p-12">

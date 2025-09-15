@@ -47,7 +47,7 @@
 <section id="cases" class="py-20 bg-gray-50 overflow-y-clip">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Resultados Reais para Clientes Reais</h2>
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4"><span class="gradient-text">Resultados Reais</span> para Clientes Reais</h2>
             <p class="text-xl text-muted-foreground max-w-2xl mx-auto">Veja como nossas automações transformaram negócios e geraram resultados mensuráveis</p>
         </div>
         <div class="grid md:grid-cols-3 gap-8 mb-16">
