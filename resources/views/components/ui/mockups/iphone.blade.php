@@ -92,7 +92,7 @@
             </div>
             
             <!-- Chat input -->
-            <div class="p-3 border-t border-gray-300 bg-gray-100 flex gap-x-2 items-center">
+            <div class="p-3 border-t border-gray-300 bg-gray-100 flex gap-x-2 items-center pointer-events-none">
                 <div class="flex-1 flex items-center bg-white rounded-full px-3 py-2 gap-x-1">
                     <button class="flex items-center justify-center">
                         <x-icon name="phosphor.smiley" class="h-5 w-5" />
@@ -105,9 +105,9 @@
                         <x-icon name="phosphor.camera" class="h-5 w-5" />
                     </button>
                 </div>
-                <x-button class="w-8 h-8 btn-neutral btn-circle">
+                <button class="w-8 h-8 btn btn-neutral btn-circle">
                     <x-icon name="o-arrow-right" class="h-4 w-4" />
-                </x-button>
+                </button>
             </div>
             
             <!-- Home button / indicator -->
