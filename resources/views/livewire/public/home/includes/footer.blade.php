@@ -69,8 +69,8 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-sm text-muted-foreground">© {{ date('Y') }} {{ config('app.name') }}. Todos os direitos reservados.</p>
                 <div class="flex gap-4 text-sm text-muted-foreground">
-                    <span class="hover:text-primary cursor-pointer transition-colors">Política de Privacidade</span>
-                    <span class="hover:text-primary cursor-pointer transition-colors">Termos de Uso</span>
+                    <a href="{{ route('privacy-policy') }}" class="hover:text-primary cursor-pointer transition-colors">Política de Privacidade</a>
+                    <a href="{{ route('terms-use') }}"  class="hover:text-primary cursor-pointer transition-colors">Termos de Uso</a>
                     <span class="hover:text-primary cursor-pointer transition-colors">Suporte Técnico</span>
                 </div>
             </div>

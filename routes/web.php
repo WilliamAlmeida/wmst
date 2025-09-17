@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', Public\Home\HomeIndex::class)->name('home');
+Route::get('/privacy-policy', Public\PrivacyPolicy\PrivacyPolicyIndex::class)->name('privacy-policy');
+Route::get('/terms-use', Public\TermsUse\TermsUseIndex::class)->name('terms-use');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
