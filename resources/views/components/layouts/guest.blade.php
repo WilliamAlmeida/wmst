@@ -20,9 +20,9 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="min-h-screen font-sans antialiased">
         {{ $slot }}
-
+        
         @livewireScriptConfig 
         <svg hidden class="hidden">@stack('bladeicons')</svg>
         @stack('scripts')
