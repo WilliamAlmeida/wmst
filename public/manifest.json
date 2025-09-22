@@ -1,0 +1,81 @@
+{
+    "name": "W.M. Soluções Tecnológicas",
+    "short_name": "WMST",
+    "description": "Soluções em desenvolvimento, automações e integrações com Inteligência Artificial. Agende uma demonstração.",
+    "lang": "pt-BR",
+    "start_url": "wmst.com.br",
+    "scope": ".",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "orientation": "portrait",
+    "status_bar": "#000000",
+    "prefer_related_applications": false,
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "icons/icon-72x72-1.jpg",
+            "type": "image/jpg",
+            "sizes": "72x72",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/icon-96x96-1.jpg",
+            "type": "image/jpg",
+            "sizes": "96x96",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/icon-128x128-1.jpg",
+            "type": "image/jpg",
+            "sizes": "128x128",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/icon-144x144-1.png",
+            "type": "image/png",
+            "sizes": "144x144",
+            "purpose": "any"
+        },
+        {
+            "src": "icons/icon-152x152-1.jpg",
+            "type": "image/jpg",
+            "sizes": "152x152",
+            "purpose": "any"
+        },
+        {
+            "src": "icons/icon-192x192-1.jpg",
+            "type": "image/jpg",
+            "sizes": "192x192",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/icon-196x196-1.jpg",
+            "type": "image/jpg",
+            "sizes": "196x196",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/icon-384x384-1.jpg",
+            "type": "image/jpg",
+            "sizes": "384x384",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/icon-512x512-1.jpg",
+            "type": "image/jpg",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ],
+    "splash": {
+        "1125x2436": "icons/splash-1125x2436-1.jpg",
+        "750x1334": "icons/splash-750x1334-1.jpg",
+        "1242x2208": "icons/splash-1242x2208-1.jpg",
+        "640x1136": "icons/splash-640x1136-1.jpg",
+        "1536x2048": "icons/splash-1536x2048-1.jpg",
+        "1668x2224": "icons/splash-1668x2224-1.jpg",
+        "2048x2732": "icons/splash-2048x2732-1.jpg"
+    },
+    "custom": {}
+}

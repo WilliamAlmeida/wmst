@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="author" content="{{ config('app.name') }}">
-        <meta name="description" content="Soluções em desenvolvimento, automações e integrações com Inteligência Artificial. Agende uma demonstração.">
-        <meta name="keywords" content="sistemas, automações, inteligência artificial, tecnologia, desenvolvimento web, software personalizado, n8n, integração de sistemas, soluções tecnológicas">
+        <x-layouts.seo />
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
