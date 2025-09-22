@@ -3,6 +3,7 @@
 # Função para mostrar o uso do script
 usage() {
     echo "Uso: $0 {start|stop} [porta]"
+    echo "Uso: $0 {start-caddy|stop-caddy} [porta]"
     echo "Uso: $0 {start-queue|stop-queue}"
     echo "Uso: $0 {start-schedule|stop-schedule}"
     echo "Uso: $0 {start-horizon|stop-horizon}"
@@ -32,6 +33,15 @@ if ! command -v node &> /dev/null; then
     echo "Node.js não está instalado. Por favor, instale o Node.js antes de continuar."
     exit 1
 fi
+
+# Verifica se o FrankenPHP está instalado
+check_frankenphp() {
+    if ! command -v frankenphp &> /dev/null; then
+        echo "FrankenPHP não está instalado. Por favor, instale o FrankenPHP antes de usar o modo Caddy."
+        return 1
+    fi
+    return 0
+}
 
 # Verifica se o PM2 está instalado
 if ! command -v pm2 &> /dev/null; then
@@ -124,6 +134,52 @@ stop_horizon() {
     fi
 }
 
+# Função para iniciar Caddy com FrankenPHP
+start_caddy() {
+    # Verifica se o FrankenPHP está instalado
+    if ! check_frankenphp; then
+        return 1
+    fi
+    
+    # Se o segundo argumento for passado, define a porta para o valor passado
+    CADDY_PORT=8001
+    if [ ! -z "$2" ]; then
+        CADDY_PORT=$2
+        # Valida se a porta é um número válido
+        if ! [[ $CADDY_PORT =~ ^[0-9]+$ ]] || [ "$CADDY_PORT" -lt 1 ] || [ "$CADDY_PORT" -gt 65535 ]; then
+            echo "Erro: Porta inválida. Por favor, informe um número entre 1 e 65535."
+            return 1
+        fi
+        
+        # Atualiza a porta no Caddyfile temporário
+        TEMP_CADDYFILE=$(mktemp)
+        sed "s/:8001/:$CADDY_PORT/g" Caddyfile > "$TEMP_CADDYFILE"
+        CADDYFILE_PATH="$TEMP_CADDYFILE"
+    else
+        CADDYFILE_PATH="Caddyfile"
+    fi
+
+    echo "Iniciando o servidor FrankenPHP com Caddy (nome: wmst-caddy) na porta $CADDY_PORT..."
+    pm2 start "frankenphp run --config $CADDYFILE_PATH" --name wmst-caddy
+    
+    # Remove o arquivo temporário se ele foi criado
+    if [ ! -z "$2" ]; then
+        rm "$TEMP_CADDYFILE"
+    fi
+}
+
+# Função para parar Caddy
+stop_caddy() {
+    echo "Parando o servidor FrankenPHP com Caddy (nome: wmst-caddy)..."
+    if pm2 list | grep -q "wmst-caddy"; then
+        pm2 stop wmst-caddy &> /dev/null
+        pm2 delete wmst-caddy &> /dev/null
+        echo "Servidor FrankenPHP com Caddy parado com sucesso."
+    else
+        echo "Servidor FrankenPHP com Caddy não está em execução."
+    fi
+}
+
 # Verifica a ação (start ou stop)
 case "$1" in
     start)
@@ -131,6 +187,12 @@ case "$1" in
         ;;
     stop)
         stop_server
+        ;;
+    start-caddy)
+        start_caddy "$@"
+        ;;
+    stop-caddy)
+        stop_caddy
         ;;
     start-queue)
         start_queue_worker
