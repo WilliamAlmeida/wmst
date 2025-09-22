@@ -59,7 +59,7 @@ if [ $# -lt 1 ]; then
 fi
 
 # Define a porta padrão
-PORT=9001
+PORT=8001
 
 # Função para iniciar o servidor
 start_server() {
