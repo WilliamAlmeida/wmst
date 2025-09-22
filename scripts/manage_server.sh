@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # Função para mostrar o uso do script
+# Garante execução a partir da raiz do projeto
+cd "$(dirname "$0")/.." || exit 1
+
+# Função para mostrar o uso do script
 usage() {
     echo "Uso: $0 {start|stop} [porta]"
     echo "Uso: $0 {start-caddy|stop-caddy} [porta]"
@@ -70,7 +74,8 @@ start_server() {
     fi
 
     echo "Iniciando o servidor Laravel (nome: wmst-server) na porta $PORT..."
-    pm2 start "php artisan serve --host=0.0.0.0 --port=$PORT" --name wmst-server
+    # Add the -v flag to make artisan serve more verbose
+    pm2 start "php artisan serve --host=0.0.0.0 --port=$PORT -v" --name wmst-server
 }
 
 # Função para parar o servidor
@@ -154,17 +159,17 @@ start_caddy() {
         # Atualiza a porta no Caddyfile temporário
         TEMP_CADDYFILE=$(mktemp)
         sed "s/:8001/:$CADDY_PORT/g" Caddyfile > "$TEMP_CADDYFILE"
-        CADDYFILE_PATH="$TEMP_CADDYFILE"
-    else
-        CADDYFILE_PATH="Caddyfile"
-    fi
-
-    echo "Iniciando o servidor FrankenPHP com Caddy (nome: wmst-caddy) na porta $CADDY_PORT..."
-    pm2 start "frankenphp run --config $CADDYFILE_PATH" --name wmst-caddy
-    
-    # Remove o arquivo temporário se ele foi criado
-    if [ ! -z "$2" ]; then
+        
+        echo "Iniciando o servidor FrankenPHP com Caddy (nome: wmst-caddy) na porta $CADDY_PORT..."
+        pm2 start "frankenphp run --config $TEMP_CADDYFILE" --name wmst-caddy
+        
+        # Aguarde um momento para garantir que o PM2 começou a usar o arquivo
+        sleep 2
+        # Remove o arquivo temporário
         rm "$TEMP_CADDYFILE"
+    else
+        echo "Iniciando o servidor FrankenPHP com Caddy (nome: wmst-caddy) na porta $CADDY_PORT..."
+        pm2 start "frankenphp run" --name wmst-caddy
     fi
 }
 

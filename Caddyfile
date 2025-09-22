@@ -12,8 +12,26 @@
 	php_server {
 		try_files {path} index.php
 	}
-	# Basic logging
+	# Enhanced logging configuration for PM2 compatibility
 	log {
-		output file storage/logs/caddy_access.log
+		output stdout
+		format json
+		level INFO
+	}
+	# Separate error log redirected to stderr for PM2
+	log {
+		output stderr
+		format json
+		level ERROR
+	}
+	# File logging for persistence (optional, can be removed if only PM2 logs are needed)
+	log {
+		output file storage/logs/caddy_access.log {
+			roll_size 10MB
+			roll_keep 5
+			roll_keep_for 720h
+		}
+		format json
+		level INFO
 	}
 }
