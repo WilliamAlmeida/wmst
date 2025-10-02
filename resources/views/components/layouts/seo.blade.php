@@ -63,7 +63,7 @@
 		<meta property="og:url"                 content="{{ route('home') }}" />
 		<meta property="og:title"               content="{{ $seo['app_name'] }}" />
 		<meta property="og:site_name"           content="{{ $seo['app_name'] }}" />
-		<meta property="og:description"         content="Especialistas em segurança privada há mais de 21 anos." />
+		<meta property="og:description"         content="Soluções em desenvolvimento, automações e integrações há mais de 21 anos." />
 		<meta property="og:image"    			content="{{ asset('icons/icon-384x384-'.$seo['manifest_v'].'.jpg') }}" itemprop="image" />
 		<meta property="og:image:alt"       	content="{{ $seo['app_name'] }}" />
 		<meta property="og:image:type"			content="image/png" />
