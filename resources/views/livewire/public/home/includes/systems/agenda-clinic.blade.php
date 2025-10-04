@@ -46,8 +46,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3 mt-2">
-                    <x-button label="Testar grátis por 30 dias" class="btn-primary" icon-right="o-arrow-right" link="https://agendaclinic.com/register" target="_blank" />
-                    <x-button label="Ver recursos completos" class="btn-primary btn-outline" link="https://agendaclinic.com/" target="_blank" />
+                    <x-button label="Testar grátis por 30 dias" class="btn-primary" icon-right="o-arrow-right" link="https://agendaclinic.com/register" target="_blank" no-wire-navigate />
+                    <x-button label="Ver recursos completos" class="btn-primary btn-outline" link="https://agendaclinic.com/" target="_blank" no-wire-navigate />
                 </div>
             </div>
             <div class="bg-gradient-to-br from-secondary/5 to-primary/5 p-8 lg:p-12 flex items-center justify-center overflow-x-clip">

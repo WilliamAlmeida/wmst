@@ -31,7 +31,7 @@
                             no-wire-navigate target="_blank" rel="noopener noreferrer" link="{{ $url_whatsapp.'&text= Olá, gostaria de solicitar uma demonstração do IBOX Delivery!' }}"
                         />
                         <x-button label="Nossos Clientes" class="btn-primary btn-outline" link="https://ibox.delivery/v2/delivery" target="_blank" no-wire-navigate />
-                        <x-button label="Registrar sua loja" class="btn-success" link="https://ibox.delivery/" target="_blank" icon-right="o-arrow-left" />
+                        <x-button label="Registrar sua loja" class="btn-success" link="https://ibox.delivery/" target="_blank" icon-right="o-arrow-left" no-wire-navigate />
                     </div>
             </div>
             <div class="bg-gradient-to-br from-secondary/5 to-primary/5 p-8 lg:p-12 flex items-center justify-center lg:order-first overflow-x-clip">
