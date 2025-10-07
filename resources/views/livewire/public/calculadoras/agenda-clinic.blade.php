@@ -1,4 +1,4 @@
-<div class="bg-base-200" x-data="{
+<div class="bg-gradient-to-br from-secondary/5 to-primary/5 bg-fixed" x-data="{
 	mostrarFormulario: false,
 	setup: 3000.00,
 	base1: 900.00,
@@ -99,7 +99,7 @@
 					(+50% valor — limites duplicados).</p>
 			</div>
 			<button @click="mostrarFormulario = !mostrarFormulario"
-				class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition">Configurar
+				class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Configurar
 				Valores</button>
 		</header>
 

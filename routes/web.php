@@ -13,7 +13,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/agent/agendaclinic', Public\Agents\AgentIndex::class);
-Route::get('/agent/agendaclinic/calculadora', Public\Calculadoras\AgendaClinic::class);
+Route::get('/agent/agendaclinic/calculadora', Public\Calculadoras\AgendaClinic::class)->name('calculadora.agenda-clinic');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
