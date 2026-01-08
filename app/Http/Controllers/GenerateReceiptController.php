@@ -24,7 +24,19 @@ class GenerateReceiptController extends Controller
         ]);
 
         try {
-            $html = Str::markdown($data['markdown']);
+            // Normalize and convert newlines so incoming text preserves line breaks
+            $markdown = $data['markdown'];
+
+            // Convert literal "\\n" sequences into real newlines
+            $markdown = str_replace('\\n', "\n", $markdown);
+
+            // Normalize Windows/Mac line endings to LF
+            $markdown = str_replace(["\r\n", "\r"], "\n", $markdown);
+
+            // Convert single newlines (not paragraph breaks) into markdown hard breaks
+            $markdown = preg_replace('/(?<!\n)\n(?!\n)/', "  \n", $markdown);
+
+            $html = Str::markdown($markdown);
 
             // Wrap HTML with basic styles for PDF
             $fullHtml = '<!doctype html><html><head><meta charset="utf-8"><style>' .
