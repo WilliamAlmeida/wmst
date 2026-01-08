@@ -34,16 +34,18 @@ class GenerateReceiptController extends Controller
 
             $pdf = Pdf::loadHTML($fullHtml);
 
+            $file_name = (str($data['file_name'])->slug() ?? 'receipt-'.time()) . '.pdf';
+
             // If save=true, store and return public URL
             if (!empty($data['save'])) {
-                $filename = 'receipts/' . (str($data['file_name'])->slug() ?? 'receipt-'.time()) . '.pdf';
+                $filename = 'receipts/' . $file_name;
                 Storage::disk('public')->put($filename, $pdf->output());
                 $url = Storage::disk('public')->url($filename);
                 return response()->json(['url' => $url]);
             }
 
             // Default: stream PDF to browser
-            return $pdf->stream('receipt.pdf');
+            return $pdf->stream($file_name);
         } catch (\Throwable $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
