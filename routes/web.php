@@ -15,6 +15,8 @@ Route::get('/dashboard', function () {
 Route::get('/agent/agendaclinic', Public\Agents\AgentIndex::class);
 Route::get('/agent/agendaclinic/calculadora', Public\Calculadoras\AgendaClinic::class)->name('calculadora.agenda-clinic');
 
+Route::get('/chatibox', Public\LandingPages\ChatIndex::class);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
