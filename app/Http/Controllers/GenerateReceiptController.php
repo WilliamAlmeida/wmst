@@ -19,6 +19,8 @@ class GenerateReceiptController extends Controller
             'markdown' => 'required|string',
             // optional: if you want to still accept structured data
             'save' => 'nullable|boolean',
+            // optional: custom file name
+            'file_name' => 'nullable|string',
         ]);
 
         try {
@@ -34,7 +36,7 @@ class GenerateReceiptController extends Controller
 
             // If save=true, store and return public URL
             if (!empty($data['save'])) {
-                $filename = 'receipts/receipt-'.time().'.pdf';
+                $filename = 'receipts/' . (str($data['file_name'])->slug() ?? 'receipt-'.time()) . '.pdf';
                 Storage::disk('public')->put($filename, $pdf->output());
                 $url = Storage::disk('public')->url($filename);
                 return response()->json(['url' => $url]);
