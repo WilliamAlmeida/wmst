@@ -1,4 +1,4 @@
-<div class="font-sans antialiased bg-gradient-to-b from-black via-zinc-950 to-black">
+<div class="font-sans antialiased bg-gradient-to-b from-white via-gray-50 to-white">
 	@include('livewire.public.landing-pages.sections.hero')
 	@include('livewire.public.landing-pages.sections.howto')
 	@include('livewire.public.landing-pages.sections.metrics')
