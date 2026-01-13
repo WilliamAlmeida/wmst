@@ -1,64 +1,54 @@
-{{-- Hero Section: Headline principal, nome do sistema: Chat iBox --}}
+{{-- Hero Section --}}
 @include('livewire.public.landing-pages.sections.navbar')
-<div class="w-full pt-24 pb-20 px-4 md:px-0 relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
-    {{-- Background Effects --}}
-    <div class="absolute inset-0 bg-gradient-to-b from-blue-100/30 via-transparent to-transparent"></div>
-    <div class="absolute top-20 left-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-[120px]"></div>
-    <div class="absolute top-40 right-1/4 w-80 h-80 bg-purple-400/10 rounded-full blur-[100px]"></div>
-    
-    <div class="max-w-5xl mx-auto text-center relative z-10">
-        <div class="text-blue-600 text-sm font-bold mb-4 tracking-wider">• LEVE O PODER DA INTELIGÊNCIA ARTIFICIAL PARA DENTRO DO SEU NEGÓCIO! •</div>
-        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-            Imagine ter um colaborador que <span class="gradient-text">nunca dorme</span>, <span class="gradient-text">nunca erra</span> e custa quase nada.<br>
-            Conheça seu novo <span class="gradient-text font-black">Agente de IA</span>.
+<div class="w-full pt-32 pb-16 px-4 md:px-0 bg-white" id="inicio">
+    <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+        
+        <h1 class="text-4xl md:text-[3.5rem] font-bold text-gray-900 mb-6 leading-[1.1] tracking-tight">
+            Seu Atendimento no WhatsApp<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">100% Automatizado com IA</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-            <div class="group bg-white rounded-2xl border-2 border-gray-200 py-8 px-4 flex flex-col items-center hover:border-blue-400 transition-all duration-300 hover:shadow-xl hover:scale-105">
-                <div class="mb-3 w-16 h-16 flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 rounded-full text-white font-bold text-xs shadow-lg group-hover:shadow-xl transition-all duration-300">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                </div>
-                <div class="text-gray-900 font-bold text-lg mb-1">WhatsApp Nativo</div>
-                <div class="text-sm text-gray-600">Business API Oficial</div>
-            </div>
-            <div class="group bg-white rounded-2xl border-2 border-gray-200 py-8 px-4 flex flex-col items-center hover:border-blue-400 transition-all duration-300 hover:shadow-xl hover:scale-105">
-                <div class="mb-3 w-16 h-16 flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 rounded-full text-white font-bold text-xs shadow-lg group-hover:shadow-xl transition-all duration-300">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                </div>
-                <div class="text-gray-900 font-bold text-lg mb-1">Google Calendar</div>
-                <div class="text-sm text-gray-600">Sincronização Automática</div>
-            </div>
-            <div class="group bg-white rounded-2xl border-2 border-gray-200 py-8 px-4 flex flex-col items-center hover:border-blue-400 transition-all duration-300 hover:shadow-xl hover:scale-105">
-                <div class="mb-3 w-16 h-16 flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 rounded-full text-white font-bold text-xs shadow-lg group-hover:shadow-xl transition-all duration-300">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-                </div>
-                <div class="text-gray-900 font-bold text-lg mb-1">IA com Memória</div>
-                <div class="text-sm text-gray-600">Upload de Documentos</div>
-            </div>
-            <div class="group bg-white rounded-2xl border-2 border-gray-200 py-8 px-4 flex flex-col items-center hover:border-blue-400 transition-all duration-300 hover:shadow-xl hover:scale-105">
-                <div class="mb-3 w-16 h-16 flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 rounded-full text-white font-bold text-xs shadow-lg group-hover:shadow-xl transition-all duration-300">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
-                <div class="text-gray-900 font-bold text-lg mb-1">Instalação Rápida</div>
-                <div class="text-sm text-gray-600">Setup em 5 Minutos</div>
-            </div>
-        </div>
-        <div class="flex flex-col md:flex-row gap-6 justify-center mb-12">
-            <a href="https://chat.ibox.delivery/register" class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center">
-                Criar Meu Agente de IA
-                <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
+        
+        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed">
+            Seu agente de IA atende, agenda, organiza, cobra e acompanha seus clientes 24/7. 
+            Configure uma vez, automatize para sempre — sem escrever código.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-8 w-full justify-center">
+            <a href="https://chat.ibox.delivery/login" class="bg-black text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto">
+                Testar Grátis | Login
             </a>
-            <button class="group bg-white border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 hover:shadow-lg hover:scale-105">
-                Ver Demo em Ação
-                <span class="inline-block ml-2 group-hover:scale-110 transition-transform">▶</span>
-            </button>
+            <a href="https://wa.me/5512982184879" class="bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold text-lg hover:border-green-500 hover:text-green-600 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 w-full sm:w-auto">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                Falar no WhatsApp
+            </a>
         </div>
-        <div class="flex flex-wrap gap-8 justify-center items-center mt-12 opacity-60 hover:opacity-80 transition-opacity">
-            <div class="text-gray-500 text-sm font-semibold">IBM Media</div>
-            <div class="text-gray-500 text-sm font-semibold">SEO Mind</div>
-            <div class="text-gray-500 text-sm font-semibold">Boosterio</div>
-            <div class="text-gray-500 text-sm font-semibold">Rankie SEO</div>
-            <div class="text-gray-500 text-sm font-semibold">Yoday</div>
-            <div class="text-gray-500 text-sm font-semibold">GREENHOST</div>
+
+        {{-- <a href="https://chat.ibox.delivery/whitelabel" class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 transition-colors mb-12">
+            🚀 Quer revender? Conheça o Whitelabel
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a> --}}
+
+        <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-gray-500 mb-16">
+            <span class="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-100">
+                <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                No-Code
+            </span>
+            <span class="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-100">
+                <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                IA Avançada
+            </span>
+            <span class="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-100">
+                <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                WhatsApp Oficial
+            </span>
+            <span class="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-100">
+                <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                100% Automatizado
+            </span>
+        </div>
+
+        <div class="w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+             <img src="{{ asset('images/mockup-dashboard.png') }}" class="w-full h-auto" alt="Chat iBox Dashboard" onerror="this.src='https://placehold.co/1200x800/f3f4f6/3b82f6?text=Dashboard+Preview'">
         </div>
     </div>
 </div>
