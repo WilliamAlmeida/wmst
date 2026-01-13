@@ -79,9 +79,9 @@
         </div>
         <div class="flex gap-2">
             <div class="flex-1">
-                <x-input placeholder="Digite sua mensagem..." />
+                <x-input placeholder="Digite sua mensagem..." class="border px-2 border-neutral-content rounded-lg" disabled />
             </div>
-            <x-button icon="phosphor.paper-plane-tilt" class="btn-primary" />
+            <x-button icon="phosphor.paper-plane-tilt" class="btn-primary" disabled />
         </div>
         
         <x-button label="Solicitar Demonstração Real" class="btn-primary w-full" icon-right="o-arrow-right"

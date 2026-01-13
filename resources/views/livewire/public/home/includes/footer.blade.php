@@ -14,7 +14,7 @@
                     <h4 class="font-semibold text-primary">Conecte-se Conosco</h4>
                     <div class="flex gap-3">
                         {{-- <x-button label="LinkedIn" icon="phosphor.linkedin-logo" /> --}}
-                        <x-button label="Instagram" icon="phosphor.instagram-logo" />
+                        <x-button label="Instagram" icon="phosphor.instagram-logo" link="https://www.instagram.com/wmst.sistemas" no-wire-navigate />
                         {{-- <x-button label="GitHub" icon="phosphor.github-logo" /> --}}
                     </div>
                 </div>
