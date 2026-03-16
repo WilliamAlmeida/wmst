@@ -76,3 +76,4 @@
 		<meta property="article:tag" 			content="{{ $seo['app_name'] }}">
 		<meta property="article:published_time" content="26/08/2025">
 		{{-- <meta property="fb:app_id"         		content="273921101283507" /> 	 --}}
+		<meta name="facebook-domain-verification" content="w65mugsku1yy3y2vousekflnq6rk9e" />
