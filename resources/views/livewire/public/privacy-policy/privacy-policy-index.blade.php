@@ -15,7 +15,7 @@
 
                 <h2 class="mt-2 font-medium">1. Controlador de Dados</h2>
                 <p>
-                    A <strong>{{ config('app.name') }}</strong> (<a href="{{ route('/') }}" rel="noopener">{{ url('/') }}</a>) é a controladora dos dados coletados por meio de sua plataforma de gerenciamento de agendamentos e comunicação com pacientes.
+                    A <strong>{{ config('app.name') }}</strong> (<a href="{{ route('home') }}" rel="noopener">{{ url('/') }}</a>) é a controladora dos dados coletados por meio de sua plataforma de gerenciamento de agendamentos e comunicação com pacientes.
                 </p>
 
                 <h2 class="mt-2 font-medium">2. Tipos de Dados Coletados e Finalidades</h2>
