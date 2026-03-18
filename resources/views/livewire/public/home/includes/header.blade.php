@@ -4,7 +4,7 @@
             <div class="flex items-center gap-3">
                 <x-logotipo-wmst class="w-12 h-12" />
                 <div>
-                    <h1 class="font-bold text-lg">{{ config('app.name') }}</h1>
+                    <div class="font-bold text-lg">{{ config('app.name') }}</div>
                     <p class="text-xs text-muted-foreground">Software House &amp; Automações IA</p>
                 </div>
             </div>

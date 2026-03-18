@@ -33,7 +33,7 @@
             'name' => 'Dra. Ana Santos',
             'role' => 'Diretora',
             'company' => 'Clínica Vida & Saúde',
-            'testimonial' => 'O AI CLINIC eliminou nossa fila de espera completamente. A IA agenda tudo automaticamente e os pacientes adoram a praticidade. Nossa eficiência operacional aumentou 300%!'
+            'testimonial' => 'O Agenda Clinic eliminou nossa fila de espera completamente. A IA agenda tudo automaticamente e os pacientes adoram a praticidade. Nossa eficiência operacional aumentou 300%!'
         ],
         [
             'name' => 'Roberto Lima',

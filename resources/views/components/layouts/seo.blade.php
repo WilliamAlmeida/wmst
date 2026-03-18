@@ -8,6 +8,8 @@
 		<meta name="description" content="Soluções em desenvolvimento, automações e integrações com Inteligência Artificial. Agende uma demonstração.">
 		<meta name="keywords" content="sistemas, automações, inteligência artificial, tecnologia, desenvolvimento web, software personalizado, n8n, integração de sistemas, soluções tecnológicas">
 		<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+		<meta name="robots" content="index, follow">
+		<link rel="canonical" href="{{ url()->current() }}" />
 
 		<!-- Web Application Manifest -->
 		<link rel="manifest" href="{{ asset('manifest.json') }}">
@@ -65,6 +67,7 @@
 		<meta property="og:site_name"           content="{{ $seo['app_name'] }}" />
 		<meta property="og:description"         content="Soluções em desenvolvimento, automações e integrações há mais de 21 anos." />
 		<meta property="og:image"    			content="{{ asset('icons/icon-384x384-'.$seo['manifest_v'].'.jpg') }}" itemprop="image" />
+		<link rel="image_src" href="{{ asset('icons/icon-384x384-'.$seo['manifest_v'].'.jpg') }}" />
 		<meta property="og:image:alt"       	content="{{ $seo['app_name'] }}" />
 		<meta property="og:image:type"			content="image/png" />
 		<meta property="og:image:width" 		content="201" />

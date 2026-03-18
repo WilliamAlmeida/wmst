@@ -1,1 +1,1 @@
-<img src="{{ asset('images/logotipo-wmst.avif') }}" alt="WMST Logo" {{ $attributes->merge(['class' => 'h-12 w-auto']) }} />
+<img src="{{ asset('images/logotipo-wmst.avif') }}" alt="Logo WMST" title="Logo WMST" {{ $attributes->merge(['class' => 'h-12 w-auto']) }} />

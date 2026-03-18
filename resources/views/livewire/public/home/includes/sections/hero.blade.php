@@ -7,14 +7,14 @@
                 <span class="text-xs mb-6 badge bg-primary/10 text-primary border-primary/20 font-medium py-0.5 px-2 rounded-md">+15 Anos Transformando Negócios com Técnologia</span>
 
                 {{-- Title --}}
-                <h1 class="text-4xl lg:text-6xl font-bold mb-6 min-h-40 lg:min-h-48">
+                <div class="text-4xl lg:text-6xl font-bold mb-6 min-h-40 lg:min-h-48">
                     <span class="hero-typed-text"></span>
-                </h1>
+                </div>
 
                 {{-- Description --}}
-                <p class="text-xl mb-8 text-pretty">
+                <h1 class="text-xl mb-8 text-pretty">
                     Especialistas em IA, automações de WhatsApp, Telegram, Instagram e sistemas customizados. Transformamos processos manuais em soluções automatizadas que economizam tempo e aumentam lucros
-                </p>
+                </h1>
 
                 {{-- Action Buttons --}}
                 <div class="flex flex-col sm:flex-row gap-4">
@@ -45,7 +45,7 @@
 
             {{-- Right: Image --}}
             <div class="relative">
-                <img alt="{{ config('app.name') }} Logo" src="{{ asset('images/logo-wmst.png') }}"
+                <img alt="{{ config('app.name') }} Logo" title="{{ config('app.name') }} Logo" src="{{ asset('images/logo-wmst.png') }}"
                     class="w-full max-w-md mx-auto opacity-0 duration-[2s]"
                     x-data="{shown:false}" x-intersect="shown=true" :class="{'fade-in':shown}"
                 />

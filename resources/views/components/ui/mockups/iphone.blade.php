@@ -46,7 +46,7 @@
                 <div class="relative flex-shrink-0 mr-2">
                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-clip pointer-events-none">
                         @if($photo_url)
-                            <img src="{{ $photo_url }}" alt="Logo" class="object-contain">
+                            <img src="{{ $photo_url }}" alt="Logo {{ $contactName }}" title="Logo {{ $contactName }}" class="object-contain">
                         @else
                             {{ substr($contactName, 0, 1) }}
                         @endif
@@ -58,7 +58,7 @@
                     @endif
                 </div>
                 <div class="flex-1">
-                    <h2 class="font-semibold text-gray-800">{{ $contactName }}</h2>
+                    <h3 class="font-semibold text-gray-800">{{ $contactName }}</h3>
                     <p class="text-xs text-gray-500 text-[10px]">
                         visto por último às {{ now()->subMinutes(5)->format('H:i') }}
                     </p>
