@@ -26,7 +26,6 @@ Route::get('/blog', [BlogController::class, 'index'])
     ->name('blog.index');
 
 Route::get('/blog/{slug}', [BlogController::class, 'show'])
-    ->defaults('locale', 'pt_BR')
     ->name('blog.show');
 
 Route::get('/produtos', [ProductsController::class, 'index'])
@@ -34,7 +33,6 @@ Route::get('/produtos', [ProductsController::class, 'index'])
     ->name('products.index');
 
 Route::get('/produtos/{slug}', [ProductsController::class, 'show'])
-    ->defaults('locale', 'pt_BR')
     ->name('products.show');
 
 Route::get('/solucoes', [ServicesController::class, 'index'])
@@ -42,7 +40,6 @@ Route::get('/solucoes', [ServicesController::class, 'index'])
     ->name('services.index');
 
 Route::get('/solucoes/{slug}', [ServicesController::class, 'show'])
-    ->defaults('locale', 'pt_BR')
     ->name('services.show');
 
 Route::get('/sobre', [CompanyController::class, 'about'])
