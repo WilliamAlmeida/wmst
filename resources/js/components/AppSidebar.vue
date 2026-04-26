@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-vue-next';
+import { BookOpen, Bot, FolderGit2, LayoutGrid, Newspaper, Sparkles } from 'lucide-vue-next';
+import AiAgentController from '@/actions/App/Http/Controllers/Admin/AiAgentController';
+import BlogPostAgentController from '@/actions/App/Http/Controllers/Admin/BlogPostAgentController';
+import BlogPostController from '@/actions/App/Http/Controllers/Admin/BlogPostController';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -22,6 +25,21 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Blog',
+        href: BlogPostController.index(),
+        icon: Newspaper,
+    },
+    {
+        title: 'Agentes IA',
+        href: AiAgentController.index(),
+        icon: Bot,
+    },
+    {
+        title: 'Agente de Postagem',
+        href: BlogPostAgentController.index(),
+        icon: Sparkles,
     },
 ];
 
