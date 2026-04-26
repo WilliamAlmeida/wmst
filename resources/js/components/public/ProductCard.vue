@@ -7,6 +7,7 @@ defineProps<{
     description: string;
     logo: string;
     bullets: string[];
+    mockup?: string;
     badge?: string;
     ctaUrl: string;
     ctaLabel?: string;
@@ -55,7 +56,7 @@ defineProps<{
             <div class="absolute -inset-6 rounded-3xl bg-gradient-to-br from-[color:var(--color-brand-soft)] via-transparent to-[color:var(--color-brand-2-soft)] blur-2xl" />
             <div class="relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 shadow-xl">
                 <img
-                    src="/images/mockup-dashboard.png"
+                    :src="mockup || '/images/mockup-dashboard.png'"
                     :alt="`${name} mockup`"
                     class="h-full w-full object-cover"
                     loading="lazy"

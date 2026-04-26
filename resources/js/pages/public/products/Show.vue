@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, Sparkles, ChevronRight } from 'lucide-vue-next';
+import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, Sparkles, ChevronRight, ExternalLink, Target, Plug } from 'lucide-vue-next';
 import { computed } from 'vue';
 import Reveal from '@/components/public/Reveal.vue';
 
@@ -25,10 +25,14 @@ interface Product {
     description: string;
     logo: string;
     whatsapp: string;
+    website?: string;
     features: Feature[];
     metrics: Array<{ label: string; value: string }>;
     process: ProcessStep[];
     tech: string[];
+    useCases?: string[];
+    integrations?: string[];
+    pricingNote?: string;
 }
 
 interface RelatedProduct {
@@ -77,6 +81,30 @@ const backLabel: Record<Locale, string> = {
     pt_BR: 'Ver todos os produtos',
     es: 'Ver todos los productos',
     en: 'View all products',
+};
+
+const visitSiteLabel: Record<Locale, string> = {
+    pt_BR: 'Visitar site oficial',
+    es: 'Visitar sitio oficial',
+    en: 'Visit official site',
+};
+
+const useCasesLabel: Record<Locale, string> = {
+    pt_BR: 'Para quem e ideal',
+    es: 'Para quien es ideal',
+    en: 'Who it is for',
+};
+
+const integrationsLabel: Record<Locale, string> = {
+    pt_BR: 'Integracoes',
+    es: 'Integraciones',
+    en: 'Integrations',
+};
+
+const pricingLabel: Record<Locale, string> = {
+    pt_BR: 'Investimento',
+    es: 'Inversion',
+    en: 'Pricing',
 };
 
 const productUrl = (slug: string): string =>
@@ -158,6 +186,16 @@ const breadcrumbSchema = computed(() =>
                         >
                             <MessageCircle class="h-4 w-4" />
                             {{ ctaLabel[locale] }} {{ product.name }}
+                        </a>
+                        <a
+                            v-if="product.website"
+                            :href="product.website"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 transition hover:border-[color:var(--color-brand)] hover:text-[color:var(--color-brand)]"
+                        >
+                            <ExternalLink class="h-4 w-4" />
+                            {{ visitSiteLabel[locale] }}
                         </a>
                     </div>
                 </div>
@@ -248,6 +286,47 @@ const breadcrumbSchema = computed(() =>
                     {{ t }}
                 </span>
             </div>
+        </div>
+    </section>
+
+    <!-- USE CASES + INTEGRATIONS -->
+    <section v-if="product.useCases?.length || product.integrations?.length" class="bg-white py-16">
+        <div class="mx-auto grid max-w-7xl gap-8 px-4 md:px-8 lg:grid-cols-2">
+            <Reveal v-if="product.useCases?.length">
+                <div class="flex h-full flex-col rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-8 shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)]">
+                            <Target class="h-5 w-5 text-[color:var(--color-brand)]" />
+                        </div>
+                        <h2 class="font-display text-xl font-bold text-zinc-900 md:text-2xl">{{ useCasesLabel[locale] }}</h2>
+                    </div>
+                    <ul class="mt-6 space-y-3">
+                        <li v-for="uc in product.useCases" :key="uc" class="flex items-start gap-3">
+                            <CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
+                            <span class="text-sm text-zinc-700">{{ uc }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </Reveal>
+            <Reveal v-if="product.integrations?.length" :delay="100">
+                <div class="flex h-full flex-col rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-8 shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--color-brand-2-soft)] to-[color:var(--color-brand-soft)]">
+                            <Plug class="h-5 w-5 text-[color:var(--color-brand-2)]" />
+                        </div>
+                        <h2 class="font-display text-xl font-bold text-zinc-900 md:text-2xl">{{ integrationsLabel[locale] }}</h2>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        <span v-for="i in product.integrations" :key="i" class="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 shadow-sm ring-1 ring-zinc-200">
+                            {{ i }}
+                        </span>
+                    </div>
+                    <p v-if="product.pricingNote" class="mt-6 rounded-xl bg-[color:var(--color-brand-soft)] px-4 py-3 text-sm text-zinc-700">
+                        <span class="font-semibold text-[color:var(--color-brand)]">{{ pricingLabel[locale] }}:</span>
+                        {{ product.pricingNote }}
+                    </p>
+                </div>
+            </Reveal>
         </div>
     </section>
 

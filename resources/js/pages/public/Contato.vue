@@ -2,7 +2,6 @@
 import { Head } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import { MessageCircle, Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-vue-next';
-import PublicLayout from '@/layouts/PublicLayout.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import Reveal from '@/components/public/Reveal.vue';
 
@@ -97,7 +96,7 @@ const orgSchema = computed(() => JSON.stringify({
     '@type': 'Organization',
     name: 'WMST',
     url: props.alternateUrls.pt_BR,
-    address: { '@type': 'PostalAddress', addressLocality: 'Sao Jose dos Campos', addressRegion: 'SP', addressCountry: 'BR' },
+    address: { '@type': 'PostalAddress', addressLocality: 'Lorena', addressRegion: 'SP', addressCountry: 'BR' },
     contactPoint: [
         { '@type': 'ContactPoint', telephone: props.contact.phone, email: props.contact.email, contactType: 'sales', areaServed: 'BR', availableLanguage: ['Portuguese', 'Spanish', 'English'] },
     ],
@@ -117,8 +116,7 @@ const orgSchema = computed(() => JSON.stringify({
         <component :is="'script'" type="application/ld+json" v-html="orgSchema" />
     </Head>
 
-    <PublicLayout>
-        <!-- HERO -->
+    <!-- HERO -->
         <section class="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 py-24 text-white">
             <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 25% 25%, rgba(37, 211, 102, 0.4), transparent 50%), radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.3), transparent 50%);"></div>
             <div class="relative mx-auto max-w-5xl px-4 text-center md:px-8">
@@ -211,5 +209,4 @@ const orgSchema = computed(() => JSON.stringify({
                 </div>
             </div>
         </section>
-    </PublicLayout>
 </template>

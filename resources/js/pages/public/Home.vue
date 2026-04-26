@@ -104,6 +104,7 @@ const products = [
         bullets: ['Agenda inteligente com IA', 'Lembretes via WhatsApp', 'Prontuario eletronico', 'Financeiro integrado'],
         badge: 'Health-Tech',
         ctaUrl: 'https://wa.me/5512982184879?text=' + encodeURIComponent('Olá, quero conhecer o Agenda Clinic!'),
+        mockup: '/images/mockup-agendaclinic.avif',
     },
     {
         name: 'IBOX Delivery',
@@ -113,6 +114,7 @@ const products = [
         bullets: ['Cardapio digital responsivo', 'App de motoboy nativo', 'Pagamentos integrados', 'Programa de fidelidade'],
         badge: 'Food-Tech',
         ctaUrl: 'https://wa.me/5512982184879?text=' + encodeURIComponent('Olá, quero conhecer o IBOX Delivery!'),
+        mockup: '/images/mockup-dashboard.png',
     },
     {
         name: 'Conecta',
@@ -122,6 +124,7 @@ const products = [
         bullets: ['Inbox unificado multicanal', 'Funis automaticos com IA', 'Disparos em massa', 'Relatorios em tempo real'],
         badge: 'Marketing-Tech',
         ctaUrl: 'https://wa.me/5512982184879?text=' + encodeURIComponent('Olá, quero conhecer o Conecta!'),
+        mockup: '/images/mockup-dashboard.png',
     },
 ];
 

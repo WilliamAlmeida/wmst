@@ -2,7 +2,6 @@
 import { Head, Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import { TrendingUp, Clock, Target, ArrowRight, MessageCircle, CheckCircle2 } from 'lucide-vue-next';
-import PublicLayout from '@/layouts/PublicLayout.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import Reveal from '@/components/public/Reveal.vue';
 import TestimonialCard from '@/components/public/TestimonialCard.vue';
@@ -119,8 +118,7 @@ const itemListSchema = computed(() => JSON.stringify({
         <component :is="'script'" type="application/ld+json" v-html="itemListSchema" />
     </Head>
 
-    <PublicLayout>
-        <!-- HERO -->
+    <!-- HERO -->
         <section class="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 py-24 text-white">
             <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.4), transparent 50%), radial-gradient(circle at 70% 80%, rgba(99, 102, 241, 0.3), transparent 50%);"></div>
             <div class="relative mx-auto max-w-5xl px-4 text-center md:px-8">
@@ -207,5 +205,4 @@ const itemListSchema = computed(() => JSON.stringify({
                 </Reveal>
             </div>
         </section>
-    </PublicLayout>
 </template>

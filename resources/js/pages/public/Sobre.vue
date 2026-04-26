@@ -2,7 +2,6 @@
 import { Head, Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import { Zap, ShieldCheck, Heart, Sparkles, MessageCircle, ArrowRight, MapPin, Mail, Phone, Clock } from 'lucide-vue-next';
-import PublicLayout from '@/layouts/PublicLayout.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import Reveal from '@/components/public/Reveal.vue';
 import StatTile from '@/components/public/StatTile.vue';
@@ -32,7 +31,7 @@ const iconMap: Record<string, unknown> = { Zap, ShieldCheck, Heart, Sparkles };
 const copy = computed(() => {
     const map = {
         pt_BR: {
-            title: 'Sobre a WMST | Software house e automacoes IA em Sao Jose dos Campos',
+            title: 'Sobre a WMST | Software house e automacoes IA em Lorena',
             description: 'Conheca a WMST: software sob medida, automacoes com IA e produtos proprios para PMEs que precisam crescer sem ampliar equipe.',
             eyebrow: 'Sobre nos',
             heading: 'Engenharia de software com',
@@ -98,9 +97,9 @@ const orgSchema = computed(() => JSON.stringify({
     name: 'WMST',
     url: props.alternateUrls.pt_BR,
     description: props.company.mission,
-    address: { '@type': 'PostalAddress', addressLocality: 'Sao Jose dos Campos', addressRegion: 'SP', addressCountry: 'BR' },
+    address: { '@type': 'PostalAddress', addressLocality: 'Lorena', addressRegion: 'SP', addressCountry: 'BR' },
     contactPoint: { '@type': 'ContactPoint', telephone: props.company.contact.phone, email: props.company.contact.email, contactType: 'sales', areaServed: 'BR' },
-    foundingLocation: 'Sao Jose dos Campos, Brasil',
+    foundingLocation: 'Lorena, Brasil',
 }));
 </script>
 
@@ -117,8 +116,7 @@ const orgSchema = computed(() => JSON.stringify({
         <component :is="'script'" type="application/ld+json" v-html="orgSchema" />
     </Head>
 
-    <PublicLayout>
-        <!-- HERO -->
+    <!-- HERO -->
         <section class="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 py-24 text-white">
             <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.4), transparent 50%), radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.3), transparent 50%);"></div>
             <div class="relative mx-auto max-w-5xl px-4 text-center md:px-8">
@@ -203,5 +201,4 @@ const orgSchema = computed(() => JSON.stringify({
                 </Reveal>
             </div>
         </section>
-    </PublicLayout>
 </template>
