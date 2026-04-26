@@ -145,7 +145,7 @@ const cases = [
 
 const testimonials = [
     { name: 'Carlos Silva', role: 'CEO', company: 'TechStart Solucoes', testimonial: 'A automação de WhatsApp da WMST revolucionou nosso atendimento. Vendemos 24/7 sem precisar de equipe gigante. Recuperamos o investimento em 2 meses!' },
-    { name: 'Dra. Ana Santos', role: 'Diretora', company: 'Clinica Vida & Saude', testimonial: 'O Agenda Clinic eliminou nossa fila de espera. A IA agenda tudo automaticamente e os pacientes adoram a praticidade.' },
+    { name: 'Dra. Ana Santos', role: 'Diretora', company: 'Clinica Vida & Saúde', testimonial: 'O Agenda Clinic eliminou nossa fila de espera. A IA agenda tudo automaticamente e os pacientes adoram a praticidade.' },
     { name: 'Roberto Lima', role: 'Proprietario', company: 'Delivery Express', testimonial: 'O IBOX Delivery nos colocou no mesmo nivel dos grandes players. Sistema robusto, suporte excepcional e resultados desde o primeiro dia.' },
 ];
 

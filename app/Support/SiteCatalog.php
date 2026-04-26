@@ -34,7 +34,7 @@ class SiteCatalog
                     [
                         'icon' => 'CalendarDays',
                         'title' => self::pick($locale, ['pt_BR' => 'Calendario inteligente drag & drop', 'es' => 'Calendario inteligente drag & drop', 'en' => 'Smart drag & drop calendar']),
-                        'description' => self::pick($locale, ['pt_BR' => 'Agendas por profissional ou exame, kanban, datas indisponiveis e reagendamento em massa.', 'es' => 'Agendas por profesional o examen, kanban, fechas no disponibles y reagendamiento masivo.', 'en' => 'Agendas per professional or exam, kanban, blocked dates and bulk rescheduling.']),
+                        'description' => self::pick($locale, ['pt_BR' => 'Agendas por profissional ou exame, kanban, datas indisponíveis e reagendamento em massa.', 'es' => 'Agendas por profesional o examen, kanban, fechas no disponibles y reagendamiento masivo.', 'en' => 'Agendas per professional or exam, kanban, blocked dates and bulk rescheduling.']),
                     ],
                     [
                         'icon' => 'Bot',

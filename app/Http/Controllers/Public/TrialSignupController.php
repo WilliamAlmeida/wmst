@@ -30,7 +30,7 @@ class TrialSignupController extends Controller
 
         if ($agent === null) {
             return back()->withErrors([
-                'ai_agent_slug' => 'No momento não temos agentes disponiveis para teste.',
+                'ai_agent_slug' => 'No momento não temos agentes disponíveis para teste.',
             ]);
         }
 

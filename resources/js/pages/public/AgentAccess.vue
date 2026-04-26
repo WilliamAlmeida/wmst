@@ -16,7 +16,7 @@ defineProps<{
 const titleByStatus = {
     ok: 'Teste de Agente IA',
     blocked: 'Link indisponivel',
-    invalid: 'Link invalido',
+    invalid: 'Link invalído',
 };
 </script>
 
