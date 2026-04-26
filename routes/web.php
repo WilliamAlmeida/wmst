@@ -1,26 +1,14 @@
 <?php
 
-use App\Livewire\Public;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
+use Laravel\Fortify\Features;
 
-Route::get('/', Public\Home\HomeIndex::class)->name('home');
-Route::get('/privacy-policy', Public\PrivacyPolicy\PrivacyPolicyIndex::class)->name('privacy-policy');
-Route::get('/terms-use', Public\TermsUse\TermsUseIndex::class)->name('terms-use');
+Route::inertia('/', 'Welcome', [
+    'canRegister' => Features::enabled(Features::registration()),
+])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/agent/agendaclinic', Public\Agents\AgentIndex::class);
-Route::get('/agent/agendaclinic/calculadora', Public\Calculadoras\AgendaClinic::class)->name('calculadora.agenda-clinic');
-
-Route::get('/chatibox', Public\LandingPages\ChatIndex::class);
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::inertia('dashboard', 'Dashboard')->name('dashboard');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__.'/settings.php';
