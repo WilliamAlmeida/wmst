@@ -213,4 +213,8 @@ Use Wayfinder to generate TypeScript functions for Laravel routes. Import from `
 Vue components must have a single root element.
 - IMPORTANT: Activate `inertia-vue-development` when working with Inertia Vue client-side patterns.
 
+# Antigo sistema que você irá entender para criar o novo, assim você irá entender o que é a empresa, produtos que já temos e o que fazemos para que criemos esse novo sistema (landing page, blog, etc) para atrair clientes, leads, divulgar nosso projeto e conseguimos mais clientes, pense em SEO semantico sempre também, para que o Google goste do nosso site e nos posicione melhor, pense em performance também, para que o site carregue rápido e seja leve, isso ajuda no SEO também, e claro, pense em uma boa experiência para o usuário, com um design bonito, moderno e fácil de usar, isso ajuda a manter os visitantes no site e aumentar as chances de conversão.
+
+- Pasta do antigo sistema: `old_system`
+
 </laravel-boost-guidelines>
