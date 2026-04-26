@@ -6,6 +6,8 @@ import BrandMark from './BrandMark.vue';
 defineProps<{
     homePath: string;
     blogPath: string;
+    productsPath: string;
+    servicesPath: string;
 }>();
 
 const year = new Date().getFullYear();
@@ -36,9 +38,9 @@ const year = new Date().getFullYear();
             <div>
                 <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">Produtos</h3>
                 <ul class="mt-4 space-y-2 text-sm">
-                    <li><a href="#sistemas" class="hover:text-white">Agenda Clinic</a></li>
-                    <li><a href="#sistemas" class="hover:text-white">IBOX Delivery</a></li>
-                    <li><a href="#sistemas" class="hover:text-white">Conecta Instagram</a></li>
+                    <li><Link :href="`${productsPath}/agenda-clinic`" class="hover:text-white">Agenda Clinic</Link></li>
+                    <li><Link :href="`${productsPath}/ibox-delivery`" class="hover:text-white">IBOX Delivery</Link></li>
+                    <li><Link :href="`${productsPath}/conecta`" class="hover:text-white">Conecta</Link></li>
                 </ul>
             </div>
 
@@ -47,8 +49,8 @@ const year = new Date().getFullYear();
                 <ul class="mt-4 space-y-2 text-sm">
                     <li><Link :href="homePath" class="hover:text-white">Home</Link></li>
                     <li><Link :href="blogPath" class="hover:text-white">Blog</Link></li>
-                    <li><a href="#solucoes" class="hover:text-white">Solucoes</a></li>
-                    <li><a href="#cases" class="hover:text-white">Cases</a></li>
+                    <li><Link :href="servicesPath" class="hover:text-white">Solucoes</Link></li>
+                    <li><Link :href="productsPath" class="hover:text-white">Produtos</Link></li>
                 </ul>
             </div>
 

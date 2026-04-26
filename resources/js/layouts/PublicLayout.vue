@@ -10,6 +10,8 @@ const page = usePage<{ locale?: string; auth: { user?: { id: number } | null } }
 const locale = computed(() => page.props.locale ?? 'pt_BR');
 const homePath = computed(() => (locale.value === 'pt_BR' ? '/' : `/${locale.value}`));
 const blogPath = computed(() => (locale.value === 'pt_BR' ? '/blog' : `/${locale.value}/blog`));
+const productsPath = computed(() => (locale.value === 'pt_BR' ? '/produtos' : `/${locale.value}/produtos`));
+const servicesPath = computed(() => (locale.value === 'pt_BR' ? '/solucoes' : `/${locale.value}/solucoes`));
 
 const whatsappUrl = 'https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20WMST';
 </script>
@@ -28,6 +30,8 @@ const whatsappUrl = 'https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20d
         <PublicHeader
             :home-path="homePath"
             :blog-path="blogPath"
+            :products-path="productsPath"
+            :services-path="servicesPath"
             :is-authenticated="!!page.props.auth?.user"
             :whatsapp-url="whatsappUrl"
         />
@@ -36,7 +40,7 @@ const whatsappUrl = 'https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20d
             <slot />
         </main>
 
-        <PublicFooter :home-path="homePath" :blog-path="blogPath" />
+        <PublicFooter :home-path="homePath" :blog-path="blogPath" :products-path="productsPath" :services-path="servicesPath" />
 
         <WhatsAppFloat :href="whatsappUrl" />
     </div>

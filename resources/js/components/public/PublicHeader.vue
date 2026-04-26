@@ -7,6 +7,8 @@ import BrandMark from './BrandMark.vue';
 const props = defineProps<{
     homePath: string;
     blogPath: string;
+    productsPath: string;
+    servicesPath: string;
     isAuthenticated: boolean;
     whatsappUrl: string;
 }>();
@@ -14,8 +16,8 @@ const props = defineProps<{
 const open = ref(false);
 
 const navLinks = computed(() => [
-    { label: 'Sistemas', href: '#sistemas' },
-    { label: 'Solucoes', href: '#solucoes' },
+    { label: 'Produtos', href: props.productsPath, isLink: true },
+    { label: 'Solucoes', href: props.servicesPath, isLink: true },
     { label: 'Cases', href: '#cases' },
     { label: 'Blog', href: props.blogPath, isLink: true },
     { label: 'Contato', href: '#contato' },

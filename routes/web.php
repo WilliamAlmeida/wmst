@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Public\AgentShareLinkAccessController;
 use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\ProductsController;
+use App\Http\Controllers\Public\ServicesController;
 use App\Http\Controllers\Public\TrialSignupController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -25,6 +27,22 @@ Route::get('/blog/{slug}', [BlogController::class, 'show'])
     ->defaults('locale', 'pt_BR')
     ->name('blog.show');
 
+Route::get('/produtos', [ProductsController::class, 'index'])
+    ->defaults('locale', 'pt_BR')
+    ->name('products.index');
+
+Route::get('/produtos/{slug}', [ProductsController::class, 'show'])
+    ->defaults('locale', 'pt_BR')
+    ->name('products.show');
+
+Route::get('/solucoes', [ServicesController::class, 'index'])
+    ->defaults('locale', 'pt_BR')
+    ->name('services.index');
+
+Route::get('/solucoes/{slug}', [ServicesController::class, 'show'])
+    ->defaults('locale', 'pt_BR')
+    ->name('services.show');
+
 Route::post('/trial-signups', [TrialSignupController::class, 'store'])
     ->defaults('locale', 'pt_BR')
     ->name('trial-signups.store');
@@ -35,6 +53,10 @@ Route::prefix('{locale}')
         Route::get('/', [HomeController::class, 'index'])->name('localized.home');
         Route::get('/blog', [BlogController::class, 'index'])->name('localized.blog.index');
         Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('localized.blog.show');
+        Route::get('/produtos', [ProductsController::class, 'index'])->name('localized.products.index');
+        Route::get('/produtos/{slug}', [ProductsController::class, 'show'])->name('localized.products.show');
+        Route::get('/solucoes', [ServicesController::class, 'index'])->name('localized.services.index');
+        Route::get('/solucoes/{slug}', [ServicesController::class, 'show'])->name('localized.services.show');
         Route::post('/trial-signups', [TrialSignupController::class, 'store'])->name('localized.trial-signups.store');
     });
 
