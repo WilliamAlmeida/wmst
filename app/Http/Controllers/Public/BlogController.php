@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
@@ -16,17 +18,59 @@ class BlogController extends Controller
 
         app()->setLocale($activeLocale);
 
-        $posts = BlogPost::query()
+        $categorySlug = $request->string('category')->toString() ?: null;
+        $search = $request->string('q')->toString() ?: null;
+
+        $baseQuery = BlogPost::query()
             ->published()
-            ->where('locale', $activeLocale)
-            ->with(['category:id,name,slug'])
+            ->where('locale', $activeLocale);
+
+        if ($categorySlug !== null) {
+            $baseQuery->whereHas('category', fn ($q) => $q->where('slug', $categorySlug));
+        }
+
+        if ($search !== null && $search !== '') {
+            $term = '%'.$search.'%';
+            $baseQuery->where(function ($q) use ($term): void {
+                $q->where('title', 'like', $term)
+                    ->orWhere('excerpt', 'like', $term);
+            });
+        }
+
+        $featured = (clone $baseQuery)
+            ->with(['category:id,name,slug', 'author:id,name'])
             ->orderByDesc('published_at')
+            ->first();
+
+        $postsQuery = (clone $baseQuery)
+            ->with(['category:id,name,slug'])
+            ->orderByDesc('published_at');
+
+        if ($featured !== null && $request->integer('page', 1) === 1 && $search === null && $categorySlug === null) {
+            $postsQuery->whereKeyNot($featured->id);
+        }
+
+        $posts = $postsQuery
             ->paginate(9)
-            ->withQueryString();
+            ->withQueryString()
+            ->through(fn (BlogPost $post): array => $this->transformCard($post));
+
+        $categories = BlogCategory::query()
+            ->withCount(['posts' => fn ($q) => $q->published()->where('locale', $activeLocale)])
+            ->orderBy('name')
+            ->get(['id', 'name', 'slug'])
+            ->filter(fn (BlogCategory $cat): bool => ($cat->posts_count ?? 0) > 0)
+            ->values();
 
         return Inertia::render('public/blog/Index', [
             'locale' => $activeLocale,
             'posts' => $posts,
+            'featured' => $featured ? $this->transformCard($featured, withAuthor: true) : null,
+            'categories' => $categories,
+            'filters' => [
+                'category' => $categorySlug,
+                'q' => $search,
+            ],
             'canonicalUrl' => $activeLocale === 'pt_BR' ? url('/blog') : url('/'.$activeLocale.'/blog'),
             'alternateUrls' => [
                 'pt_BR' => url('/blog'),
@@ -50,19 +94,44 @@ class BlogController extends Controller
             ->with(['author:id,name', 'category:id,name,slug', 'tags:id,name,slug'])
             ->firstOrFail();
 
+        [$contentHtml, $toc] = $this->renderContent($post->content);
+
         $relatedPosts = BlogPost::query()
             ->published()
             ->where('locale', $activeLocale)
             ->whereKeyNot($post->id)
+            ->when(
+                $post->blog_category_id !== null,
+                fn ($q) => $q->where('blog_category_id', $post->blog_category_id),
+            )
+            ->with(['category:id,name,slug'])
             ->orderByDesc('published_at')
             ->limit(3)
-            ->get(['id', 'title', 'slug', 'published_at']);
+            ->get(['id', 'title', 'slug', 'excerpt', 'published_at', 'featured_image_path', 'blog_category_id'])
+            ->map(fn (BlogPost $p): array => $this->transformCard($p));
 
         $path = '/blog/'.$post->slug;
+        $blogPath = '/blog';
 
         return Inertia::render('public/blog/Show', [
             'locale' => $activeLocale,
-            'post' => $post,
+            'post' => [
+                'id' => $post->id,
+                'title' => $post->title,
+                'slug' => $post->slug,
+                'excerpt' => $post->excerpt,
+                'content_html' => $contentHtml,
+                'toc' => $toc,
+                'reading_time_minutes' => $post->reading_time_minutes,
+                'seo_title' => $post->seo_title,
+                'seo_description' => $post->seo_description,
+                'featured_image_url' => $post->featured_image_url,
+                'published_at' => $post->published_at?->toIso8601String(),
+                'published_at_human' => $post->published_at?->translatedFormat('d \d\e F \d\e Y'),
+                'category' => $post->category,
+                'tags' => $post->tags,
+                'author' => $post->author,
+            ],
             'relatedPosts' => $relatedPosts,
             'canonicalUrl' => $activeLocale === 'pt_BR' ? url($path) : url('/'.$activeLocale.$path),
             'alternateUrls' => [
@@ -70,8 +139,69 @@ class BlogController extends Controller
                 'es' => url('/es'.$path),
                 'en' => url('/en'.$path),
             ],
-            'blogUrl' => $activeLocale === 'pt_BR' ? url('/blog') : url('/'.$activeLocale.'/blog'),
+            'blogUrl' => $activeLocale === 'pt_BR' ? url($blogPath) : url('/'.$activeLocale.$blogPath),
         ]);
+    }
+
+    /**
+     * @return array{0: string, 1: array<int, array{id: string, text: string, level: int}>}
+     */
+    private function renderContent(string $markdown): array
+    {
+        $html = (string) Str::markdown($markdown, [
+            'html_input' => 'strip',
+            'allow_unsafe_links' => false,
+        ]);
+
+        $toc = [];
+        $html = preg_replace_callback(
+            '/<h([23])>(.*?)<\/h\1>/i',
+            function (array $match) use (&$toc): string {
+                $level = (int) $match[1];
+                $text = trim(strip_tags($match[2]));
+                $id = Str::slug($text);
+
+                if ($id === '') {
+                    return $match[0];
+                }
+
+                $toc[] = ['id' => $id, 'text' => $text, 'level' => $level];
+
+                return sprintf(
+                    '<h%1$d id="%2$s" class="scroll-mt-24"><a href="#%2$s" class="anchor">%3$s</a></h%1$d>',
+                    $level,
+                    $id,
+                    e($text),
+                );
+            },
+            $html,
+        );
+
+        return [(string) $html, $toc];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function transformCard(BlogPost $post, bool $withAuthor = false): array
+    {
+        $data = [
+            'id' => $post->id,
+            'title' => $post->title,
+            'slug' => $post->slug,
+            'excerpt' => $post->excerpt,
+            'published_at' => $post->published_at?->toIso8601String(),
+            'published_at_human' => $post->published_at?->translatedFormat('d M Y'),
+            'reading_time_minutes' => $post->reading_time_minutes,
+            'featured_image_url' => $post->featured_image_url,
+            'category' => $post->relationLoaded('category') ? $post->category : null,
+        ];
+
+        if ($withAuthor) {
+            $data['author'] = $post->relationLoaded('author') ? $post->author : null;
+        }
+
+        return $data;
     }
 
     private function resolveLocale(?string $locale): string
