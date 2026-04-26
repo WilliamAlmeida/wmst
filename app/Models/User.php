@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -30,5 +31,45 @@ class User extends Authenticatable
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    /**
+     * @return HasMany<BlogPost, $this>
+     */
+    public function blogPosts(): HasMany
+    {
+        return $this->hasMany(BlogPost::class, 'author_id');
+    }
+
+    /**
+     * @return HasMany<AgentShareLink, $this>
+     */
+    public function createdAgentShareLinks(): HasMany
+    {
+        return $this->hasMany(AgentShareLink::class, 'created_by_user_id');
+    }
+
+    /**
+     * @return HasMany<AgentShareLink, $this>
+     */
+    public function assignedAgentShareLinks(): HasMany
+    {
+        return $this->hasMany(AgentShareLink::class, 'assigned_user_id');
+    }
+
+    /**
+     * @return HasMany<AgentShareLinkVisit, $this>
+     */
+    public function agentShareLinkVisits(): HasMany
+    {
+        return $this->hasMany(AgentShareLinkVisit::class);
+    }
+
+    /**
+     * @return HasMany<AgentConversationEvent, $this>
+     */
+    public function agentConversationEvents(): HasMany
+    {
+        return $this->hasMany(AgentConversationEvent::class);
     }
 }
