@@ -8,6 +8,9 @@ defineProps<{
     blogPath: string;
     productsPath: string;
     servicesPath: string;
+    aboutPath: string;
+    casesPath: string;
+    contactPath: string;
 }>();
 
 const year = new Date().getFullYear();
@@ -48,9 +51,11 @@ const year = new Date().getFullYear();
                 <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">Empresa</h3>
                 <ul class="mt-4 space-y-2 text-sm">
                     <li><Link :href="homePath" class="hover:text-white">Home</Link></li>
-                    <li><Link :href="blogPath" class="hover:text-white">Blog</Link></li>
+                    <li><Link :href="aboutPath" class="hover:text-white">Sobre</Link></li>
+                    <li><Link :href="casesPath" class="hover:text-white">Cases</Link></li>
                     <li><Link :href="servicesPath" class="hover:text-white">Solucoes</Link></li>
-                    <li><Link :href="productsPath" class="hover:text-white">Produtos</Link></li>
+                    <li><Link :href="blogPath" class="hover:text-white">Blog</Link></li>
+                    <li><Link :href="contactPath" class="hover:text-white">Contato</Link></li>
                 </ul>
             </div>
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Public\AgentShareLinkAccessController;
 use App\Http\Controllers\Public\BlogController;
+use App\Http\Controllers\Public\CompanyController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\ProductsController;
 use App\Http\Controllers\Public\ServicesController;
@@ -43,6 +44,18 @@ Route::get('/solucoes/{slug}', [ServicesController::class, 'show'])
     ->defaults('locale', 'pt_BR')
     ->name('services.show');
 
+Route::get('/sobre', [CompanyController::class, 'about'])
+    ->defaults('locale', 'pt_BR')
+    ->name('company.about');
+
+Route::get('/cases', [CompanyController::class, 'cases'])
+    ->defaults('locale', 'pt_BR')
+    ->name('company.cases');
+
+Route::get('/contato', [CompanyController::class, 'contact'])
+    ->defaults('locale', 'pt_BR')
+    ->name('company.contact');
+
 Route::post('/trial-signups', [TrialSignupController::class, 'store'])
     ->defaults('locale', 'pt_BR')
     ->name('trial-signups.store');
@@ -57,6 +70,9 @@ Route::prefix('{locale}')
         Route::get('/produtos/{slug}', [ProductsController::class, 'show'])->name('localized.products.show');
         Route::get('/solucoes', [ServicesController::class, 'index'])->name('localized.services.index');
         Route::get('/solucoes/{slug}', [ServicesController::class, 'show'])->name('localized.services.show');
+        Route::get('/sobre', [CompanyController::class, 'about'])->name('localized.company.about');
+        Route::get('/cases', [CompanyController::class, 'cases'])->name('localized.company.cases');
+        Route::get('/contato', [CompanyController::class, 'contact'])->name('localized.company.contact');
         Route::post('/trial-signups', [TrialSignupController::class, 'store'])->name('localized.trial-signups.store');
     });
 

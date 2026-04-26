@@ -12,6 +12,9 @@ const homePath = computed(() => (locale.value === 'pt_BR' ? '/' : `/${locale.val
 const blogPath = computed(() => (locale.value === 'pt_BR' ? '/blog' : `/${locale.value}/blog`));
 const productsPath = computed(() => (locale.value === 'pt_BR' ? '/produtos' : `/${locale.value}/produtos`));
 const servicesPath = computed(() => (locale.value === 'pt_BR' ? '/solucoes' : `/${locale.value}/solucoes`));
+const aboutPath = computed(() => (locale.value === 'pt_BR' ? '/sobre' : `/${locale.value}/sobre`));
+const casesPath = computed(() => (locale.value === 'pt_BR' ? '/cases' : `/${locale.value}/cases`));
+const contactPath = computed(() => (locale.value === 'pt_BR' ? '/contato' : `/${locale.value}/contato`));
 
 const whatsappUrl = 'https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20WMST';
 </script>
@@ -32,6 +35,9 @@ const whatsappUrl = 'https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20d
             :blog-path="blogPath"
             :products-path="productsPath"
             :services-path="servicesPath"
+            :about-path="aboutPath"
+            :cases-path="casesPath"
+            :contact-path="contactPath"
             :is-authenticated="!!page.props.auth?.user"
             :whatsapp-url="whatsappUrl"
         />
@@ -40,7 +46,7 @@ const whatsappUrl = 'https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20d
             <slot />
         </main>
 
-        <PublicFooter :home-path="homePath" :blog-path="blogPath" :products-path="productsPath" :services-path="servicesPath" />
+        <PublicFooter :home-path="homePath" :blog-path="blogPath" :products-path="productsPath" :services-path="servicesPath" :about-path="aboutPath" :cases-path="casesPath" :contact-path="contactPath" />
 
         <WhatsAppFloat :href="whatsappUrl" />
     </div>

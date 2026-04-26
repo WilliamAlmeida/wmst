@@ -9,6 +9,9 @@ const props = defineProps<{
     blogPath: string;
     productsPath: string;
     servicesPath: string;
+    aboutPath: string;
+    casesPath: string;
+    contactPath: string;
     isAuthenticated: boolean;
     whatsappUrl: string;
 }>();
@@ -18,9 +21,10 @@ const open = ref(false);
 const navLinks = computed(() => [
     { label: 'Produtos', href: props.productsPath, isLink: true },
     { label: 'Solucoes', href: props.servicesPath, isLink: true },
-    { label: 'Cases', href: '#cases' },
+    { label: 'Cases', href: props.casesPath, isLink: true },
+    { label: 'Sobre', href: props.aboutPath, isLink: true },
     { label: 'Blog', href: props.blogPath, isLink: true },
-    { label: 'Contato', href: '#contato' },
+    { label: 'Contato', href: props.contactPath, isLink: true },
 ]);
 </script>
 
