@@ -16,6 +16,8 @@ class HomeController extends Controller
 
         app()->setLocale($activeLocale);
 
+        $whatsappBase = 'https://wa.me/5512982184879?text=';
+
         return Inertia::render('public/Home', [
             'locale' => $activeLocale,
             'alternateUrls' => [
@@ -38,6 +40,8 @@ class HomeController extends Controller
                 ['label' => 'Disponibilidade media', 'value' => '99.9%'],
                 ['label' => 'Suporte especializado', 'value' => '24/7'],
             ],
+            'whatsappBase' => $whatsappBase,
+            'whatsappUrl' => $whatsappBase.rawurlencode('Olá, gostaria de falar com a WMST!'),
         ]);
     }
 
