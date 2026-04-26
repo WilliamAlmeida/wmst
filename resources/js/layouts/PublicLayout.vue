@@ -23,10 +23,13 @@ const whatsappUrl = 'https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20d
     <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="dns-prefetch" href="https://wa.me" />
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
         />
+        <meta name="theme-color" content="#0066cc" />
+        <meta name="format-detection" content="telephone=no" />
     </Head>
 
     <div class="min-h-screen bg-zinc-50 text-zinc-900 antialiased">

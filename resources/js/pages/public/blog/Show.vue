@@ -171,7 +171,7 @@ const share = async (): Promise<void> => {
 
         <div v-if="post.featured_image_url" class="mx-auto max-w-5xl px-4 pb-10 md:px-8">
             <div class="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-2xl">
-                <img :src="post.featured_image_url" :alt="post.title" class="aspect-[16/9] w-full object-cover" loading="eager" />
+                <img :src="post.featured_image_url" :alt="post.title" class="aspect-[16/9] w-full object-cover" loading="eager" fetchpriority="high" decoding="async" />
             </div>
         </div>
     </section>
@@ -259,7 +259,7 @@ const share = async (): Promise<void> => {
                     class="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-[color:var(--color-brand)]/40 hover:shadow-xl"
                 >
                     <div class="relative aspect-[16/9] overflow-hidden bg-zinc-100">
-                        <img v-if="related.featured_image_url" :src="related.featured_image_url" :alt="related.title" class="h-full w-full object-cover transition group-hover:scale-105" loading="lazy" />
+                        <img v-if="related.featured_image_url" :src="related.featured_image_url" :alt="related.title" class="h-full w-full object-cover transition group-hover:scale-105" loading="lazy" decoding="async" />
                         <div v-else class="flex h-full w-full items-center justify-center bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)]">
                             <span class="font-display text-2xl gradient-text">WMST</span>
                         </div>

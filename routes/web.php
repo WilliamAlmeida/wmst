@@ -12,6 +12,7 @@ use App\Http\Controllers\Public\CompanyController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\ProductsController;
 use App\Http\Controllers\Public\ServicesController;
+use App\Http\Controllers\Public\SitemapController;
 use App\Http\Controllers\Public\TrialSignupController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -55,6 +56,8 @@ Route::get('/cases', [CompanyController::class, 'cases'])
 Route::get('/contato', [CompanyController::class, 'contact'])
     ->defaults('locale', 'pt_BR')
     ->name('company.contact');
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 Route::post('/trial-signups', [TrialSignupController::class, 'store'])
     ->defaults('locale', 'pt_BR')

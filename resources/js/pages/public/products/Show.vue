@@ -166,7 +166,7 @@ const breadcrumbSchema = computed(() =>
                 <div class="relative flex justify-center pb-0 md:justify-end">
                     <div class="relative flex h-56 w-56 items-center justify-center rounded-3xl border border-zinc-200 bg-white shadow-2xl md:h-72 md:w-72">
                         <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[color:var(--color-brand-soft)] via-transparent to-[color:var(--color-brand-2-soft)] blur-2xl" />
-                        <img :src="product.logo" :alt="product.name" class="relative z-10 h-36 w-36 rounded-2xl object-contain md:h-48 md:w-48" />
+                        <img :src="product.logo" :alt="product.name" class="relative z-10 h-36 w-36 rounded-2xl object-contain md:h-48 md:w-48" width="192" height="192" loading="eager" fetchpriority="high" decoding="async" />
                     </div>
                 </div>
             </Reveal>
@@ -284,7 +284,7 @@ const breadcrumbSchema = computed(() =>
                     :href="productUrl(rel.slug)"
                     class="group flex items-center gap-6 overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--color-brand)]/40 hover:shadow-lg"
                 >
-                    <img :src="rel.logo" :alt="rel.name" class="h-16 w-16 shrink-0 rounded-xl object-contain" loading="lazy" />
+                    <img :src="rel.logo" :alt="rel.name" class="h-16 w-16 shrink-0 rounded-xl object-contain" width="64" height="64" loading="lazy" decoding="async" />
                     <div class="flex-1">
                         <span class="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-brand)]">{{ rel.badge }}</span>
                         <h3 class="mt-1 font-display text-lg font-semibold text-zinc-900 group-hover:text-[color:var(--color-brand)]">{{ rel.name }}</h3>

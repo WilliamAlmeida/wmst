@@ -27,7 +27,7 @@ defineProps<{
                 {{ badge }}
             </span>
             <div class="mt-4 flex items-center gap-3">
-                <img :src="logo" :alt="name" class="h-12 w-12 rounded-xl object-contain" width="48" height="48" />
+                <img :src="logo" :alt="name" class="h-12 w-12 rounded-xl object-contain" width="48" height="48" loading="lazy" decoding="async" />
                 <div>
                     <h3 class="font-display text-2xl font-bold text-zinc-900">{{ name }}</h3>
                     <p class="text-sm text-zinc-500">{{ tagline }}</p>
