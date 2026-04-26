@@ -123,7 +123,7 @@ const runAnalysis = async (): Promise<void> => {
             locale: localeFilter.value || undefined,
         });
     } catch (error) {
-        requestError.value = error instanceof Error ? error.message : 'Falha ao analisar base de conteudo.';
+        requestError.value = error instanceof Error ? error.message : 'Falha ao analisar base de conteúdo.';
     } finally {
         isAnalyzing.value = false;
     }
@@ -156,7 +156,7 @@ const runGeneration = async (): Promise<void> => {
     <div class="space-y-8 p-4">
         <Heading
             title="Agente de Postagem"
-            description="Analise o conteudo atual, entenda categorias existentes e gere rascunhos para avaliação editorial."
+            description="Analise o conteúdo atual, entenda categorias existentes e gere rascunhos para avaliação editorial."
         />
 
         <section class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -284,7 +284,7 @@ const runGeneration = async (): Promise<void> => {
                     <p class="mt-3 text-xs uppercase tracking-wide text-zinc-500">Resumo sugerido</p>
                     <p class="mt-1 text-sm">{{ generationResult.suggestion.excerpt }}</p>
 
-                    <p class="mt-3 text-xs uppercase tracking-wide text-zinc-500">Conteudo sugerido</p>
+                    <p class="mt-3 text-xs uppercase tracking-wide text-zinc-500">Conteúdo sugerido</p>
                     <p class="mt-1 whitespace-pre-line text-sm">{{ generationResult.suggestion.content }}</p>
 
                     <div v-if="generationResult.draft" class="mt-4 rounded-md border border-emerald-300 bg-emerald-50 p-3 text-sm text-emerald-900">
@@ -298,7 +298,7 @@ const runGeneration = async (): Promise<void> => {
         </section>
 
         <section class="rounded-xl border p-4 md:p-6">
-            <h2 class="text-lg font-semibold">Referencia rapida de conteudo existente</h2>
+            <h2 class="text-lg font-semibold">Referencia rapida de conteúdo existente</h2>
 
             <div class="mt-4 grid gap-6 lg:grid-cols-2">
                 <article>

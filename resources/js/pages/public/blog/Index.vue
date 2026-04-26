@@ -55,7 +55,7 @@ const titleByLocale: Record<Locale, string> = {
 };
 
 const descriptionByLocale: Record<Locale, string> = {
-    pt_BR: 'Conteudos sobre IA aplicada, produto digital, growth e automação de processos.',
+    pt_BR: 'Conteúdos sobre IA aplicada, produto digital, growth e automação de processos.',
     es: 'Contenidos sobre IA aplicada, producto digital, growth y automatizacion de procesos.',
     en: 'Content about applied AI, digital product, growth, and process automation.',
 };

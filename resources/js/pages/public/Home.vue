@@ -129,7 +129,7 @@ const products = [
 ];
 
 const services = [
-    { icon: MessageCircle, title: 'Automação WhatsApp Business', highlight: '300% mais conversoes', description: 'Atendimento 24/7, qualificação de leads e vendas sem intervenção humana.', badge: 'WhatsApp API + IA + N8N', ctaLabel: 'Quero turbinar meu WhatsApp', message: 'Olá, gostaria de saber mais sobre a Automação WhatsApp Business' },
+    { icon: MessageCircle, title: 'Automação WhatsApp Business', highlight: '300% mais conversões', description: 'Atendimento 24/7, qualificação de leads e vendas sem intervenção humana.', badge: 'WhatsApp API + IA + N8N', ctaLabel: 'Quero turbinar meu WhatsApp', message: 'Olá, gostaria de saber mais sobre a Automação WhatsApp Business' },
     { icon: Instagram, title: 'Automação Instagram', highlight: '500% mais leads qualificados', description: 'Captura de leads, respostas inteligentes e engajamento automatizado.', badge: 'Instagram API + IA', ctaLabel: 'Quero impulsionar meu Instagram', message: 'Olá, gostaria de saber mais sobre a Automação Instagram' },
     { icon: Workflow, title: 'Automação de Processos', highlight: '40h economizadas/semana', description: 'Aprovacoes automaticas, integracoes e relatorios em tempo real.', badge: 'N8N + APIs + IA', ctaLabel: 'Quero automatizar meus processos', message: 'Olá, gostaria de saber mais sobre Automação de Processos Internos' },
     { icon: Database, title: 'Integração de Sistemas Legados', highlight: 'Zero downtime', description: 'Conectamos sistemas antigos com novas tecnologias sem interromper operações.', badge: 'Laravel + REST + Microservicos', ctaLabel: 'Quero integrar meus sistemas', message: 'Olá, gostaria de saber mais sobre Integração de Sistemas' },
@@ -138,7 +138,7 @@ const services = [
 ];
 
 const cases = [
-    { icon: TrendingUp, metric: '300%', title: 'Aumento em conversoes', description: 'Chatbot IA qualifica leads e fecha vendas via WhatsApp.', client: 'E-commerce de Moda' },
+    { icon: TrendingUp, metric: '300%', title: 'Aumento em conversões', description: 'Chatbot IA qualifica leads e fecha vendas via WhatsApp.', client: 'E-commerce de Moda' },
     { icon: Clock, metric: '85%', title: 'Redução no tempo de agendamentos', description: 'IA agenda consultas, envia lembretes e gerencia cancelamentos.', client: 'Clinica Medica' },
     { icon: Target, metric: '500%', title: 'ROI em automações', description: 'Eliminação de 40h semanais de trabalho manual.', client: 'Empresa de Logistica' },
 ];

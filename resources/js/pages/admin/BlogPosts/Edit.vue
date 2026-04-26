@@ -181,7 +181,7 @@ const improvePost = async (): Promise<void> => {
 
     <div class="space-y-8 p-4">
         <div class="flex flex-wrap items-center justify-between gap-3">
-            <Heading title="Editar post" description="Atualize conteudo manualmente e use o agente para reconstruir o texto com feedback." />
+            <Heading title="Editar post" description="Atualize conteúdo manualmente e use o agente para reconstruir o texto com feedback." />
             <Link :href="BlogPostController.index()" class="inline-flex items-center rounded-md border border-zinc-300 px-3 py-2 text-sm hover:bg-zinc-100">
                 Voltar para lista
             </Link>
@@ -235,7 +235,7 @@ const improvePost = async (): Promise<void> => {
                 </div>
 
                 <div class="grid gap-1">
-                    <Label for="content">Conteudo</Label>
+                    <Label for="content">Conteúdo</Label>
                     <textarea id="content" v-model="form.content" class="min-h-64 rounded-md border px-3 py-2 text-sm" />
                     <InputError :message="form.errors.content" />
                 </div>
@@ -297,7 +297,7 @@ const improvePost = async (): Promise<void> => {
 
         <section class="rounded-xl border p-4 md:p-6">
             <h2 class="text-lg font-semibold">Melhorar post com agente</h2>
-            <p class="mt-1 text-sm text-zinc-600">Envie um feedback e o agente devolve uma versao reconstruida usando o conteudo atual do post.</p>
+            <p class="mt-1 text-sm text-zinc-600">Envie um feedback e o agente devolve uma versao reconstruida usando o conteúdo atual do post.</p>
 
             <div class="mt-4 grid gap-2">
                 <Label for="feedback">Feedback editorial</Label>

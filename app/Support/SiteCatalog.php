@@ -18,13 +18,13 @@ class SiteCatalog
                 'badge' => 'Health-Tech',
                 'website' => 'https://agendaclinic.com',
                 'tagline' => self::pick($locale, [
-                    'pt_BR' => 'A plataforma completa para gestao de clinicas e profissionais de saude com IA',
+                    'pt_BR' => 'A plataforma completa para gestao de clinicas e profissionais de saúde com IA',
                     'es' => 'La plataforma completa para gestion de clinicas y profesionales de salud con IA',
                     'en' => 'The complete platform for clinic and healthcare professional management with AI',
                 ]),
                 'description' => self::pick($locale, [
-                    'pt_BR' => 'Sistema #1 em agendamento medico do Brasil. Atendimento automatico 24/7 via WhatsApp e Instagram com agentes de IA, calendario inteligente, CRM, prontuario, financeiro e API REST. Mais de 5.000 profissionais ja confiam.',
-                    'es' => 'Sistema #1 en agendamiento medico de Brasil. Atencion automatica 24/7 via WhatsApp e Instagram con agentes de IA, calendario inteligente, CRM, historial, finanzas y API REST. Mas de 5.000 profesionales ya confian.',
+                    'pt_BR' => 'Sistema #1 em agendamento médico do Brasil. Atendimento automatico 24/7 via WhatsApp e Instagram com agentes de IA, calendario inteligente, CRM, prontuario, financeiro e API REST. Mais de 5.000 profissionais ja confiam.',
+                    'es' => 'Sistema #1 en agendamiento médico de Brasil. Atencion automatica 24/7 via WhatsApp e Instagram con agentes de IA, calendario inteligente, CRM, historial, finanzas y API REST. Mas de 5.000 profesionales ya confian.',
                     'en' => 'The #1 medical scheduling system in Brazil. 24/7 automated service via WhatsApp and Instagram with AI agents, smart calendar, CRM, EMR, finance and REST API. Trusted by over 5,000 healthcare professionals.',
                 ]),
                 'logo' => '/images/logotipo-agendaclinic.png',
@@ -54,7 +54,7 @@ class SiteCatalog
                     [
                         'icon' => 'FileText',
                         'title' => self::pick($locale, ['pt_BR' => 'Cadastro de pacientes e exames', 'es' => 'Registro de pacientes y examenes', 'en' => 'Patient and exam records']),
-                        'description' => self::pick($locale, ['pt_BR' => 'Base de dados completa de pacientes, especialistas, exames personalizados, planos de saude e metodos de pagamento.', 'es' => 'Base completa de pacientes, especialistas, examenes personalizados, planes de salud y metodos de pago.', 'en' => 'Full database of patients, specialists, custom exams, health plans and payment methods.']),
+                        'description' => self::pick($locale, ['pt_BR' => 'Base de dados completa de pacientes, especialistas, exames personalizados, planos de saúde e metodos de pagamento.', 'es' => 'Base completa de pacientes, especialistas, examenes personalizados, planes de salud y metodos de pago.', 'en' => 'Full database of patients, specialists, custom exams, health plans and payment methods.']),
                     ],
                     [
                         'icon' => 'Webhook',
@@ -73,7 +73,7 @@ class SiteCatalog
                     self::pick($locale, ['pt_BR' => 'Clinicas medicas, odontologicas e veterinarias', 'es' => 'Clinicas medicas, odontologicas y veterinarias', 'en' => 'Medical, dental and veterinary clinics']),
                     self::pick($locale, ['pt_BR' => 'Centros de exames e diagnostico por imagem', 'es' => 'Centros de examenes y diagnostico por imagen', 'en' => 'Exam and diagnostic imaging centers']),
                     self::pick($locale, ['pt_BR' => 'Profissionais autonomos (psicologos, fisio, esteticistas)', 'es' => 'Profesionales autonomos (psicologos, fisio, esteticistas)', 'en' => 'Independent professionals (psychologists, physio, aesthetics)']),
-                    self::pick($locale, ['pt_BR' => 'Operadoras de saude com multiplas unidades', 'es' => 'Operadoras de salud con multiples unidades', 'en' => 'Healthcare operators with multiple branches']),
+                    self::pick($locale, ['pt_BR' => 'Operadoras de saúde com multiplas unidades', 'es' => 'Operadoras de salud con multiples unidades', 'en' => 'Healthcare operators with multiple branches']),
                 ],
                 'integrations' => ['WhatsApp Business', 'Instagram Direct', 'n8n', 'Google Calendar', 'API REST', 'Webhooks'],
                 'pricingNote' => self::pick($locale, [
@@ -189,7 +189,7 @@ class SiteCatalog
                     ['title' => self::pick($locale, ['pt_BR' => 'Cadastre sua agencia', 'es' => 'Registra tu agencia', 'en' => 'Sign up your agency']), 'description' => self::pick($locale, ['pt_BR' => 'Crie a conta da agencia e adicione seus clientes em poucos cliques.', 'es' => 'Crea la cuenta de la agencia y anade tus clientes en pocos clics.', 'en' => 'Create the agency account and add your clients in a few clicks.'])],
                     ['title' => self::pick($locale, ['pt_BR' => 'Conecte contas Instagram', 'es' => 'Conecta cuentas Instagram', 'en' => 'Connect Instagram accounts']), 'description' => self::pick($locale, ['pt_BR' => 'Autorize via OAuth oficial e o sistema gerencia tokens, refresh e permissoes.', 'es' => 'Autoriza via OAuth oficial y el sistema gestiona tokens, refresh y permisos.', 'en' => 'Authorize via official OAuth and the system handles tokens, refresh and permissions.'])],
                     ['title' => self::pick($locale, ['pt_BR' => 'Configure webhooks e tokens', 'es' => 'Configura webhooks y tokens', 'en' => 'Configure webhooks and tokens']), 'description' => self::pick($locale, ['pt_BR' => 'Aponte os webhooks para o seu CRM e gere tokens para integracoes seguras.', 'es' => 'Apunta los webhooks a tu CRM y genera tokens para integraciones seguras.', 'en' => 'Point webhooks at your CRM and issue tokens for secure integrations.'])],
-                    ['title' => self::pick($locale, ['pt_BR' => 'Automatize o atendimento', 'es' => 'Automatiza la atencion', 'en' => 'Automate engagement']), 'description' => self::pick($locale, ['pt_BR' => 'Use a API para enviar mensagens, responder DMs e publicar conteudo programado.', 'es' => 'Usa la API para enviar mensajes, responder DMs y publicar contenido programado.', 'en' => 'Use the API to send messages, reply to DMs and publish scheduled content.'])],
+                    ['title' => self::pick($locale, ['pt_BR' => 'Automatize o atendimento', 'es' => 'Automatiza la atencion', 'en' => 'Automate engagement']), 'description' => self::pick($locale, ['pt_BR' => 'Use a API para enviar mensagens, responder DMs e publicar conteúdo programado.', 'es' => 'Usa la API para enviar mensajes, responder DMs y publicar contenido programado.', 'en' => 'Use the API to send messages, reply to DMs and publish scheduled content.'])],
                 ],
             ],
         ];
@@ -207,7 +207,7 @@ class SiteCatalog
                 'slug' => 'automacao-whatsapp',
                 'icon' => 'MessageCircle',
                 'title' => self::pick($locale, ['pt_BR' => 'Automação WhatsApp Business', 'es' => 'Automatizacion WhatsApp Business', 'en' => 'WhatsApp Business automation']),
-                'highlight' => self::pick($locale, ['pt_BR' => '300% mais conversoes', 'es' => '300% mas conversiones', 'en' => '300% more conversions']),
+                'highlight' => self::pick($locale, ['pt_BR' => '300% mais conversões', 'es' => '300% mas conversiones', 'en' => '300% more conversions']),
                 'description' => self::pick($locale, [
                     'pt_BR' => 'Atendimento 24/7, qualificação de leads e vendas automatizadas com IA via WhatsApp Business API.',
                     'es' => 'Atencion 24/7, calificacion de leads y ventas automatizadas con IA via WhatsApp Business API.',
@@ -374,11 +374,11 @@ class SiteCatalog
     {
         return [
             [
-                'slug' => 'ecommerce-moda-conversoes',
+                'slug' => 'ecommerce-moda-conversões',
                 'icon' => 'TrendingUp',
                 'metric' => '300%',
                 'segment' => self::pick($locale, ['pt_BR' => 'E-commerce de Moda', 'es' => 'E-commerce de Moda', 'en' => 'Fashion e-commerce']),
-                'title' => self::pick($locale, ['pt_BR' => 'Aumento de 300% em conversoes', 'es' => 'Aumento de 300% en conversiones', 'en' => '300% conversion lift']),
+                'title' => self::pick($locale, ['pt_BR' => 'Aumento de 300% em conversões', 'es' => 'Aumento de 300% en conversiones', 'en' => '300% conversion lift']),
                 'challenge' => self::pick($locale, [
                     'pt_BR' => 'Time pequeno de atendimento perdendo vendas fora do horario comercial e sem qualificar leads.',
                     'es' => 'Equipo pequeno perdiendo ventas fuera de horario y sin calificar leads.',
@@ -390,7 +390,7 @@ class SiteCatalog
                     'en' => 'AI chatbot wired to the catalog, qualifying leads, recommending products and closing sales over WhatsApp.',
                 ]),
                 'result' => self::pick($locale, [
-                    'pt_BR' => '300% mais conversoes em 90 dias e atendimento 24/7 sem aumento de equipe.',
+                    'pt_BR' => '300% mais conversões em 90 dias e atendimento 24/7 sem aumento de equipe.',
                     'es' => '300% mas conversiones en 90 dias y atencion 24/7 sin ampliar equipo.',
                     'en' => '300% more conversions in 90 days with 24/7 service and no headcount increase.',
                 ]),
@@ -417,7 +417,7 @@ class SiteCatalog
                     'es' => '85% menos tiempo en agendamiento y caida de 78% en no-show en 60 dias.',
                     'en' => '85% less time spent scheduling and 78% drop in no-shows within 60 days.',
                 ]),
-                'tags' => ['Agenda Clinic', 'WhatsApp', 'Saude'],
+                'tags' => ['Agenda Clinic', 'WhatsApp', 'saúde'],
             ],
             [
                 'slug' => 'logistica-roi-automações',
@@ -464,7 +464,7 @@ class SiteCatalog
             [
                 'name' => 'Dra. Ana Santos',
                 'role' => self::pick($locale, ['pt_BR' => 'Diretora', 'es' => 'Directora', 'en' => 'Director']),
-                'company' => 'Clinica Vida & Saude',
+                'company' => 'Clinica Vida & saúde',
                 'testimonial' => self::pick($locale, [
                     'pt_BR' => 'O Agenda Clinic eliminou nossa fila de espera. A IA agenda tudo automaticamente e os pacientes adoram a praticidade.',
                     'es' => 'Agenda Clinic elimino nuestra fila de espera. La IA agenda todo y los pacientes aman la practicidad.',
@@ -501,7 +501,7 @@ class SiteCatalog
                 'en' => 'Be the reference in applied automation and AI for SMBs in Brazil and Latin America.',
             ]),
             'story' => self::pick($locale, [
-                'pt_BR' => 'Fundada em Lorena, a WMST nasceu da uniao entre engenharia de software e obsessao por resultados de negócio. Em poucos anos entregamos mais de 500 projetos para clinicas, restaurantes, e-commerces, industrias e prestadores de servico que precisam crescer sem ampliar equipe.',
+                'pt_BR' => 'Fundada em Lorena, a WMST nasceu da união entre engenharia de software e obsessão por resultados de negócio. Em poucos anos entregamos mais de 500 projetos para clinicas, restaurantes, e-commerces, industrias e prestadores de servico que precisam crescer sem ampliar equipe.',
                 'es' => 'Fundada en Lorena, WMST nacio de la union entre ingenieria de software y obsesion por resultados de negócio. En pocos anos entregamos mas de 500 proyectos para clinicas, restaurantes, e-commerces, industrias y prestadores de servicios que necesitan crecer sin ampliar equipo.',
                 'en' => 'Founded in Lorena, WMST was born from the union of software engineering and a relentless focus on business results. In just a few years we have delivered over 500 projects for clinics, restaurants, e-commerce, manufacturers and service providers that need to grow without scaling headcount.',
             ]),

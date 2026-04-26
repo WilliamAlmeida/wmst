@@ -47,7 +47,7 @@ test('posting agent can generate and save draft for review', function () {
                 'title' => 'Post sugerido para avaliação',
                 'slug' => 'post-sugerido-para-avaliação',
                 'excerpt' => 'Resumo sugerido',
-                'content' => 'Conteudo sugerido',
+                'content' => 'Conteúdo sugerido',
                 'seo_title' => 'SEO titulo',
                 'seo_description' => 'SEO descrição',
             ],
@@ -80,7 +80,7 @@ test('posting agent can improve a post based on editorial feedback', function ()
     $post = BlogPost::factory()->create([
         'locale' => 'pt_BR',
         'title' => 'Post original',
-        'content' => 'Conteudo original',
+        'content' => 'Conteúdo original',
     ]);
 
     actingAs($user);
@@ -93,7 +93,7 @@ test('posting agent can improve a post based on editorial feedback', function ()
                 'title' => 'Post melhorado',
                 'slug' => 'post-melhorado',
                 'excerpt' => 'Resumo melhorado',
-                'content' => 'Conteudo melhorado',
+                'content' => 'Conteúdo melhorado',
                 'seo_title' => 'SEO melhorado',
                 'seo_description' => 'Descrição SEO melhorada',
             ],
@@ -102,7 +102,7 @@ test('posting agent can improve a post based on editorial feedback', function ()
 
     $response = postJson(route('admin.blog-post-agent.improve', $post), [
         'feedback' => 'Inclua exemplos praticos e CTA final.',
-        'current_content' => 'Conteudo original para reconstruir.',
+        'current_content' => 'Conteúdo original para reconstruir.',
     ]);
 
     $response

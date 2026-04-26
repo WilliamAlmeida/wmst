@@ -34,7 +34,7 @@ test('authenticated users can create, update and delete blog posts', function ()
         'blog_category_id' => $category->id,
         'locale' => 'pt_BR',
         'title' => 'Primeiro Post de Teste',
-        'content' => 'Conteudo do post para validar o fluxo administrativo.',
+        'content' => 'Conteúdo do post para validar o fluxo administrativo.',
         'status' => BlogPostStatus::Draft->value,
         'tag_ids' => $tags->pluck('id')->all(),
     ]);

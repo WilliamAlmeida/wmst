@@ -34,7 +34,7 @@ const copy = computed(() => {
     const map = {
         pt_BR: {
             title: 'Cases de sucesso WMST | Resultados reais com automação e IA',
-            description: 'Veja resultados reais de clientes WMST: aumento de conversoes, redução de no-show e ROI de ate 500% com automações e produtos sob medida.',
+            description: 'Veja resultados reais de clientes WMST: aumento de conversões, redução de no-show e ROI de ate 500% com automações e produtos sob medida.',
             eyebrow: 'Cases de sucesso',
             heading: 'Resultados reais que',
             highlight: 'falam por nos',
