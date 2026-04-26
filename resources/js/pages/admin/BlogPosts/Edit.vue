@@ -154,7 +154,7 @@ const improvePost = async (): Promise<void> => {
         const data = (await response.json().catch(() => null)) as ImprovementResponse | { message?: string } | null;
 
         if (!response.ok) {
-            throw new Error((data as { message?: string } | null)?.message ?? 'Nao foi possivel melhorar o post.');
+            throw new Error((data as { message?: string } | null)?.message ?? 'Não foi possivel melhorar o post.');
         }
 
         const parsed = data as ImprovementResponse;

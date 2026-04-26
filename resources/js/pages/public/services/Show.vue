@@ -42,7 +42,7 @@ const props = defineProps<{
 }>();
 
 const copy: Record<Locale, { back: string; cta: string; deliverables: string; process: string; related: string }> = {
-    pt_BR: { back: 'Ver todas as solucoes', cta: 'Quero comecar agora', deliverables: 'O que voce recebe', process: 'Como funciona', related: 'Outras solucoes' },
+    pt_BR: { back: 'Ver todas as solucoes', cta: 'Quero comecar agora', deliverables: 'O que você recebe', process: 'Como funciona', related: 'Outras solucoes' },
     es: { back: 'Ver todas las soluciones', cta: 'Quiero empezar ahora', deliverables: 'Lo que recibes', process: 'Como funciona', related: 'Otras soluciones' },
     en: { back: 'View all solutions', cta: 'I want to start now', deliverables: 'What you receive', process: 'How it works', related: 'Other solutions' },
 };
@@ -222,7 +222,7 @@ const breadcrumbSchema = computed(() =>
                     <h3 class="font-display text-base font-semibold text-zinc-900 group-hover:text-[color:var(--color-brand)]">{{ rel.title }}</h3>
                     <p class="text-sm font-medium text-emerald-600">{{ rel.highlight }}</p>
                     <span class="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-zinc-700 group-hover:text-[color:var(--color-brand)]">
-                        Ver solucao <ChevronRight class="h-3.5 w-3.5" />
+                        Ver solução <ChevronRight class="h-3.5 w-3.5" />
                     </span>
                 </Link>
             </div>

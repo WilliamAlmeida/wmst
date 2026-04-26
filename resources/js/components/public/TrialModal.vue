@@ -82,7 +82,7 @@ const close = (): void => {
                                 <X class="h-5 w-5" />
                             </button>
                         </div>
-                        <p class="mt-1 text-sm text-white/85">Receba um link expiravel para conversar com um agente IA em producao.</p>
+                        <p class="mt-1 text-sm text-white/85">Receba um link de teste para conversar com um agente IA em produção.</p>
                     </div>
 
                     <div class="max-h-[70vh] overflow-y-auto px-6 py-6">
@@ -142,7 +142,7 @@ const close = (): void => {
                             </div>
                             <label class="flex items-start gap-2 text-sm text-zinc-700 md:col-span-2">
                                 <input v-model="trialForm.consent_accepted" type="checkbox" class="mt-0.5 h-4 w-4 rounded border-zinc-300 text-[color:var(--color-brand)] focus:ring-[color:var(--color-brand)]" />
-                                <span>Concordo com o processamento dos dados para contato comercial e demonstracao.</span>
+                                <span>Concordo com o processamento dos dados para contato comercial e demonstração.</span>
                             </label>
                             <p v-if="trialForm.errors.consent_accepted" class="text-xs text-red-600 md:col-span-2">
                                 {{ trialForm.errors.consent_accepted }}

@@ -54,17 +54,17 @@ const wpp = (text: string): string => `${props.whatsappBase}${encodeURIComponent
 const copy = computed(() => {
     const map: Record<Locale, { eyebrow: string; titleA: string; titleB: string; subtitle: string; ctaTrial: string; ctaWhats: string; blog: string }> = {
         pt_BR: {
-            eyebrow: '+15 anos transformando negocios com tecnologia',
+            eyebrow: '+15 anos transformando negócios com tecnologia',
             titleA: 'Automatize, escale e venda mais com',
             titleB: 'IA aplicada',
             subtitle:
-                'Especialistas em IA, automacoes de WhatsApp, Instagram e sistemas sob medida. Transformamos processos manuais em solucoes que economizam tempo e aumentam lucros.',
+                'Especialistas em IA, automações de WhatsApp, Instagram e sistemas sob medida. Transformamos processos manuais em solucoes que economizam tempo e aumentam lucros.',
             ctaTrial: 'Testar agente IA',
             ctaWhats: 'Falar com a WMST',
             blog: 'Ver o blog',
         },
         es: {
-            eyebrow: '+15 anos transformando negocios con tecnologia',
+            eyebrow: '+15 anos transformando negócios con tecnologia',
             titleA: 'Automatiza, escala y vende mas con',
             titleB: 'IA aplicada',
             subtitle:
@@ -89,37 +89,37 @@ const copy = computed(() => {
 });
 
 const features = [
-    { icon: Brain, title: 'IA Aplicada', highlight: '300% ROI medio', description: 'Inteligencia Artificial focada em resolver problemas reais do seu negocio.' },
-    { icon: MessageCircle, title: 'Automacao Total', highlight: '85% menos trabalho manual', description: 'WhatsApp, Telegram e Instagram conectados ao seu cliente 24/7.' },
+    { icon: Brain, title: 'IA Aplicada', highlight: '300% ROI medio', description: 'Inteligencia Artificial focada em resolver problemas reais do seu negócio.' },
+    { icon: MessageCircle, title: 'Automação Total', highlight: '85% menos trabalho manual', description: 'WhatsApp, Telegram e Instagram conectados ao seu cliente 24/7.' },
     { icon: Workflow, title: 'Processos Otimizados', highlight: '40h economizadas/semana', description: 'Fluxos inteligentes que eliminam gargalos operacionais.' },
-    { icon: Shield, title: 'Tecnologia Robusta', highlight: '99.9% uptime garantido', description: 'Arquitetura escalavel, segura e pronta para crescer com voce.' },
+    { icon: Shield, title: 'Tecnologia Robusta', highlight: '99.9% uptime garantido', description: 'Arquitetura escalavel, segura e pronta para crescer com você.' },
 ];
 
 const products = [
     {
         name: 'Agenda Clinic',
-        tagline: 'Gestao para clinicas e operacao de atendimento',
-        description: 'Sistema completo de agendamento com IA, lembretes automaticos, prontuario e gestao financeira para clinicas.',
+        tagline: 'Gestao para clinicas e operação de atendimento',
+        description: 'Sistema completo de agendamento com IA, lembretes automaticos para clinicas.', // prontuario e gestao financeira
         logo: '/images/logotipo-agendaclinic.png',
-        bullets: ['Agenda inteligente com IA', 'Lembretes via WhatsApp', 'Prontuario eletronico', 'Financeiro integrado'],
+        bullets: ['Agenda inteligente com IA', 'Lembretes via WhatsApp'], // 'Prontuario eletronico', 'Financeiro integrado'
         badge: 'Health-Tech',
         ctaUrl: 'https://wa.me/5512982184879?text=' + encodeURIComponent('Olá, quero conhecer o Agenda Clinic!'),
         mockup: '/images/mockup-agendaclinic.avif',
     },
     {
         name: 'IBOX Delivery',
-        tagline: 'Pedidos, entrega e retencao para restaurantes',
-        description: 'Plataforma white-label de delivery: cardapio digital, app de motoboy, painel de gestao e integracao com WhatsApp.',
+        tagline: 'Pedidos, entrega e retenção para restaurantes',
+        description: 'Plataforma white-label de delivery: cardapio digital, app de motoboy, painel de gestao e integração com WhatsApp.',
         logo: '/images/logotipo-iboxdelivery.jpg',
-        bullets: ['Cardapio digital responsivo', 'App de motoboy nativo', 'Pagamentos integrados', 'Programa de fidelidade'],
+        bullets: ['Cardapio digital responsivo', 'App de motoboy nativo', 'Pagamentos integrados', 'Impressão Automática'],
         badge: 'Food-Tech',
         ctaUrl: 'https://wa.me/5512982184879?text=' + encodeURIComponent('Olá, quero conhecer o IBOX Delivery!'),
         mockup: '/images/mockup-dashboard.png',
     },
     {
         name: 'Conecta',
-        tagline: 'Automacao de marketing, CRM e social selling',
-        description: 'Centralize Instagram, WhatsApp e e-mail em um unico CRM com automacoes de IA para qualificar leads e vender mais.',
+        tagline: 'Automação de marketing, CRM e social selling',
+        description: 'Centralize Instagram, WhatsApp e e-mail em um unico CRM com automações de IA para qualificar leads e vender mais.',
         logo: '/images/logotipo-conecta.png',
         bullets: ['Inbox unificado multicanal', 'Funis automaticos com IA', 'Disparos em massa', 'Relatorios em tempo real'],
         badge: 'Marketing-Tech',
@@ -129,22 +129,22 @@ const products = [
 ];
 
 const services = [
-    { icon: MessageCircle, title: 'Automacao WhatsApp Business', highlight: '300% mais conversoes', description: 'Atendimento 24/7, qualificacao de leads e vendas sem intervencao humana.', badge: 'WhatsApp API + IA + N8N', ctaLabel: 'Quero turbinar meu WhatsApp', message: 'Olá, gostaria de saber mais sobre a Automação WhatsApp Business' },
-    { icon: Instagram, title: 'Automacao Instagram', highlight: '500% mais leads qualificados', description: 'Captura de leads, respostas inteligentes e engajamento automatizado.', badge: 'Instagram API + IA', ctaLabel: 'Quero impulsionar meu Instagram', message: 'Olá, gostaria de saber mais sobre a Automação Instagram' },
-    { icon: Workflow, title: 'Automacao de Processos', highlight: '40h economizadas/semana', description: 'Aprovacoes automaticas, integracoes e relatorios em tempo real.', badge: 'N8N + APIs + IA', ctaLabel: 'Quero automatizar meus processos', message: 'Olá, gostaria de saber mais sobre Automação de Processos Internos' },
-    { icon: Database, title: 'Integracao de Sistemas Legados', highlight: 'Zero downtime', description: 'Conectamos sistemas antigos com novas tecnologias sem interromper operacoes.', badge: 'Laravel + REST + Microservicos', ctaLabel: 'Quero integrar meus sistemas', message: 'Olá, gostaria de saber mais sobre Integração de Sistemas' },
-    { icon: Brain, title: 'IA para Analise Preditiva', highlight: '85% precisao em previsoes', description: 'Insights automaticos, previsoes precisas e decisoes baseadas em dados.', badge: 'OpenAI / Claude / Gemini', ctaLabel: 'Quero prever meus resultados', message: 'Olá, gostaria de saber mais sobre IA para Análise Preditiva' },
-    { icon: Globe, title: 'Sistemas Web Sob Medida', highlight: '100% adequacao ao negocio', description: 'Plataformas customizadas, dashboards e portais de cliente completos.', badge: 'Laravel + Inertia + Vue', ctaLabel: 'Quero um sistema sob medida', message: 'Olá, gostaria de saber mais sobre Sistemas Web Sob Medida' },
+    { icon: MessageCircle, title: 'Automação WhatsApp Business', highlight: '300% mais conversoes', description: 'Atendimento 24/7, qualificação de leads e vendas sem intervenção humana.', badge: 'WhatsApp API + IA + N8N', ctaLabel: 'Quero turbinar meu WhatsApp', message: 'Olá, gostaria de saber mais sobre a Automação WhatsApp Business' },
+    { icon: Instagram, title: 'Automação Instagram', highlight: '500% mais leads qualificados', description: 'Captura de leads, respostas inteligentes e engajamento automatizado.', badge: 'Instagram API + IA', ctaLabel: 'Quero impulsionar meu Instagram', message: 'Olá, gostaria de saber mais sobre a Automação Instagram' },
+    { icon: Workflow, title: 'Automação de Processos', highlight: '40h economizadas/semana', description: 'Aprovacoes automaticas, integracoes e relatorios em tempo real.', badge: 'N8N + APIs + IA', ctaLabel: 'Quero automatizar meus processos', message: 'Olá, gostaria de saber mais sobre Automação de Processos Internos' },
+    { icon: Database, title: 'Integração de Sistemas Legados', highlight: 'Zero downtime', description: 'Conectamos sistemas antigos com novas tecnologias sem interromper operações.', badge: 'Laravel + REST + Microservicos', ctaLabel: 'Quero integrar meus sistemas', message: 'Olá, gostaria de saber mais sobre Integração de Sistemas' },
+    { icon: Brain, title: 'IA para Analise Preditiva', highlight: '85% precisao em previsões', description: 'Insights automaticos, previsões precisas e decisoes baseadas em dados.', badge: 'OpenAI / Claude / Gemini', ctaLabel: 'Quero prever meus resultados', message: 'Olá, gostaria de saber mais sobre IA para Análise Preditiva' },
+    { icon: Globe, title: 'Sistemas Web Sob Medida', highlight: '100% adequação ao negócio', description: 'Plataformas customizadas, dashboards e portais de cliente completos.', badge: 'Laravel + Inertia + Vue', ctaLabel: 'Quero um sistema sob medida', message: 'Olá, gostaria de saber mais sobre Sistemas Web Sob Medida' },
 ];
 
 const cases = [
     { icon: TrendingUp, metric: '300%', title: 'Aumento em conversoes', description: 'Chatbot IA qualifica leads e fecha vendas via WhatsApp.', client: 'E-commerce de Moda' },
-    { icon: Clock, metric: '85%', title: 'Reducao no tempo de agendamentos', description: 'IA agenda consultas, envia lembretes e gerencia cancelamentos.', client: 'Clinica Medica' },
-    { icon: Target, metric: '500%', title: 'ROI em automacoes', description: 'Eliminacao de 40h semanais de trabalho manual.', client: 'Empresa de Logistica' },
+    { icon: Clock, metric: '85%', title: 'Redução no tempo de agendamentos', description: 'IA agenda consultas, envia lembretes e gerencia cancelamentos.', client: 'Clinica Medica' },
+    { icon: Target, metric: '500%', title: 'ROI em automações', description: 'Eliminação de 40h semanais de trabalho manual.', client: 'Empresa de Logistica' },
 ];
 
 const testimonials = [
-    { name: 'Carlos Silva', role: 'CEO', company: 'TechStart Solucoes', testimonial: 'A automacao de WhatsApp da WMST revolucionou nosso atendimento. Vendemos 24/7 sem precisar de equipe gigante. Recuperamos o investimento em 2 meses!' },
+    { name: 'Carlos Silva', role: 'CEO', company: 'TechStart Solucoes', testimonial: 'A automação de WhatsApp da WMST revolucionou nosso atendimento. Vendemos 24/7 sem precisar de equipe gigante. Recuperamos o investimento em 2 meses!' },
     { name: 'Dra. Ana Santos', role: 'Diretora', company: 'Clinica Vida & Saude', testimonial: 'O Agenda Clinic eliminou nossa fila de espera. A IA agenda tudo automaticamente e os pacientes adoram a praticidade.' },
     { name: 'Roberto Lima', role: 'Proprietario', company: 'Delivery Express', testimonial: 'O IBOX Delivery nos colocou no mesmo nivel dos grandes players. Sistema robusto, suporte excepcional e resultados desde o primeiro dia.' },
 ];
@@ -168,7 +168,7 @@ const organizationSchema = JSON.stringify({
 const serviceSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'Desenvolvimento de software, automacao e IA aplicada',
+    serviceType: 'Desenvolvimento de software, automação e IA aplicada',
     provider: { '@type': 'Organization', name: 'WMST' },
 });
 </script>
@@ -273,7 +273,7 @@ const serviceSchema = JSON.stringify({
                 <SectionHeading
                     eyebrow="Por que escolher a WMST"
                     title="Resultados reais, "
-                    highlight="nao apenas tecnologia"
+                    highlight="não apenas tecnologia"
                     description="Mais de 15 anos transformando ideias em solucoes que geram impacto mensuravel para nossos clientes."
                 />
             </Reveal>
@@ -292,7 +292,7 @@ const serviceSchema = JSON.stringify({
                 <SectionHeading
                     eyebrow="Nossos sistemas"
                     title="Plataformas prontas para "
-                    highlight="acelerar seu negocio"
+                    highlight="acelerar seu negócio"
                     description="Cada sistema foi desenvolvido para resolver problemas especificos e gerar resultados mensuraveis."
                 />
             </Reveal>
@@ -311,8 +311,8 @@ const serviceSchema = JSON.stringify({
                 <SectionHeading
                     eyebrow="Nossas solucoes"
                     title="Servicos que "
-                    highlight="transformam negocios"
-                    description="Nao vendemos tecnologia, entregamos solucoes completas que resolvem problemas reais."
+                    highlight="transformam negócios"
+                    description="Não vendemos tecnologia, entregamos solucoes completas que resolvem problemas reais."
                 />
             </Reveal>
             <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -339,7 +339,7 @@ const serviceSchema = JSON.stringify({
                     eyebrow="Cases de sucesso"
                     title="Resultados reais para "
                     highlight="clientes reais"
-                    description="Veja como nossas automacoes transformaram operacoes inteiras."
+                    description="Veja como nossas automações transformaram operações inteiras."
                 />
             </Reveal>
             <div class="mt-12 grid gap-6 md:grid-cols-3">
@@ -366,10 +366,10 @@ const serviceSchema = JSON.stringify({
                     Teste em 30 segundos
                 </span>
                 <h2 class="mt-5 font-display text-3xl font-bold leading-tight md:text-5xl">
-                    Pronto para automatizar seu negocio com IA?
+                    Pronto para automatizar seu negócio com IA?
                 </h2>
                 <p class="mx-auto mt-4 max-w-2xl text-base text-white/85 md:text-lg">
-                    Solicite um link expiravel de teste e converse com um dos nossos agentes IA em producao agora mesmo.
+                    Solicite um link de teste e converse com um dos nossos agentes IA em produção agora mesmo.
                 </p>
                 <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
                     <button

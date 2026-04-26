@@ -39,12 +39,12 @@ class SiteCatalog
                     [
                         'icon' => 'Bot',
                         'title' => self::pick($locale, ['pt_BR' => 'Agente de IA 24/7 no WhatsApp e Instagram', 'es' => 'Agente de IA 24/7 en WhatsApp e Instagram', 'en' => '24/7 AI agent on WhatsApp and Instagram']),
-                        'description' => self::pick($locale, ['pt_BR' => 'Agendamento conversacional, confirmacao de consultas, triagem e respostas personalizadas que reduzem faltas em ate 60%.', 'es' => 'Agendamiento conversacional, confirmaciones, triaje y respuestas personalizadas que reducen faltas hasta 60%.', 'en' => 'Conversational booking, appointment confirmation, triage and personalized replies that cut no-shows by up to 60%.']),
+                        'description' => self::pick($locale, ['pt_BR' => 'Agendamento conversacional, confirmação de consultas, triagem e respostas personalizadas que reduzem faltas em ate 60%.', 'es' => 'Agendamiento conversacional, confirmaciones, triaje y respuestas personalizadas que reducen faltas hasta 60%.', 'en' => 'Conversational booking, appointment confirmation, triage and personalized replies that cut no-shows by up to 60%.']),
                     ],
                     [
                         'icon' => 'Users',
                         'title' => self::pick($locale, ['pt_BR' => 'CRM, kanban de leads e campanhas', 'es' => 'CRM, kanban de leads y campanas', 'en' => 'CRM, lead kanban and campaigns']),
-                        'description' => self::pick($locale, ['pt_BR' => 'Pipelines personalizaveis, automacoes, tags e campanhas de marketing para captar e fidelizar pacientes.', 'es' => 'Pipelines personalizables, automatizaciones, tags y campanas para captar y fidelizar pacientes.', 'en' => 'Custom pipelines, automations, tags and marketing campaigns to attract and retain patients.']),
+                        'description' => self::pick($locale, ['pt_BR' => 'Pipelines personalizaveis, automações, tags e campanhas de marketing para captar e fidelizar pacientes.', 'es' => 'Pipelines personalizables, automatizaciones, tags y campanas para captar y fidelizar pacientes.', 'en' => 'Custom pipelines, automations, tags and marketing campaigns to attract and retain patients.']),
                     ],
                     [
                         'icon' => 'MessageCircle',
@@ -64,9 +64,9 @@ class SiteCatalog
                 ],
                 'metrics' => [
                     ['label' => self::pick($locale, ['pt_BR' => 'Profissionais usando', 'es' => 'Profesionales usando', 'en' => 'Professionals using']), 'value' => '5.000+'],
-                    ['label' => self::pick($locale, ['pt_BR' => 'Reducao de faltas', 'es' => 'Reduccion de faltas', 'en' => 'No-show reduction']), 'value' => '-60%'],
+                    ['label' => self::pick($locale, ['pt_BR' => 'Redução de faltas', 'es' => 'Reduccion de faltas', 'en' => 'No-show reduction']), 'value' => '-60%'],
                     ['label' => self::pick($locale, ['pt_BR' => 'Horas economizadas/semana', 'es' => 'Horas ahorradas/semana', 'en' => 'Hours saved per week']), 'value' => '15h'],
-                    ['label' => self::pick($locale, ['pt_BR' => 'Satisfacao dos clientes', 'es' => 'Satisfaccion de clientes', 'en' => 'Customer satisfaction']), 'value' => '98%'],
+                    ['label' => self::pick($locale, ['pt_BR' => 'Satisfação dos clientes', 'es' => 'Satisfaccion de clientes', 'en' => 'Customer satisfaction']), 'value' => '98%'],
                 ],
                 'tech' => ['Laravel', 'Vue', 'WhatsApp Cloud API', 'Instagram API', 'OpenAI', 'n8n', 'API REST'],
                 'useCases' => [
@@ -83,9 +83,9 @@ class SiteCatalog
                 ]),
                 'process' => [
                     ['title' => self::pick($locale, ['pt_BR' => 'Onboarding em 5 minutos', 'es' => 'Onboarding en 5 minutos', 'en' => '5-minute onboarding']), 'description' => self::pick($locale, ['pt_BR' => 'Crie sua conta, importe pacientes e comece a agendar.', 'es' => 'Crea tu cuenta, importa pacientes y empieza a agendar.', 'en' => 'Create your account, import patients and start scheduling.'])],
-                    ['title' => self::pick($locale, ['pt_BR' => 'Configuracao guiada', 'es' => 'Configuracion guiada', 'en' => 'Guided setup']), 'description' => self::pick($locale, ['pt_BR' => 'Especialistas, exames, horarios, planos e metodos de pagamento personalizados.', 'es' => 'Especialistas, examenes, horarios, planes y metodos de pago personalizados.', 'en' => 'Specialists, exams, hours, plans and custom payment methods.'])],
+                    ['title' => self::pick($locale, ['pt_BR' => 'Configuração guiada', 'es' => 'Configuracion guiada', 'en' => 'Guided setup']), 'description' => self::pick($locale, ['pt_BR' => 'Especialistas, exames, horarios, planos e metodos de pagamento personalizados.', 'es' => 'Especialistas, examenes, horarios, planes y metodos de pago personalizados.', 'en' => 'Specialists, exams, hours, plans and custom payment methods.'])],
                     ['title' => self::pick($locale, ['pt_BR' => 'Agente de IA ativo', 'es' => 'Agente de IA activo', 'en' => 'AI agent live']), 'description' => self::pick($locale, ['pt_BR' => 'Conecte WhatsApp e Instagram e ative agendamento automatico 24/7.', 'es' => 'Conecta WhatsApp e Instagram y activa agendamiento automatico 24/7.', 'en' => 'Connect WhatsApp and Instagram and turn on 24/7 automated booking.'])],
-                    ['title' => self::pick($locale, ['pt_BR' => 'Suporte continuo', 'es' => 'Soporte continuo', 'en' => 'Ongoing support']), 'description' => self::pick($locale, ['pt_BR' => 'Acompanhamento dedicado, treinamento e evolucao constante do produto.', 'es' => 'Acompanamiento dedicado, formacion y evolucion constante del producto.', 'en' => 'Dedicated follow-up, training and continuous product evolution.'])],
+                    ['title' => self::pick($locale, ['pt_BR' => 'Suporte continuo', 'es' => 'Soporte continuo', 'en' => 'Ongoing support']), 'description' => self::pick($locale, ['pt_BR' => 'Acompanhamento dedicado, treinamento e evolução constante do produto.', 'es' => 'Acompanamiento dedicado, formacion y evolucion constante del producto.', 'en' => 'Dedicated follow-up, training and continuous product evolution.'])],
                 ],
             ],
             [
@@ -99,8 +99,8 @@ class SiteCatalog
                     'en' => 'Smart multi-category delivery system with native iOS and Android apps',
                 ]),
                 'description' => self::pick($locale, [
-                    'pt_BR' => 'Plataforma de delivery completa para restaurantes, mercados, pet shops, bebidas, sorvetes e muito mais. Apps nativos para clientes e motoboys, painel de gestao em tempo real e integracoes prontas para escalar seu negocio.',
-                    'es' => 'Plataforma de delivery completa para restaurantes, mercados, pet shops, bebidas, helados y mas. Apps nativas para clientes y mensajeros, panel de gestion en tiempo real e integraciones listas para escalar tu negocio.',
+                    'pt_BR' => 'Plataforma de delivery completa para restaurantes, mercados, pet shops, bebidas, sorvetes e muito mais. Apps nativos para clientes e motoboys, painel de gestao em tempo real e integracoes prontas para escalar seu negócio.',
+                    'es' => 'Plataforma de delivery completa para restaurantes, mercados, pet shops, bebidas, helados y mas. Apps nativas para clientes y mensajeros, panel de gestion en tiempo real e integraciones listas para escalar tu negócio.',
                     'en' => 'Full delivery platform for restaurants, supermarkets, pet shops, beverages, ice cream and more. Native apps for customers and couriers, real-time management dashboard and ready integrations to scale your business.',
                 ]),
                 'logo' => '/images/logotipo-iboxdelivery.jpg',
@@ -109,8 +109,8 @@ class SiteCatalog
                 'features' => [
                     ['icon' => 'Smartphone', 'title' => self::pick($locale, ['pt_BR' => 'Apps nativos iOS e Android', 'es' => 'Apps nativas iOS y Android', 'en' => 'Native iOS and Android apps']), 'description' => self::pick($locale, ['pt_BR' => 'App publicado na Apple Store e Google Play, com push notifications e experiencia mobile-first.', 'es' => 'App publicada en Apple Store y Google Play, con push notifications y experiencia mobile-first.', 'en' => 'App live on Apple Store and Google Play, with push notifications and mobile-first experience.'])],
                     ['icon' => 'LayoutGrid', 'title' => self::pick($locale, ['pt_BR' => 'Multi-categoria', 'es' => 'Multi-categoria', 'en' => 'Multi-category']), 'description' => self::pick($locale, ['pt_BR' => 'Restaurantes, mercados, pet shops, bebidas, sorvetes, farmacias e qualquer outro segmento de delivery.', 'es' => 'Restaurantes, mercados, pet shops, bebidas, helados, farmacias y cualquier otro segmento de delivery.', 'en' => 'Restaurants, supermarkets, pet shops, beverages, ice cream, pharmacies and any other delivery segment.'])],
-                    ['icon' => 'Bike', 'title' => self::pick($locale, ['pt_BR' => 'App e painel para motoboys', 'es' => 'App y panel para mensajeros', 'en' => 'Courier app and dashboard']), 'description' => self::pick($locale, ['pt_BR' => 'Roteirizacao otimizada, rastreio em tempo real e gestao de comissoes.', 'es' => 'Ruteo optimizado, rastreo en tiempo real y gestion de comisiones.', 'en' => 'Optimized routing, live tracking and commission management.'])],
-                    ['icon' => 'CreditCard', 'title' => self::pick($locale, ['pt_BR' => 'Pagamentos integrados (Pix, cartao, voucher)', 'es' => 'Pagos integrados (Pix, tarjeta, voucher)', 'en' => 'Integrated payments (Pix, card, voucher)']), 'description' => self::pick($locale, ['pt_BR' => 'Antifraude, conciliacao automatica e split de pagamento entre lojistas.', 'es' => 'Antifraude, conciliacion automatica y split de pago entre comercios.', 'en' => 'Anti-fraud, automatic reconciliation and payment split between merchants.'])],
+                    ['icon' => 'Bike', 'title' => self::pick($locale, ['pt_BR' => 'App e painel para motoboys', 'es' => 'App y panel para mensajeros', 'en' => 'Courier app and dashboard']), 'description' => self::pick($locale, ['pt_BR' => 'Roteirização otimizada, rastreio em tempo real e gestao de comissoes.', 'es' => 'Ruteo optimizado, rastreo en tiempo real y gestion de comisiones.', 'en' => 'Optimized routing, live tracking and commission management.'])],
+                    ['icon' => 'CreditCard', 'title' => self::pick($locale, ['pt_BR' => 'Pagamentos integrados (Pix, cartao, voucher)', 'es' => 'Pagos integrados (Pix, tarjeta, voucher)', 'en' => 'Integrated payments (Pix, card, voucher)']), 'description' => self::pick($locale, ['pt_BR' => 'Antifraude, conciliação automatica e split de pagamento entre lojistas.', 'es' => 'Antifraude, conciliacion automatica y split de pago entre comercios.', 'en' => 'Anti-fraud, automatic reconciliation and payment split between merchants.'])],
                     ['icon' => 'Megaphone', 'title' => self::pick($locale, ['pt_BR' => 'Marketing e fidelidade', 'es' => 'Marketing y fidelidad', 'en' => 'Marketing and loyalty']), 'description' => self::pick($locale, ['pt_BR' => 'Cupons, cashback, push notifications e campanhas segmentadas para reter clientes.', 'es' => 'Cupones, cashback, push notifications y campanas segmentadas para retener clientes.', 'en' => 'Coupons, cashback, push notifications and segmented campaigns to retain customers.'])],
                     ['icon' => 'BarChart3', 'title' => self::pick($locale, ['pt_BR' => 'Painel de gestao em tempo real', 'es' => 'Panel de gestion en tiempo real', 'en' => 'Real-time management panel']), 'description' => self::pick($locale, ['pt_BR' => 'Dashboards de pedidos, faturamento, performance de motoboys e relatorios por loja.', 'es' => 'Dashboards de pedidos, facturacion, performance de mensajeros y reportes por tienda.', 'en' => 'Order, revenue, courier performance dashboards and per-store reports.'])],
                 ],
@@ -134,10 +134,10 @@ class SiteCatalog
                     'en' => 'White-label or marketplace model. Pricing on request based on order volume.',
                 ]),
                 'process' => [
-                    ['title' => self::pick($locale, ['pt_BR' => 'Cadastro e personalizacao', 'es' => 'Registro y personalizacion', 'en' => 'Sign-up and personalization']), 'description' => self::pick($locale, ['pt_BR' => 'Configuramos sua marca, categorias, taxas e regiao de entrega.', 'es' => 'Configuramos tu marca, categorias, tasas y region de entrega.', 'en' => 'We set up your brand, categories, fees and delivery area.'])],
-                    ['title' => self::pick($locale, ['pt_BR' => 'Cadastro de lojas e produtos', 'es' => 'Registro de tiendas y productos', 'en' => 'Store and product setup']), 'description' => self::pick($locale, ['pt_BR' => 'Importacao de cardapios, modificadores e politicas de cada lojista.', 'es' => 'Importacion de menus, modificadores y politicas de cada comercio.', 'en' => 'Menu import, modifiers and policies for each merchant.'])],
+                    ['title' => self::pick($locale, ['pt_BR' => 'Cadastro e personalização', 'es' => 'Registro y personalizacion', 'en' => 'Sign-up and personalization']), 'description' => self::pick($locale, ['pt_BR' => 'Configuramos sua marca, categorias, taxas e regiao de entrega.', 'es' => 'Configuramos tu marca, categorias, tasas y region de entrega.', 'en' => 'We set up your brand, categories, fees and delivery area.'])],
+                    ['title' => self::pick($locale, ['pt_BR' => 'Cadastro de lojas e produtos', 'es' => 'Registro de tiendas y productos', 'en' => 'Store and product setup']), 'description' => self::pick($locale, ['pt_BR' => 'Importação de cardapios, modificadores e politicas de cada lojista.', 'es' => 'Importacion de menus, modificadores y politicas de cada comercio.', 'en' => 'Menu import, modifiers and policies for each merchant.'])],
                     ['title' => self::pick($locale, ['pt_BR' => 'Apps publicados nas lojas', 'es' => 'Apps publicadas en las tiendas', 'en' => 'Apps live on stores']), 'description' => self::pick($locale, ['pt_BR' => 'Lancamos seu app cliente e motoboy nativos na Apple Store e Google Play.', 'es' => 'Lanzamos tu app de cliente y mensajero nativas en Apple Store y Google Play.', 'en' => 'We launch your native customer and courier apps on Apple Store and Google Play.'])],
-                    ['title' => self::pick($locale, ['pt_BR' => 'Operacao e marketing', 'es' => 'Operacion y marketing', 'en' => 'Operation and marketing']), 'description' => self::pick($locale, ['pt_BR' => 'Suporte 24/7, campanhas de aquisicao, fidelidade e relatorios contiuos.', 'es' => 'Soporte 24/7, campanas de adquisicion, fidelidad y reportes continuos.', 'en' => '24/7 support, acquisition and loyalty campaigns and continuous reports.'])],
+                    ['title' => self::pick($locale, ['pt_BR' => 'Operação e marketing', 'es' => 'Operacion y marketing', 'en' => 'Operation and marketing']), 'description' => self::pick($locale, ['pt_BR' => 'Suporte 24/7, campanhas de aquisição, fidelidade e relatorios contiuos.', 'es' => 'Soporte 24/7, campanas de adquisicion, fidelidad y reportes continuos.', 'en' => '24/7 support, acquisition and loyalty campaigns and continuous reports.'])],
                 ],
             ],
             [
@@ -146,7 +146,7 @@ class SiteCatalog
                 'badge' => 'Marketing-Tech',
                 'website' => 'https://conecta.wmst.com.br',
                 'tagline' => self::pick($locale, [
-                    'pt_BR' => 'Automacao de Instagram para agencias e empresas multi-conta',
+                    'pt_BR' => 'Automação de Instagram para agencias e empresas multi-conta',
                     'es' => 'Automatizacion de Instagram para agencias y empresas multi-cuenta',
                     'en' => 'Instagram automation for agencies and multi-account companies',
                 ]),
@@ -160,11 +160,11 @@ class SiteCatalog
                 'whatsapp' => $whatsappBase.rawurlencode('Olá, quero conhecer o Conecta!'),
                 'features' => [
                     ['icon' => 'Building2', 'title' => self::pick($locale, ['pt_BR' => 'Multi-tenancy avancado', 'es' => 'Multi-tenancy avanzado', 'en' => 'Advanced multi-tenancy']), 'description' => self::pick($locale, ['pt_BR' => 'Gerencie multiplas agencias e clientes com dados totalmente isolados em um so painel.', 'es' => 'Gestiona multiples agencias y clientes con datos totalmente aislados en un solo panel.', 'en' => 'Manage multiple agencies and clients with fully isolated data from a single dashboard.'])],
-                    ['icon' => 'Instagram', 'title' => self::pick($locale, ['pt_BR' => 'Integracao oficial com Instagram', 'es' => 'Integracion oficial con Instagram', 'en' => 'Official Instagram integration']), 'description' => self::pick($locale, ['pt_BR' => 'OAuth, envio de DMs, posts, stories, stickers, reacoes e gerenciamento de perfis via API oficial.', 'es' => 'OAuth, envio de DMs, posts, stories, stickers, reacciones y gestion de perfiles via API oficial.', 'en' => 'OAuth, DM sending, posts, stories, stickers, reactions and profile management via official API.'])],
-                    ['icon' => 'Code', 'title' => self::pick($locale, ['pt_BR' => 'API RESTful documentada', 'es' => 'API RESTful documentada', 'en' => 'Documented RESTful API']), 'description' => self::pick($locale, ['pt_BR' => 'Endpoints completos para integracao com sistemas externos, automacoes e chatbots.', 'es' => 'Endpoints completos para integracion con sistemas externos, automatizaciones y chatbots.', 'en' => 'Complete endpoints for integration with external systems, automations and chatbots.'])],
+                    ['icon' => 'Instagram', 'title' => self::pick($locale, ['pt_BR' => 'Integração oficial com Instagram', 'es' => 'Integracion oficial con Instagram', 'en' => 'Official Instagram integration']), 'description' => self::pick($locale, ['pt_BR' => 'OAuth, envio de DMs, posts, stories, stickers, reacoes e gerenciamento de perfis via API oficial.', 'es' => 'OAuth, envio de DMs, posts, stories, stickers, reacciones y gestion de perfiles via API oficial.', 'en' => 'OAuth, DM sending, posts, stories, stickers, reactions and profile management via official API.'])],
+                    ['icon' => 'Code', 'title' => self::pick($locale, ['pt_BR' => 'API RESTful documentada', 'es' => 'API RESTful documentada', 'en' => 'Documented RESTful API']), 'description' => self::pick($locale, ['pt_BR' => 'Endpoints completos para integração com sistemas externos, automações e chatbots.', 'es' => 'Endpoints completos para integracion con sistemas externos, automatizaciones y chatbots.', 'en' => 'Complete endpoints for integration with external systems, automations and chatbots.'])],
                     ['icon' => 'Webhook', 'title' => self::pick($locale, ['pt_BR' => 'Webhooks em tempo real', 'es' => 'Webhooks en tiempo real', 'en' => 'Real-time webhooks']), 'description' => self::pick($locale, ['pt_BR' => 'Receba notificacoes automaticas sobre novas mensagens, comentarios e eventos da conta.', 'es' => 'Recibe notificaciones automaticas sobre nuevos mensajes, comentarios y eventos de la cuenta.', 'en' => 'Get automatic notifications about new messages, comments and account events.'])],
-                    ['icon' => 'KeyRound', 'title' => self::pick($locale, ['pt_BR' => 'Tokens de acesso seguros', 'es' => 'Tokens de acceso seguros', 'en' => 'Secure access tokens']), 'description' => self::pick($locale, ['pt_BR' => 'Gere tokens revogaveis para integrar com seguranca outros sistemas e ferramentas.', 'es' => 'Genera tokens revocables para integrar con seguridad otros sistemas y herramientas.', 'en' => 'Issue revocable tokens to securely integrate other systems and tools.'])],
-                    ['icon' => 'LayoutDashboard', 'title' => self::pick($locale, ['pt_BR' => 'Dashboard personalizavel', 'es' => 'Dashboard personalizable', 'en' => 'Personalized dashboard']), 'description' => self::pick($locale, ['pt_BR' => 'Paineis por agencia e por conta Instagram, visualizacao de tokens, webhooks e metricas.', 'es' => 'Paneles por agencia y cuenta Instagram, visualizacion de tokens, webhooks y metricas.', 'en' => 'Per-agency and per-account dashboards, token, webhook and metric visualization.'])],
+                    ['icon' => 'KeyRound', 'title' => self::pick($locale, ['pt_BR' => 'Tokens de acesso seguros', 'es' => 'Tokens de acceso seguros', 'en' => 'Secure access tokens']), 'description' => self::pick($locale, ['pt_BR' => 'Gere tokens revogaveis para integrar com segurança outros sistemas e ferramentas.', 'es' => 'Genera tokens revocables para integrar con seguridad otros sistemas y herramientas.', 'en' => 'Issue revocable tokens to securely integrate other systems and tools.'])],
+                    ['icon' => 'LayoutDashboard', 'title' => self::pick($locale, ['pt_BR' => 'Dashboard personalizavel', 'es' => 'Dashboard personalizable', 'en' => 'Personalized dashboard']), 'description' => self::pick($locale, ['pt_BR' => 'Paineis por agencia e por conta Instagram, visualização de tokens, webhooks e metricas.', 'es' => 'Paneles por agencia y cuenta Instagram, visualizacion de tokens, webhooks y metricas.', 'en' => 'Per-agency and per-account dashboards, token, webhook and metric visualization.'])],
                 ],
                 'metrics' => [
                     ['label' => self::pick($locale, ['pt_BR' => 'Plano inicial', 'es' => 'Plan inicial', 'en' => 'Starting plan']), 'value' => 'R$ 98,99/mes'],
@@ -206,19 +206,19 @@ class SiteCatalog
             [
                 'slug' => 'automacao-whatsapp',
                 'icon' => 'MessageCircle',
-                'title' => self::pick($locale, ['pt_BR' => 'Automacao WhatsApp Business', 'es' => 'Automatizacion WhatsApp Business', 'en' => 'WhatsApp Business automation']),
+                'title' => self::pick($locale, ['pt_BR' => 'Automação WhatsApp Business', 'es' => 'Automatizacion WhatsApp Business', 'en' => 'WhatsApp Business automation']),
                 'highlight' => self::pick($locale, ['pt_BR' => '300% mais conversoes', 'es' => '300% mas conversiones', 'en' => '300% more conversions']),
                 'description' => self::pick($locale, [
-                    'pt_BR' => 'Atendimento 24/7, qualificacao de leads e vendas automatizadas com IA via WhatsApp Business API.',
+                    'pt_BR' => 'Atendimento 24/7, qualificação de leads e vendas automatizadas com IA via WhatsApp Business API.',
                     'es' => 'Atencion 24/7, calificacion de leads y ventas automatizadas con IA via WhatsApp Business API.',
                     'en' => '24/7 support, lead qualification and AI-powered sales via WhatsApp Business API.',
                 ]),
                 'badge' => 'WhatsApp API + IA + N8N',
                 'whatsapp' => $whatsappBase.rawurlencode('Olá, gostaria de saber mais sobre a Automação WhatsApp Business'),
                 'deliverables' => [
-                    self::pick($locale, ['pt_BR' => 'Setup e verificacao da Cloud API', 'es' => 'Setup y verificacion de Cloud API', 'en' => 'Cloud API setup and verification']),
+                    self::pick($locale, ['pt_BR' => 'Setup e verificação da Cloud API', 'es' => 'Setup y verificacion de Cloud API', 'en' => 'Cloud API setup and verification']),
                     self::pick($locale, ['pt_BR' => 'Chatbot com IA conectado ao seu CRM', 'es' => 'Chatbot con IA conectado a tu CRM', 'en' => 'AI chatbot connected to your CRM']),
-                    self::pick($locale, ['pt_BR' => 'Funis de qualificacao e vendas', 'es' => 'Funnels de calificacion y ventas', 'en' => 'Qualification and sales funnels']),
+                    self::pick($locale, ['pt_BR' => 'Funis de qualificação e vendas', 'es' => 'Funnels de calificacion y ventas', 'en' => 'Qualification and sales funnels']),
                     self::pick($locale, ['pt_BR' => 'Painel de metricas em tempo real', 'es' => 'Panel de metricas en tiempo real', 'en' => 'Real-time metrics dashboard']),
                 ],
                 'process' => self::defaultProcess($locale),
@@ -226,7 +226,7 @@ class SiteCatalog
             [
                 'slug' => 'automacao-instagram',
                 'icon' => 'Instagram',
-                'title' => self::pick($locale, ['pt_BR' => 'Automacao Instagram', 'es' => 'Automatizacion Instagram', 'en' => 'Instagram automation']),
+                'title' => self::pick($locale, ['pt_BR' => 'Automação Instagram', 'es' => 'Automatizacion Instagram', 'en' => 'Instagram automation']),
                 'highlight' => self::pick($locale, ['pt_BR' => '500% mais leads qualificados', 'es' => '500% mas leads calificados', 'en' => '500% more qualified leads']),
                 'description' => self::pick($locale, [
                     'pt_BR' => 'Captura de leads, respostas inteligentes em comentarios e DMs, engajamento e venda direto pelo Instagram.',
@@ -238,7 +238,7 @@ class SiteCatalog
                 'deliverables' => [
                     self::pick($locale, ['pt_BR' => 'Auto-resposta em comentarios e DMs', 'es' => 'Auto-respuesta en comentarios y DMs', 'en' => 'Auto-reply for comments and DMs']),
                     self::pick($locale, ['pt_BR' => 'Captura e envio de leads para CRM', 'es' => 'Captura y envio de leads al CRM', 'en' => 'Capture and send leads to CRM']),
-                    self::pick($locale, ['pt_BR' => 'Sequencias de nutricao automatica', 'es' => 'Secuencias de nutricion automatica', 'en' => 'Automatic nurture sequences']),
+                    self::pick($locale, ['pt_BR' => 'Sequencias de nutrição automatica', 'es' => 'Secuencias de nutricion automatica', 'en' => 'Automatic nurture sequences']),
                     self::pick($locale, ['pt_BR' => 'Relatorios de engajamento por post', 'es' => 'Reportes de engagement por post', 'en' => 'Per-post engagement reports']),
                 ],
                 'process' => self::defaultProcess($locale),
@@ -246,7 +246,7 @@ class SiteCatalog
             [
                 'slug' => 'automacao-processos',
                 'icon' => 'Workflow',
-                'title' => self::pick($locale, ['pt_BR' => 'Automacao de Processos Internos', 'es' => 'Automatizacion de procesos internos', 'en' => 'Internal process automation']),
+                'title' => self::pick($locale, ['pt_BR' => 'Automação de Processos Internos', 'es' => 'Automatizacion de procesos internos', 'en' => 'Internal process automation']),
                 'highlight' => self::pick($locale, ['pt_BR' => '40h economizadas por semana', 'es' => '40h ahorradas por semana', 'en' => '40 hours saved per week']),
                 'description' => self::pick($locale, [
                     'pt_BR' => 'Aprovacoes automaticas, integracoes entre sistemas e relatorios em tempo real para times mais produtivos.',
@@ -258,7 +258,7 @@ class SiteCatalog
                 'deliverables' => [
                     self::pick($locale, ['pt_BR' => 'Mapeamento de processos com IA', 'es' => 'Mapeo de procesos con IA', 'en' => 'AI-driven process mapping']),
                     self::pick($locale, ['pt_BR' => 'Workflows N8N customizados', 'es' => 'Workflows N8N personalizados', 'en' => 'Custom N8N workflows']),
-                    self::pick($locale, ['pt_BR' => 'Integracao com seus sistemas via API', 'es' => 'Integracion con tus sistemas via API', 'en' => 'Integration with your systems via API']),
+                    self::pick($locale, ['pt_BR' => 'Integração com seus sistemas via API', 'es' => 'Integracion con tus sistemas via API', 'en' => 'Integration with your systems via API']),
                     self::pick($locale, ['pt_BR' => 'Dashboards de acompanhamento', 'es' => 'Dashboards de seguimiento', 'en' => 'Tracking dashboards']),
                 ],
                 'process' => self::defaultProcess($locale),
@@ -266,19 +266,19 @@ class SiteCatalog
             [
                 'slug' => 'integracao-sistemas',
                 'icon' => 'Database',
-                'title' => self::pick($locale, ['pt_BR' => 'Integracao de Sistemas Legados', 'es' => 'Integracion de sistemas legados', 'en' => 'Legacy systems integration']),
+                'title' => self::pick($locale, ['pt_BR' => 'Integração de Sistemas Legados', 'es' => 'Integracion de sistemas legados', 'en' => 'Legacy systems integration']),
                 'highlight' => self::pick($locale, ['pt_BR' => 'Zero downtime garantido', 'es' => 'Zero downtime garantizado', 'en' => 'Zero downtime guaranteed']),
                 'description' => self::pick($locale, [
-                    'pt_BR' => 'Conectamos sistemas antigos com novas tecnologias sem interromper operacoes, com seguranca e auditoria.',
+                    'pt_BR' => 'Conectamos sistemas antigos com novas tecnologias sem interromper operações, com segurança e auditoria.',
                     'es' => 'Conectamos sistemas antiguos con nuevas tecnologias sin interrumpir operaciones, con seguridad y auditoria.',
                     'en' => 'We connect legacy systems with new technologies without interrupting operations, with security and audit.',
                 ]),
                 'badge' => 'Laravel + REST + Microservicos',
                 'whatsapp' => $whatsappBase.rawurlencode('Olá, gostaria de saber mais sobre Integração de Sistemas'),
                 'deliverables' => [
-                    self::pick($locale, ['pt_BR' => 'Discovery e arquitetura de integracao', 'es' => 'Discovery y arquitectura de integracion', 'en' => 'Integration discovery and architecture']),
-                    self::pick($locale, ['pt_BR' => 'API gateway e autenticacao centralizada', 'es' => 'API gateway y autenticacion centralizada', 'en' => 'API gateway and centralized auth']),
-                    self::pick($locale, ['pt_BR' => 'Pipelines ETL e sincronizacao', 'es' => 'Pipelines ETL y sincronizacion', 'en' => 'ETL pipelines and sync']),
+                    self::pick($locale, ['pt_BR' => 'Discovery e arquitetura de integração', 'es' => 'Discovery y arquitectura de integracion', 'en' => 'Integration discovery and architecture']),
+                    self::pick($locale, ['pt_BR' => 'API gateway e autenticação centralizada', 'es' => 'API gateway y autenticacion centralizada', 'en' => 'API gateway and centralized auth']),
+                    self::pick($locale, ['pt_BR' => 'Pipelines ETL e sincronização', 'es' => 'Pipelines ETL y sincronizacion', 'en' => 'ETL pipelines and sync']),
                     self::pick($locale, ['pt_BR' => 'Monitoramento e observabilidade', 'es' => 'Monitoreo y observabilidad', 'en' => 'Monitoring and observability']),
                 ],
                 'process' => self::defaultProcess($locale),
@@ -287,9 +287,9 @@ class SiteCatalog
                 'slug' => 'ia-analise-preditiva',
                 'icon' => 'Brain',
                 'title' => self::pick($locale, ['pt_BR' => 'IA para Analise Preditiva', 'es' => 'IA para analisis predictivo', 'en' => 'AI for predictive analytics']),
-                'highlight' => self::pick($locale, ['pt_BR' => '85% precisao em previsoes', 'es' => '85% precision en pronosticos', 'en' => '85% forecast accuracy']),
+                'highlight' => self::pick($locale, ['pt_BR' => '85% precisao em previsões', 'es' => '85% precision en pronosticos', 'en' => '85% forecast accuracy']),
                 'description' => self::pick($locale, [
-                    'pt_BR' => 'Insights automaticos, previsoes precisas e decisoes baseadas em dados com modelos de IA proprios e LLMs.',
+                    'pt_BR' => 'Insights automaticos, previsões precisas e decisoes baseadas em dados com modelos de IA proprios e LLMs.',
                     'es' => 'Insights automaticos, pronosticos precisos y decisiones basadas en datos con modelos de IA propios y LLMs.',
                     'en' => 'Automated insights, accurate forecasts and data-driven decisions with custom AI models and LLMs.',
                 ]),
@@ -307,7 +307,7 @@ class SiteCatalog
                 'slug' => 'sistemas-sob-medida',
                 'icon' => 'Globe',
                 'title' => self::pick($locale, ['pt_BR' => 'Sistemas Web Sob Medida', 'es' => 'Sistemas web a medida', 'en' => 'Custom web systems']),
-                'highlight' => self::pick($locale, ['pt_BR' => '100% adequacao ao negocio', 'es' => '100% adecuacion al negocio', 'en' => '100% business fit']),
+                'highlight' => self::pick($locale, ['pt_BR' => '100% adequação ao negócio', 'es' => '100% adecuacion al negócio', 'en' => '100% business fit']),
                 'description' => self::pick($locale, [
                     'pt_BR' => 'Plataformas customizadas, dashboards executivos e portais de cliente completos, performaticos e escalaveis.',
                     'es' => 'Plataformas personalizadas, dashboards ejecutivos y portales de cliente completos, performantes y escalables.',
@@ -319,7 +319,7 @@ class SiteCatalog
                     self::pick($locale, ['pt_BR' => 'Discovery de produto e UX', 'es' => 'Discovery de producto y UX', 'en' => 'Product discovery and UX']),
                     self::pick($locale, ['pt_BR' => 'Desenvolvimento agil em sprints', 'es' => 'Desarrollo agil en sprints', 'en' => 'Agile development in sprints']),
                     self::pick($locale, ['pt_BR' => 'Deploy automatizado e CI/CD', 'es' => 'Deploy automatizado y CI/CD', 'en' => 'Automated deploy and CI/CD']),
-                    self::pick($locale, ['pt_BR' => 'Suporte e evolucao continua', 'es' => 'Soporte y evolucion continua', 'en' => 'Ongoing support and evolution']),
+                    self::pick($locale, ['pt_BR' => 'Suporte e evolução continua', 'es' => 'Soporte y evolucion continua', 'en' => 'Ongoing support and evolution']),
                 ],
                 'process' => self::defaultProcess($locale),
             ],
@@ -360,10 +360,10 @@ class SiteCatalog
     private static function defaultProcess(string $locale): array
     {
         return [
-            ['title' => self::pick($locale, ['pt_BR' => 'Diagnostico', 'es' => 'Diagnostico', 'en' => 'Discovery']), 'description' => self::pick($locale, ['pt_BR' => 'Mapeamos seus processos atuais e oportunidades de automacao.', 'es' => 'Mapeamos tus procesos actuales y oportunidades de automatizacion.', 'en' => 'We map your current processes and automation opportunities.'])],
+            ['title' => self::pick($locale, ['pt_BR' => 'Diagnostico', 'es' => 'Diagnostico', 'en' => 'Discovery']), 'description' => self::pick($locale, ['pt_BR' => 'Mapeamos seus processos atuais e oportunidades de automação.', 'es' => 'Mapeamos tus procesos actuales y oportunidades de automatizacion.', 'en' => 'We map your current processes and automation opportunities.'])],
             ['title' => self::pick($locale, ['pt_BR' => 'Proposta', 'es' => 'Propuesta', 'en' => 'Proposal']), 'description' => self::pick($locale, ['pt_BR' => 'Escopo, cronograma e ROI esperado em ate 48h.', 'es' => 'Alcance, cronograma y ROI esperado en hasta 48h.', 'en' => 'Scope, timeline and expected ROI within 48h.'])],
-            ['title' => self::pick($locale, ['pt_BR' => 'Implementacao', 'es' => 'Implementacion', 'en' => 'Implementation']), 'description' => self::pick($locale, ['pt_BR' => 'Sprints semanais com entregas continuas e validacao.', 'es' => 'Sprints semanales con entregas continuas y validacion.', 'en' => 'Weekly sprints with continuous delivery and validation.'])],
-            ['title' => self::pick($locale, ['pt_BR' => 'Operacao', 'es' => 'Operacion', 'en' => 'Operation']), 'description' => self::pick($locale, ['pt_BR' => 'Suporte, monitoramento e melhorias continuas pos go-live.', 'es' => 'Soporte, monitoreo y mejoras continuas post go-live.', 'en' => 'Support, monitoring and continuous improvement after go-live.'])],
+            ['title' => self::pick($locale, ['pt_BR' => 'Implementação', 'es' => 'Implementacion', 'en' => 'Implementation']), 'description' => self::pick($locale, ['pt_BR' => 'Sprints semanais com entregas continuas e validação.', 'es' => 'Sprints semanales con entregas continuas y validacion.', 'en' => 'Weekly sprints with continuous delivery and validation.'])],
+            ['title' => self::pick($locale, ['pt_BR' => 'Operação', 'es' => 'Operacion', 'en' => 'Operation']), 'description' => self::pick($locale, ['pt_BR' => 'Suporte, monitoramento e melhorias continuas pos go-live.', 'es' => 'Soporte, monitoreo y mejoras continuas post go-live.', 'en' => 'Support, monitoring and continuous improvement after go-live.'])],
         ];
     }
 
@@ -401,14 +401,14 @@ class SiteCatalog
                 'icon' => 'Clock',
                 'metric' => '85%',
                 'segment' => self::pick($locale, ['pt_BR' => 'Clinica Medica', 'es' => 'Clinica Medica', 'en' => 'Medical clinic']),
-                'title' => self::pick($locale, ['pt_BR' => 'Reducao de 85% no tempo de agendamentos', 'es' => 'Reduccion de 85% en tiempo de agendamientos', 'en' => '85% faster scheduling']),
+                'title' => self::pick($locale, ['pt_BR' => 'Redução de 85% no tempo de agendamentos', 'es' => 'Reduccion de 85% en tiempo de agendamientos', 'en' => '85% faster scheduling']),
                 'challenge' => self::pick($locale, [
-                    'pt_BR' => 'Recepcao sobrecarregada, fila de espera longa e alto indice de no-show.',
+                    'pt_BR' => 'Recepção sobrecarregada, fila de espera longa e alto indice de no-show.',
                     'es' => 'Recepcion saturada, fila de espera larga y alto no-show.',
                     'en' => 'Overloaded reception, long waiting list and high no-show rate.',
                 ]),
                 'solution' => self::pick($locale, [
-                    'pt_BR' => 'Implementacao do Agenda Clinic com IA para agendar, lembrar e remarcar via WhatsApp automaticamente.',
+                    'pt_BR' => 'Implementação do Agenda Clinic com IA para agendar, lembrar e remarcar via WhatsApp automaticamente.',
                     'es' => 'Implementacion del Agenda Clinic con IA para agendar, recordar y reprogramar via WhatsApp.',
                     'en' => 'Agenda Clinic rollout with AI to schedule, remind and reschedule via WhatsApp automatically.',
                 ]),
@@ -420,11 +420,11 @@ class SiteCatalog
                 'tags' => ['Agenda Clinic', 'WhatsApp', 'Saude'],
             ],
             [
-                'slug' => 'logistica-roi-automacoes',
+                'slug' => 'logistica-roi-automações',
                 'icon' => 'Target',
                 'metric' => '500%',
                 'segment' => self::pick($locale, ['pt_BR' => 'Empresa de Logistica', 'es' => 'Empresa de Logistica', 'en' => 'Logistics company']),
-                'title' => self::pick($locale, ['pt_BR' => 'ROI de 500% em automacoes', 'es' => 'ROI de 500% en automatizaciones', 'en' => '500% ROI in automation']),
+                'title' => self::pick($locale, ['pt_BR' => 'ROI de 500% em automações', 'es' => 'ROI de 500% en automatizaciones', 'en' => '500% ROI in automation']),
                 'challenge' => self::pick($locale, [
                     'pt_BR' => '40h semanais gastas em conferencia manual de planilhas e relatorios.',
                     'es' => '40h semanales gastadas en conferencia manual de planillas y reportes.',
@@ -440,7 +440,7 @@ class SiteCatalog
                     'es' => '40h ahorradas por semana y ROI de 500% en el primer ano.',
                     'en' => '40 hours saved per week and 500% ROI in year one.',
                 ]),
-                'tags' => ['N8N', 'Automacao', 'Logistica'],
+                'tags' => ['N8N', 'Automação', 'Logistica'],
             ],
         ];
     }
@@ -456,7 +456,7 @@ class SiteCatalog
                 'role' => self::pick($locale, ['pt_BR' => 'CEO', 'es' => 'CEO', 'en' => 'CEO']),
                 'company' => 'TechStart Solucoes',
                 'testimonial' => self::pick($locale, [
-                    'pt_BR' => 'A automacao de WhatsApp da WMST revolucionou nosso atendimento. Vendemos 24/7 sem precisar de equipe gigante. Recuperamos o investimento em 2 meses!',
+                    'pt_BR' => 'A automação de WhatsApp da WMST revolucionou nosso atendimento. Vendemos 24/7 sem precisar de equipe gigante. Recuperamos o investimento em 2 meses!',
                     'es' => 'La automatizacion de WhatsApp de WMST revoluciono nuestra atencion. Vendemos 24/7 sin equipo gigante. Recuperamos la inversion en 2 meses!',
                     'en' => "WMST's WhatsApp automation transformed our support. We sell 24/7 without a huge team. We got our investment back in 2 months!",
                 ]),
@@ -491,18 +491,18 @@ class SiteCatalog
     {
         return [
             'mission' => self::pick($locale, [
-                'pt_BR' => 'Transformar empresas em maquinas de crescimento atraves de software sob medida e automacoes inteligentes com IA.',
+                'pt_BR' => 'Transformar empresas em maquinas de crescimento atraves de software sob medida e automações inteligentes com IA.',
                 'es' => 'Transformar empresas en maquinas de crecimiento mediante software a medida y automatizaciones inteligentes con IA.',
                 'en' => 'Turn companies into growth machines through custom software and AI-powered intelligent automation.',
             ]),
             'vision' => self::pick($locale, [
-                'pt_BR' => 'Ser referencia em automacao e IA aplicada para PMEs no Brasil e America Latina.',
+                'pt_BR' => 'Ser referencia em automação e IA aplicada para PMEs no Brasil e America Latina.',
                 'es' => 'Ser referente en automatizacion e IA aplicada para PYMEs en Brasil y America Latina.',
                 'en' => 'Be the reference in applied automation and AI for SMBs in Brazil and Latin America.',
             ]),
             'story' => self::pick($locale, [
-                'pt_BR' => 'Fundada em Lorena, a WMST nasceu da uniao entre engenharia de software e obsessao por resultados de negocio. Em poucos anos entregamos mais de 500 projetos para clinicas, restaurantes, e-commerces, industrias e prestadores de servico que precisam crescer sem ampliar equipe.',
-                'es' => 'Fundada en Lorena, WMST nacio de la union entre ingenieria de software y obsesion por resultados de negocio. En pocos anos entregamos mas de 500 proyectos para clinicas, restaurantes, e-commerces, industrias y prestadores de servicios que necesitan crecer sin ampliar equipo.',
+                'pt_BR' => 'Fundada em Lorena, a WMST nasceu da uniao entre engenharia de software e obsessao por resultados de negócio. Em poucos anos entregamos mais de 500 projetos para clinicas, restaurantes, e-commerces, industrias e prestadores de servico que precisam crescer sem ampliar equipe.',
+                'es' => 'Fundada en Lorena, WMST nacio de la union entre ingenieria de software y obsesion por resultados de negócio. En pocos anos entregamos mas de 500 proyectos para clinicas, restaurantes, e-commerces, industrias y prestadores de servicios que necesitan crecer sin ampliar equipo.',
                 'en' => 'Founded in Lorena, WMST was born from the union of software engineering and a relentless focus on business results. In just a few years we have delivered over 500 projects for clinics, restaurants, e-commerce, manufacturers and service providers that need to grow without scaling headcount.',
             ]),
             'values' => [
@@ -513,23 +513,23 @@ class SiteCatalog
                 ],
                 [
                     'icon' => 'ShieldCheck',
-                    'title' => self::pick($locale, ['pt_BR' => 'Seguranca em primeiro lugar', 'es' => 'Seguridad primero', 'en' => 'Security first']),
+                    'title' => self::pick($locale, ['pt_BR' => 'Segurança em primeiro lugar', 'es' => 'Seguridad primero', 'en' => 'Security first']),
                     'description' => self::pick($locale, ['pt_BR' => 'Boas praticas OWASP, criptografia e LGPD em cada projeto.', 'es' => 'Buenas practicas OWASP, cifrado y GDPR/LGPD en cada proyecto.', 'en' => 'OWASP best practices, encryption and GDPR/LGPD compliance in every project.']),
                 ],
                 [
                     'icon' => 'Heart',
                     'title' => self::pick($locale, ['pt_BR' => 'Parceria de longo prazo', 'es' => 'Asociacion de largo plazo', 'en' => 'Long-term partnership']),
-                    'description' => self::pick($locale, ['pt_BR' => 'Nosso time vive o seu negocio: suporte humano e evolucao continua.', 'es' => 'Nuestro equipo vive tu negocio: soporte humano y evolucion continua.', 'en' => 'Our team lives your business: human support and continuous evolution.']),
+                    'description' => self::pick($locale, ['pt_BR' => 'Nosso time vive o seu negócio: suporte humano e evolução continua.', 'es' => 'Nuestro equipo vive tu negócio: soporte humano y evolucion continua.', 'en' => 'Our team lives your business: human support and continuous evolution.']),
                 ],
                 [
                     'icon' => 'Sparkles',
-                    'title' => self::pick($locale, ['pt_BR' => 'Inovacao com proposito', 'es' => 'Innovacion con proposito', 'en' => 'Innovation with purpose']),
-                    'description' => self::pick($locale, ['pt_BR' => 'IA aplicada para gerar receita e cortar custos, nao apenas hype.', 'es' => 'IA aplicada para generar ingresos y reducir costos, no solo hype.', 'en' => 'Applied AI to grow revenue and cut costs, not just hype.']),
+                    'title' => self::pick($locale, ['pt_BR' => 'Inovação com proposito', 'es' => 'Innovacion con proposito', 'en' => 'Innovation with purpose']),
+                    'description' => self::pick($locale, ['pt_BR' => 'IA aplicada para gerar receita e cortar custos, não apenas hype.', 'es' => 'IA aplicada para generar ingresos y reducir costos, no solo hype.', 'en' => 'Applied AI to grow revenue and cut costs, not just hype.']),
                 ],
             ],
             'metrics' => [
                 ['label' => self::pick($locale, ['pt_BR' => 'Projetos entregues', 'es' => 'Proyectos entregados', 'en' => 'Projects delivered']), 'value' => '500+'],
-                ['label' => self::pick($locale, ['pt_BR' => 'Satisfacao de clientes', 'es' => 'Satisfaccion de clientes', 'en' => 'Customer satisfaction']), 'value' => '98%'],
+                ['label' => self::pick($locale, ['pt_BR' => 'Satisfação de clientes', 'es' => 'Satisfaccion de clientes', 'en' => 'Customer satisfaction']), 'value' => '98%'],
                 ['label' => self::pick($locale, ['pt_BR' => 'Disponibilidade media', 'es' => 'Disponibilidad media', 'en' => 'Average uptime']), 'value' => '99.9%'],
                 ['label' => self::pick($locale, ['pt_BR' => 'Suporte especializado', 'es' => 'Soporte especializado', 'en' => 'Specialist support']), 'value' => '24/7'],
             ],
@@ -538,7 +538,7 @@ class SiteCatalog
                 'phone' => '+55 12 98218-4879',
                 'email' => 'contato@wmst.com.br',
                 'address' => 'Lorena - SP, Brasil',
-                'hours' => self::pick($locale, ['pt_BR' => 'Seg-Sex 9h-18h | Suporte 24/7', 'es' => 'Lun-Vie 9-18 | Soporte 24/7', 'en' => 'Mon-Fri 9am-6pm | 24/7 support']),
+                'hours' => self::pick($locale, ['pt_BR' => 'Seg-Sex 9h - 18h | Suporte 24/7', 'es' => 'Lun-Vie 9-18 | Soporte 24/7', 'en' => 'Mon-Fri 9am-6pm | 24/7 support']),
             ],
         ];
     }

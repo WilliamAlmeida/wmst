@@ -49,20 +49,20 @@ const props = defineProps<{
 }>();
 
 const titleByLocale: Record<Locale, string> = {
-    pt_BR: 'Blog WMST - IA, automacao e produto digital',
+    pt_BR: 'Blog WMST - IA, automação e produto digital',
     es: 'Blog WMST - IA, automatizacion y producto digital',
     en: 'WMST Blog - AI, automation and digital product',
 };
 
 const descriptionByLocale: Record<Locale, string> = {
-    pt_BR: 'Conteudos sobre IA aplicada, produto digital, growth e automacao de processos.',
+    pt_BR: 'Conteudos sobre IA aplicada, produto digital, growth e automação de processos.',
     es: 'Contenidos sobre IA aplicada, producto digital, growth y automatizacion de procesos.',
     en: 'Content about applied AI, digital product, growth, and process automation.',
 };
 
 const labels: Record<Locale, { searchPh: string; all: string; readMore: string; minutes: string; featured: string; pageTitle: string; pageSubtitle: string; categories: string; noResults: string }> = {
-    pt_BR: { searchPh: 'Buscar artigos...', all: 'Todas', readMore: 'Ler artigo', minutes: 'min de leitura', featured: 'Destaque', pageTitle: 'Insights para acelerar seu negocio', pageSubtitle: 'Estrategia, IA aplicada, automacoes e bastidores de quem entrega resultado.', categories: 'Categorias', noResults: 'Nenhum artigo encontrado.' },
-    es: { searchPh: 'Buscar articulos...', all: 'Todas', readMore: 'Leer articulo', minutes: 'min de lectura', featured: 'Destacado', pageTitle: 'Insights para acelerar tu negocio', pageSubtitle: 'Estrategia, IA aplicada, automatizacion y backstage de quienes entregan resultados.', categories: 'Categorias', noResults: 'Ningun articulo encontrado.' },
+    pt_BR: { searchPh: 'Buscar artigos...', all: 'Todas', readMore: 'Ler artigo', minutes: 'min de leitura', featured: 'Destaque', pageTitle: 'Insights para acelerar seu negócio', pageSubtitle: 'Estrategia, IA aplicada, automações e bastidores de quem entrega resultado.', categories: 'Categorias', noResults: 'Nenhum artigo encontrado.' },
+    es: { searchPh: 'Buscar articulos...', all: 'Todas', readMore: 'Leer articulo', minutes: 'min de lectura', featured: 'Destacado', pageTitle: 'Insights para acelerar tu negócio', pageSubtitle: 'Estrategia, IA aplicada, automatizacion y backstage de quienes entregan resultados.', categories: 'Categorias', noResults: 'Ningun articulo encontrado.' },
     en: { searchPh: 'Search articles...', all: 'All', readMore: 'Read article', minutes: 'min read', featured: 'Featured', pageTitle: 'Insights to accelerate your business', pageSubtitle: 'Strategy, applied AI, automation and stories from those who deliver results.', categories: 'Categories', noResults: 'No articles found.' },
 };
 

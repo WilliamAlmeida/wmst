@@ -24,13 +24,13 @@ const props = defineProps<{
 }>();
 
 const titleByLocale: Record<Locale, string> = {
-    pt_BR: 'Solucoes e Servicos - WMST | IA, automacao e sistemas sob medida',
+    pt_BR: 'Solucoes e Servicos - WMST | IA, automação e sistemas sob medida',
     es: 'Soluciones y Servicios - WMST | IA, automatizacion y sistemas a medida',
     en: 'Solutions & Services - WMST | AI, automation and custom systems',
 };
 
 const copy: Record<Locale, { eyebrow: string; title: string; subtitle: string; cta: string; details: string; includesLabel: string }> = {
-    pt_BR: { eyebrow: 'Servicos', title: 'Tudo o que voce precisa para crescer', subtitle: 'Automacoes, IA e desenvolvimento sob medida para empresas que querem resultados mensuráveis.', cta: 'Falar com especialista', details: 'Ver detalhes', includesLabel: 'O que esta incluido' },
+    pt_BR: { eyebrow: 'Servicos', title: 'Tudo o que você precisa para crescer', subtitle: 'Automações, IA e desenvolvimento sob medida para empresas que querem resultados mensuráveis.', cta: 'Falar com especialista', details: 'Ver detalhes', includesLabel: 'O que esta incluido' },
     es: { eyebrow: 'Servicios', title: 'Todo lo que necesitas para crecer', subtitle: 'Automatizaciones, IA y desarrollo a medida para empresas que quieren resultados medibles.', cta: 'Hablar con especialista', details: 'Ver detalles', includesLabel: 'Que esta incluido' },
     en: { eyebrow: 'Services', title: 'Everything you need to grow', subtitle: 'Automation, AI and custom development for companies that want measurable results.', cta: 'Talk to a specialist', details: 'See details', includesLabel: 'What is included' },
 };
@@ -127,8 +127,8 @@ const serviceListSchema = JSON.stringify({
         <div class="mx-auto max-w-4xl px-4 text-center md:px-8">
             <Reveal>
                 <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] px-8 py-12 text-white shadow-2xl">
-                    <h2 class="font-display text-3xl font-bold">Nao sabe por onde comecar?</h2>
-                    <p class="mt-3 text-base text-white/90">Nosso time faz um diagnostico gratuito e aponta as maiores oportunidades para o seu negocio.</p>
+                    <h2 class="font-display text-3xl font-bold">Não sabe por onde comecar?</h2>
+                    <p class="mt-3 text-base text-white/90">Nosso time faz um diagnostico gratuito e aponta as maiores oportunidades para o seu negócio.</p>
                     <a
                         href="https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20de%20um%20diagn%C3%B3stico%20gratuito"
                         target="_blank"

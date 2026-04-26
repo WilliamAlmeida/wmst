@@ -30,7 +30,7 @@ it('shows the conecta product page', function () {
 });
 
 it('returns 404 for unknown product slug', function () {
-    get('/produtos/nao-existe')->assertNotFound();
+    get('/produtos/não-existe')->assertNotFound();
 });
 
 it('shows product pages in localized routes', function () {

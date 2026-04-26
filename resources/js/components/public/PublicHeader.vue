@@ -33,7 +33,7 @@ const navLinks = computed(() => [
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
             <Link :href="homePath" class="flex items-center gap-3">
                 <BrandMark size="md" />
-                <span class="hidden text-xs text-zinc-500 sm:block">Software House &amp; Automacoes IA</span>
+                <span class="hidden text-xs text-zinc-500 sm:block">Software House &amp; Automações IA</span>
             </Link>
 
             <nav class="hidden items-center gap-7 md:flex">

@@ -247,11 +247,11 @@ PROMPT;
             'analysis' => 'Fallback mode was used because the AI provider was unavailable.',
             'action_plan' => 'Review and expand this draft before publishing.',
             'suggestion' => [
-                'title' => $title !== '' ? $title : 'Novo rascunho para avaliacao',
-                'slug' => Str::slug($title !== '' ? $title : 'novo-rascunho-para-avaliacao'),
+                'title' => $title !== '' ? $title : 'Novo rascunho para avaliação',
+                'slug' => Str::slug($title !== '' ? $title : 'novo-rascunho-para-avaliação'),
                 'excerpt' => $excerpt,
                 'content' => $content,
-                'seo_title' => $title !== '' ? $title : 'Novo rascunho para avaliacao',
+                'seo_title' => $title !== '' ? $title : 'Novo rascunho para avaliação',
                 'seo_description' => $excerpt,
             ],
         ];

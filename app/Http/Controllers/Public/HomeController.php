@@ -36,7 +36,7 @@ class HomeController extends Controller
                 ->get(['id', 'name', 'slug', 'description']),
             'metrics' => [
                 ['label' => 'Projetos entregues', 'value' => '500+'],
-                ['label' => 'Satisfacao de clientes', 'value' => '98%'],
+                ['label' => 'Satisfação de clientes', 'value' => '98%'],
                 ['label' => 'Disponibilidade media', 'value' => '99.9%'],
                 ['label' => 'Suporte especializado', 'value' => '24/7'],
             ],

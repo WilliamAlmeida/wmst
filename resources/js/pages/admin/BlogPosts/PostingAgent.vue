@@ -107,7 +107,7 @@ const postJson = async <T,>(url: string, payload: Record<string, unknown>): Prom
     const body = (await response.json().catch(() => null)) as T | { message?: string } | null;
 
     if (!response.ok) {
-        throw new Error((body as { message?: string } | null)?.message ?? 'Nao foi possivel processar sua solicitacao.');
+        throw new Error((body as { message?: string } | null)?.message ?? 'Não foi possivel processar sua solicitação.');
     }
 
     return body as T;
@@ -156,7 +156,7 @@ const runGeneration = async (): Promise<void> => {
     <div class="space-y-8 p-4">
         <Heading
             title="Agente de Postagem"
-            description="Analise o conteudo atual, entenda categorias existentes e gere rascunhos para avaliacao editorial."
+            description="Analise o conteudo atual, entenda categorias existentes e gere rascunhos para avaliação editorial."
         />
 
         <section class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -210,20 +210,20 @@ const runGeneration = async (): Promise<void> => {
                     <p class="mt-2 whitespace-pre-line text-sm">{{ analysisResult.analysis }}</p>
                 </article>
                 <article class="rounded-lg border bg-zinc-50 p-4">
-                    <p class="text-xs uppercase tracking-wide text-zinc-500">Plano de acao</p>
+                    <p class="text-xs uppercase tracking-wide text-zinc-500">Plano de ação</p>
                     <p class="mt-2 whitespace-pre-line text-sm">{{ analysisResult.action_plan }}</p>
                 </article>
             </div>
         </section>
 
         <section class="rounded-xl border p-4 md:p-6">
-            <h2 class="text-lg font-semibold">Ferramenta 2: Gerar post para avaliacao</h2>
+            <h2 class="text-lg font-semibold">Ferramenta 2: Gerar post para avaliação</h2>
             <p class="mt-1 text-sm text-zinc-600">Gere um rascunho com contexto editorial e opcionalmente salve direto no blog como draft.</p>
 
             <div class="mt-4 grid gap-3 md:grid-cols-2">
                 <div class="grid gap-1">
                     <Label for="title-hint">Titulo/base do tema</Label>
-                    <Input id="title-hint" v-model="titleHint" placeholder="Ex: Como reduzir no-show com automacao de agenda" />
+                    <Input id="title-hint" v-model="titleHint" placeholder="Ex: Como reduzir no-show com automação de agenda" />
                 </div>
                 <div class="grid gap-1">
                     <Label for="objective">Objetivo</Label>
@@ -256,7 +256,7 @@ const runGeneration = async (): Promise<void> => {
                 </div>
                 <label class="flex items-center gap-2 text-sm md:col-span-2">
                     <input v-model="saveAsDraft" type="checkbox" class="h-4 w-4" />
-                    Salvar automaticamente como rascunho para avaliacao
+                    Salvar automaticamente como rascunho para avaliação
                 </label>
             </div>
 
@@ -273,7 +273,7 @@ const runGeneration = async (): Promise<void> => {
                 </article>
 
                 <article class="rounded-lg border bg-zinc-50 p-4">
-                    <p class="text-xs uppercase tracking-wide text-zinc-500">Plano de execucao</p>
+                    <p class="text-xs uppercase tracking-wide text-zinc-500">Plano de execução</p>
                     <p class="mt-2 whitespace-pre-line text-sm">{{ generationResult.action_plan }}</p>
                 </article>
 
@@ -290,7 +290,7 @@ const runGeneration = async (): Promise<void> => {
                     <div v-if="generationResult.draft" class="mt-4 rounded-md border border-emerald-300 bg-emerald-50 p-3 text-sm text-emerald-900">
                         <p>Rascunho criado: {{ generationResult.draft.title }}</p>
                         <Link :href="BlogPostController.edit.url(generationResult.draft.id)" class="mt-1 inline-block underline">
-                            Abrir pagina de edicao
+                            Abrir pagina de edição
                         </Link>
                     </div>
                 </article>

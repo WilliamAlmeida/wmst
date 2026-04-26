@@ -44,12 +44,12 @@ test('posting agent can generate and save draft for review', function () {
             'analysis' => 'Analise de exemplo',
             'action_plan' => 'Plano de exemplo',
             'suggestion' => [
-                'title' => 'Post sugerido para avaliacao',
-                'slug' => 'post-sugerido-para-avaliacao',
+                'title' => 'Post sugerido para avaliação',
+                'slug' => 'post-sugerido-para-avaliação',
                 'excerpt' => 'Resumo sugerido',
                 'content' => 'Conteudo sugerido',
                 'seo_title' => 'SEO titulo',
-                'seo_description' => 'SEO descricao',
+                'seo_description' => 'SEO descrição',
             ],
         ]);
     });
@@ -57,7 +57,7 @@ test('posting agent can generate and save draft for review', function () {
     $response = postJson(route('admin.blog-post-agent.generate'), [
         'locale' => 'pt_BR',
         'title_hint' => 'Tema de teste',
-        'objective' => 'Validar criacao de draft',
+        'objective' => 'Validar criação de draft',
         'target_audience' => 'Gestores de marketing',
         'blog_category_id' => $category->id,
         'save_as_draft' => true,
@@ -65,10 +65,10 @@ test('posting agent can generate and save draft for review', function () {
 
     $response
         ->assertCreated()
-        ->assertJsonPath('draft.title', 'Post sugerido para avaliacao');
+        ->assertJsonPath('draft.title', 'Post sugerido para avaliação');
 
     assertDatabaseHas('blog_posts', [
-        'title' => 'Post sugerido para avaliacao',
+        'title' => 'Post sugerido para avaliação',
         'status' => BlogPostStatus::Draft->value,
         'locale' => 'pt_BR',
     ]);
@@ -95,7 +95,7 @@ test('posting agent can improve a post based on editorial feedback', function ()
                 'excerpt' => 'Resumo melhorado',
                 'content' => 'Conteudo melhorado',
                 'seo_title' => 'SEO melhorado',
-                'seo_description' => 'Descricao SEO melhorada',
+                'seo_description' => 'Descrição SEO melhorada',
             ],
         ]);
     });

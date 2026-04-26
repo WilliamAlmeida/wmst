@@ -419,7 +419,7 @@ const toggleTag = (tagId: number): void => {
                         id="seo_description"
                         v-model="createForm.seo_description"
                         class="min-h-20 rounded-md border px-3 py-2 text-sm"
-                        placeholder="Descricao para snippet do Google"
+                        placeholder="Descrição para snippet do Google"
                     />
                     <InputError :message="createForm.errors.seo_description" />
                 </div>

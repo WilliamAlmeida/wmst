@@ -21,9 +21,9 @@ const year = new Date().getFullYear();
         <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(0,102,204,0.18),transparent_45%),radial-gradient(circle_at_85%_15%,rgba(204,0,102,0.18),transparent_40%)]" />
         <div class="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4 md:px-8">
             <div>
-                <BrandMark size="md" />
+                <BrandMark size="md" class="bg-white p-1 rounded-tl-lg rounded-br-lg" />
                 <p class="mt-4 text-sm text-zinc-400">
-                    Mais de 15 anos transformando negocios com IA aplicada, automacoes e sistemas sob medida.
+                    Mais de 15 anos transformando negócios com IA aplicada, automações e sistemas sob medida.
                 </p>
                 <div class="mt-5 flex gap-3">
                     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="rounded-md border border-white/10 p-2 hover:bg-white/10">
