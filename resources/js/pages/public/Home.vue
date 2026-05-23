@@ -114,7 +114,7 @@ const products = [
         bullets: ['Cardapio digital responsivo', 'App de motoboy nativo', 'Pagamentos integrados', 'Impressão Automática'],
         badge: 'Food-Tech',
         ctaUrl: 'https://wa.me/5512982184879?text=' + encodeURIComponent('Olá, quero conhecer o IBOX Delivery!'),
-        mockup: '/images/mockup-dashboard.png',
+        mockup: '/images/mockup-ibox-delivery.avif',
     },
     {
         name: 'Conecta',
@@ -124,7 +124,7 @@ const products = [
         bullets: ['Inbox unificado multicanal', 'Funis automaticos com IA', 'Disparos em massa', 'Relatorios em tempo real'],
         badge: 'Marketing-Tech',
         ctaUrl: 'https://wa.me/5512982184879?text=' + encodeURIComponent('Olá, quero conhecer o Conecta!'),
-        mockup: '/images/mockup-dashboard.png',
+        mockup: '/images/mockup-conecta.avif',
     },
 ];
 

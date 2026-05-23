@@ -118,7 +118,7 @@ class SiteCatalog
                     ['label' => self::pick($locale, ['pt_BR' => 'Aumento medio de ticket', 'es' => 'Aumento medio de ticket', 'en' => 'Average ticket lift']), 'value' => '+32%'],
                     ['label' => self::pick($locale, ['pt_BR' => 'Tempo medio de entrega', 'es' => 'Tiempo medio de entrega', 'en' => 'Average delivery time']), 'value' => '28min'],
                     ['label' => self::pick($locale, ['pt_BR' => 'Lojistas ativos', 'es' => 'Comercios activos', 'en' => 'Active merchants']), 'value' => '80+'],
-                    ['label' => self::pick($locale, ['pt_BR' => 'Apps publicados', 'es' => 'Apps publicadas', 'en' => 'Published apps']), 'value' => 'iOS + Android'],
+                    ['label' => self::pick($locale, ['pt_BR' => 'PWA por lojas', 'es' => 'PWA por tiendas', 'en' => 'PWA per stores']), 'value' => 'Aplicativo'],
                 ],
                 'tech' => ['Laravel', 'Vue', 'Flutter', 'Pix', 'Mapbox', 'Push Notifications', 'Apple Store', 'Google Play'],
                 'useCases' => [

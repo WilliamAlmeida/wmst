@@ -89,17 +89,17 @@ const softwareSchema = JSON.stringify(
     <section class="bg-zinc-50 py-20">
         <div class="mx-auto max-w-7xl space-y-12 px-4 md:px-8">
             <Reveal v-for="(product, i) in products" :key="product.slug">
-                <article class="grid items-center gap-8 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-lg md:grid-cols-2 md:gap-0">
+                <article class="grid items-center gap-8 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-lg md:grid-cols-2 md:gap-0 px-3">
                     <!-- Image side -->
                     <div
-                        class="relative flex min-h-[320px] items-center justify-center overflow-hidden bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)] p-10"
+                        class="relative flex min-h-[320px] items-center justify-center overflow-hidden bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)] p-10 rounded-lg"
                         :class="i % 2 === 1 ? 'md:order-2' : ''"
                     >
                         <div class="absolute -inset-4 scale-110 blur-2xl opacity-40 bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)]" />
                         <img
                             :src="product.logo"
                             :alt="product.name"
-                            class="relative z-10 h-28 w-28 rounded-2xl object-contain shadow-2xl md:h-40 md:w-40"
+                            class="relative z-10 h-28 w-28 rounded-2xl object-contain shadow-2xl md:h-40 md:w-40 bg-white -translate-y-1/4"
                             loading="lazy"
                         />
                         <!-- Metrics floating pills -->
