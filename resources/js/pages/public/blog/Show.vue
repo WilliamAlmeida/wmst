@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import { computed, onMounted, ref } from 'vue';
 import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, Sparkles, MessageCircle, ListTree } from 'lucide-vue-next';
 import Reveal from '@/components/public/Reveal.vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
 
@@ -185,7 +186,7 @@ const share = async (): Promise<void> => {
                 <section v-if="post.toc.length > 0" class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
                     <h2 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
                         <ListTree class="h-3.5 w-3.5" />
-                        Sumario
+                        Sumário
                     </h2>
                     <ul class="mt-3 space-y-1 text-sm">
                         <li v-for="item in post.toc" :key="item.id" :style="{ paddingLeft: `${(item.level - 2) * 12}px` }">
@@ -206,14 +207,14 @@ const share = async (): Promise<void> => {
                         <span
                             v-for="tag in post.tags"
                             :key="tag.id"
-                            class="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs text-zinc-700"
+                            class="rounded-full border border-brand/15 bg-brand-soft px-3 py-1 text-xs font-medium text-brand"
                         >
                             {{ tag.name }}
                         </span>
                     </div>
                 </section>
 
-                <section class="overflow-hidden rounded-2xl bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] p-5 text-white shadow-xl">
+                <section class="overflow-hidden rounded-2xl bg-gradient-to-br from-brand via-(--wmst-navy-700) to-brand-2 p-5 text-white shadow-xl">
                     <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
                         <Sparkles class="h-3.5 w-3.5" />
                         Fale com a WMST
@@ -254,9 +255,10 @@ const share = async (): Promise<void> => {
             <div class="mt-8 grid gap-6 md:grid-cols-3">
                 <Link
                     v-for="related in relatedPosts"
+                    v-spotlight
                     :key="related.id"
                     :href="relatedUrl(related.slug)"
-                    class="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-[color:var(--color-brand)]/40 hover:shadow-xl"
+                    class="group spotlight-card flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
                 >
                     <div class="relative aspect-[16/9] overflow-hidden bg-zinc-100">
                         <img v-if="related.featured_image_url" :src="related.featured_image_url" :alt="related.title" class="h-full w-full object-cover transition group-hover:scale-105" loading="lazy" decoding="async" />

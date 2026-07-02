@@ -3,6 +3,9 @@ import { Head, Link } from '@inertiajs/vue3';
 import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, Sparkles, ChevronRight, ExternalLink, Target, Plug } from 'lucide-vue-next';
 import { computed } from 'vue';
 import Reveal from '@/components/public/Reveal.vue';
+import ScanFrame from '@/components/public/ScanFrame.vue';
+import { vSpotlight } from '@/directives/spotlight';
+import { vTilt } from '@/directives/tilt';
 
 type Locale = 'pt_BR' | 'es' | 'en';
 
@@ -90,13 +93,13 @@ const visitSiteLabel: Record<Locale, string> = {
 };
 
 const useCasesLabel: Record<Locale, string> = {
-    pt_BR: 'Para quem e ideal',
+    pt_BR: 'Para quem é ideal',
     es: 'Para quien es ideal',
     en: 'Who it is for',
 };
 
 const integrationsLabel: Record<Locale, string> = {
-    pt_BR: 'Integracoes',
+    pt_BR: 'Integrações',
     es: 'Integraciones',
     en: 'Integrations',
 };
@@ -167,7 +170,7 @@ const breadcrumbSchema = computed(() =>
 
             <Reveal class="mt-8 grid items-end gap-8 md:grid-cols-2 md:gap-12">
                 <div class="pb-12">
-                    <span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-brand)]/20 bg-[color:var(--color-brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--color-brand)]">
+                    <span class="inline-flex items-center gap-2 rounded-full border border-brand-2/25 bg-brand-2-soft px-3 py-1 text-xs font-semibold text-(--wmst-green-700)">
                         <Sparkles class="h-3.5 w-3.5" />
                         {{ product.badge }}
                     </span>
@@ -179,10 +182,11 @@ const breadcrumbSchema = computed(() =>
 
                     <div class="mt-8 flex flex-wrap gap-3">
                         <a
+                            v-spotlight
                             :href="product.whatsapp"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1fb955]"
+                            class="spotlight-btn inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1fb955]"
                         >
                             <MessageCircle class="h-4 w-4" />
                             {{ ctaLabel[locale] }} {{ product.name }}
@@ -201,11 +205,13 @@ const breadcrumbSchema = computed(() =>
                 </div>
 
                 <!-- Product logo elevated card -->
-                <div class="relative flex justify-center pb-0 md:justify-end">
-                    <div class="relative flex h-56 w-56 items-center justify-center rounded-3xl border border-zinc-200 bg-white shadow-2xl md:h-72 md:w-72">
-                        <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[color:var(--color-brand-soft)] via-transparent to-[color:var(--color-brand-2-soft)] blur-2xl" />
-                        <img :src="product.logo" :alt="product.name" class="relative z-10 h-36 w-36 rounded-2xl object-contain md:h-48 md:w-48" width="192" height="192" loading="eager" fetchpriority="high" decoding="async" />
-                    </div>
+                <div class="relative flex justify-center pb-6 md:justify-end md:pb-8">
+                    <ScanFrame v-tilt="{ max: 10, scale: 1.05 }" size="lg">
+                        <div class="relative flex h-56 w-56 items-center justify-center rounded-3xl border border-zinc-200 bg-white shadow-2xl md:h-72 md:w-72">
+                            <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-brand-soft via-transparent to-brand-2-soft blur-2xl" />
+                            <img :src="product.logo" :alt="product.name" class="relative z-10 h-36 w-36 rounded-2xl object-contain md:h-48 md:w-48" width="192" height="192" loading="eager" fetchpriority="high" decoding="async" />
+                        </div>
+                    </ScanFrame>
                 </div>
             </Reveal>
         </div>
@@ -302,7 +308,7 @@ const breadcrumbSchema = computed(() =>
                     </div>
                     <ul class="mt-6 space-y-3">
                         <li v-for="uc in product.useCases" :key="uc" class="flex items-start gap-3">
-                            <CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
+                            <CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-brand-2" />
                             <span class="text-sm text-zinc-700">{{ uc }}</span>
                         </li>
                     </ul>
@@ -334,20 +340,23 @@ const breadcrumbSchema = computed(() =>
     <section class="bg-white py-16">
         <div class="mx-auto max-w-4xl px-4 text-center md:px-8">
             <Reveal>
-                <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] px-8 py-12 text-white shadow-2xl">
-                    <h2 class="font-display text-3xl font-bold">Pronto para comecar?</h2>
-                    <p class="mt-3 text-base text-white/90">Fale agora com um especialista e receba uma demo do {{ product.name }}.</p>
-                    <a
-                        :href="product.whatsapp"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-zinc-900 shadow transition hover:bg-zinc-100"
-                    >
-                        <MessageCircle class="h-4 w-4 text-[#25D366]" />
-                        Solicitar demo gratuita
-                        <ArrowRight class="h-4 w-4" />
-                    </a>
-                </div>
+                <ScanFrame size="md">
+                    <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-brand via-(--wmst-navy-700) to-brand-2 px-8 py-12 text-white shadow-2xl">
+                        <h2 class="font-display text-3xl font-bold">Pronto para começar?</h2>
+                        <p class="mt-3 text-base text-white/90">Fale agora com um especialista e receba uma demo do {{ product.name }}.</p>
+                        <a
+                            v-spotlight
+                            :href="product.whatsapp"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="spotlight-btn-dark mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-zinc-900 shadow transition hover:bg-zinc-100"
+                        >
+                            <MessageCircle class="h-4 w-4 text-[#25D366]" />
+                            Solicitar demo gratuita
+                            <ArrowRight class="h-4 w-4" />
+                        </a>
+                    </div>
+                </ScanFrame>
             </Reveal>
         </div>
     </section>
@@ -361,7 +370,8 @@ const breadcrumbSchema = computed(() =>
                     v-for="rel in related.slice(0, 2)"
                     :key="rel.slug"
                     :href="productUrl(rel.slug)"
-                    class="group flex items-center gap-6 overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[color:var(--color-brand)]/40 hover:shadow-lg"
+                    v-spotlight
+                    class="group spotlight-card flex items-center gap-6 overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
                 >
                     <img :src="rel.logo" :alt="rel.name" class="h-16 w-16 shrink-0 rounded-xl object-contain" width="64" height="64" loading="lazy" decoding="async" />
                     <div class="flex-1">

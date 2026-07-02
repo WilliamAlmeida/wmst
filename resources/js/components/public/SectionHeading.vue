@@ -17,7 +17,7 @@ withDefaults(
     <div :class="['mx-auto max-w-3xl', align === 'center' ? 'text-center' : 'text-left']">
         <p
             v-if="eyebrow"
-            class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]"
+            class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-(--wmst-green-700)"
         >
             {{ eyebrow }}
         </p>

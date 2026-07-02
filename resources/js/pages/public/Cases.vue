@@ -5,6 +5,7 @@ import { TrendingUp, Clock, Target, ArrowRight, MessageCircle, CheckCircle2 } fr
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import Reveal from '@/components/public/Reveal.vue';
 import TestimonialCard from '@/components/public/TestimonialCard.vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 interface CaseStudy {
     slug: string;
@@ -37,14 +38,14 @@ const copy = computed(() => {
             description: 'Veja resultados reais de clientes WMST: aumento de conversões, redução de no-show e ROI de ate 500% com automações e produtos sob medida.',
             eyebrow: 'Cases de sucesso',
             heading: 'Resultados reais que',
-            highlight: 'falam por nos',
-            description2: 'Selecionamos cases que mostram o impacto direto das nossas solucoes em diferentes setores.',
+            highlight: 'falam por nós',
+            description2: 'Selecionamos cases que mostram o impacto direto das nossas soluções em diferentes setores.',
             challenge: 'Desafio',
             solution: 'Solução',
             result: 'Resultado',
             testimonialsTitle: 'O que dizem',
             testimonialsHighlight: 'nossos clientes',
-            ctaTitle: 'Quer ser nosso proximo case?',
+            ctaTitle: 'Quer ser nosso próximo case?',
             ctaDescription: 'Fale com nosso time e descubra em 15 minutos como podemos transformar seu negócio.',
             ctaButton: 'Falar no WhatsApp',
             ctaContact: 'Outras formas de contato',
@@ -119,13 +120,13 @@ const itemListSchema = computed(() => JSON.stringify({
     </Head>
 
     <!-- HERO -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 py-24 text-white">
-            <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.4), transparent 50%), radial-gradient(circle at 70% 80%, rgba(99, 102, 241, 0.3), transparent 50%);"></div>
+        <section class="relative overflow-hidden bg-hero-dark py-24 text-white">
+            <div class="pointer-events-none absolute inset-0 bg-brand-grid opacity-[0.08]" />
             <div class="relative mx-auto max-w-5xl px-4 text-center md:px-8">
                 <Reveal>
-                    <p class="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-brand-2)]">{{ copy.eyebrow }}</p>
+                    <p class="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-brand-2">{{ copy.eyebrow }}</p>
                     <h1 class="font-display text-4xl font-bold leading-tight md:text-6xl">
-                        {{ copy.heading }} <span class="gradient-text">{{ copy.highlight }}</span>
+                        {{ copy.heading }} <span class="gradient-text-light">{{ copy.highlight }}</span>
                     </h1>
                     <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-zinc-300">{{ copy.description2 }}</p>
                 </Reveal>
@@ -137,10 +138,10 @@ const itemListSchema = computed(() => JSON.stringify({
             <div class="mx-auto max-w-6xl px-4 md:px-8">
                 <div class="grid gap-8">
                     <Reveal v-for="(c, i) in cases" :key="c.slug" :delay="i * 100">
-                        <article class="overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                        <article v-spotlight class="spotlight-card overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                             <div class="grid gap-0 lg:grid-cols-[280px_1fr]">
                                 <!-- Metric -->
-                                <div class="relative flex flex-col items-center justify-center bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] p-8 text-white">
+                                <div class="relative flex flex-col items-center justify-center bg-gradient-to-br from-brand via-(--wmst-navy-700) to-brand-2 p-8 text-white">
                                     <component :is="iconMap[c.icon]" class="h-10 w-10 opacity-80" />
                                     <p class="mt-4 font-display text-5xl font-bold md:text-6xl">{{ c.metric }}</p>
                                     <p class="mt-2 text-center text-sm font-medium uppercase tracking-wide text-white/90">{{ c.segment }}</p>
@@ -149,7 +150,7 @@ const itemListSchema = computed(() => JSON.stringify({
                                 <!-- Body -->
                                 <div class="p-6 md:p-8">
                                     <div class="flex flex-wrap gap-2">
-                                        <span v-for="t in c.tags" :key="t" class="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-700">{{ t }}</span>
+                                        <span v-for="t in c.tags" :key="t" class="rounded-full bg-brand-soft px-2.5 py-0.5 text-xs font-medium text-brand">{{ t }}</span>
                                     </div>
                                     <h2 class="mt-3 font-display text-2xl font-bold text-zinc-900 md:text-3xl">{{ c.title }}</h2>
                                     <div class="mt-6 grid gap-4 md:grid-cols-3">
@@ -162,7 +163,7 @@ const itemListSchema = computed(() => JSON.stringify({
                                             <p class="mt-1.5 text-sm leading-relaxed text-zinc-600">{{ c.solution }}</p>
                                         </div>
                                         <div>
-                                            <p class="flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-emerald-500">
+                                            <p class="flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-(--wmst-green-700)">
                                                 <CheckCircle2 class="h-3.5 w-3.5" /> {{ copy.result }}
                                             </p>
                                             <p class="mt-1.5 text-sm font-medium leading-relaxed text-zinc-800">{{ c.result }}</p>
@@ -189,13 +190,13 @@ const itemListSchema = computed(() => JSON.stringify({
         </section>
 
         <!-- CTA -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-[color:var(--color-brand)] via-[color:var(--color-brand-2)] to-[color:var(--color-brand)] py-20">
+        <section class="relative overflow-hidden bg-gradient-to-br from-brand via-(--wmst-navy-700) to-brand-2 py-20">
             <div class="relative mx-auto max-w-4xl px-4 text-center text-white md:px-8">
                 <Reveal>
                     <h2 class="font-display text-3xl font-bold md:text-4xl">{{ copy.ctaTitle }}</h2>
                     <p class="mx-auto mt-4 max-w-2xl text-lg text-white/90">{{ copy.ctaDescription }}</p>
                     <div class="mt-8 flex flex-wrap justify-center gap-3">
-                        <a :href="copy.whatsapp" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-zinc-900 shadow-lg transition hover:-translate-y-0.5">
+                        <a v-spotlight :href="copy.whatsapp" target="_blank" rel="noopener noreferrer" class="spotlight-btn-dark inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-zinc-900 shadow-lg transition hover:-translate-y-0.5">
                             <MessageCircle class="h-5 w-5 text-[#25D366]" /> {{ copy.ctaButton }}
                         </a>
                         <Link :href="copy.contactPath" class="inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20">

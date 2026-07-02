@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
+import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
 
@@ -15,8 +16,8 @@ defineProps<{
 
 const titleByStatus = {
     ok: 'Teste de Agente IA',
-    blocked: 'Link indisponivel',
-    invalid: 'Link invalído',
+    blocked: 'Link indisponível',
+    invalid: 'Link inválido',
 };
 </script>
 
@@ -31,7 +32,7 @@ const titleByStatus = {
             <h1 class="mt-2 text-3xl font-bold">{{ titleByStatus[status] }}</h1>
             <p class="mt-3 text-zinc-600">{{ message }}</p>
 
-            <div v-if="status === 'ok' && agent" class="mt-6 grid gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+            <div v-if="status === 'ok' && agent" class="mt-6 grid gap-3 rounded-xl border border-brand-2/25 bg-brand-2-soft p-4">
                 <p class="text-sm"><span class="font-semibold">Agente:</span> {{ agent.name }}</p>
                 <p class="text-sm" v-if="link?.remaining_uses !== null && link?.remaining_uses !== undefined">
                     <span class="font-semibold">Usos restantes:</span> {{ link.remaining_uses }}
@@ -42,11 +43,11 @@ const titleByStatus = {
             </div>
 
             <div v-else class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-                <p>Motivo: {{ reason ?? 'indisponivel' }}</p>
+                <p>Motivo: {{ reason ?? 'indisponível' }}</p>
             </div>
 
             <div class="mt-6 flex flex-wrap gap-3">
-                <Link :href="homeUrl" class="rounded-md bg-zinc-900 px-4 py-2 text-sm text-white">
+                <Link v-spotlight :href="homeUrl" class="spotlight-btn rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-(--wmst-navy-700)">
                     Voltar para o site
                 </Link>
                 <a :href="`${homeUrl}#trial`" class="rounded-md border border-zinc-300 px-4 py-2 text-sm">

@@ -3,6 +3,7 @@ import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import { Menu, X, MessageCircle } from 'lucide-vue-next';
 import BrandMark from './BrandMark.vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 const props = defineProps<{
     homePath: string;
@@ -20,7 +21,7 @@ const open = ref(false);
 
 const navLinks = computed(() => [
     { label: 'Produtos', href: props.productsPath, isLink: true },
-    { label: 'Solucoes', href: props.servicesPath, isLink: true },
+    { label: 'Soluções', href: props.servicesPath, isLink: true },
     { label: 'Cases', href: props.casesPath, isLink: true },
     { label: 'Sobre', href: props.aboutPath, isLink: true },
     { label: 'Blog', href: props.blogPath, isLink: true },
@@ -41,14 +42,14 @@ const navLinks = computed(() => [
                     <Link
                         v-if="link.isLink"
                         :href="link.href"
-                        class="text-sm font-medium text-zinc-700 transition hover:text-[color:var(--color-brand)]"
+                        class="text-sm font-medium text-zinc-700 transition hover:text-(--wmst-green-700)"
                     >
                         {{ link.label }}
                     </Link>
                     <a
                         v-else
                         :href="link.href"
-                        class="text-sm font-medium text-zinc-700 transition hover:text-[color:var(--color-brand)]"
+                        class="text-sm font-medium text-zinc-700 transition hover:text-(--wmst-green-700)"
                     >
                         {{ link.label }}
                     </a>
@@ -58,15 +59,16 @@ const navLinks = computed(() => [
             <div class="hidden items-center gap-3 md:flex">
                 <Link
                     :href="isAuthenticated ? '/dashboard' : '/login'"
-                    class="text-sm font-medium text-zinc-700 transition hover:text-[color:var(--color-brand)]"
+                    class="text-sm font-medium text-zinc-700 transition hover:text-(--wmst-green-700)"
                 >
                     {{ isAuthenticated ? 'Dashboard' : 'Entrar' }}
                 </Link>
                 <a
+                    v-spotlight
                     :href="whatsappUrl"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1fb955]"
+                    class="spotlight-btn inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1fb955]"
                 >
                     <MessageCircle class="h-4 w-4" />
                     Fale no WhatsApp

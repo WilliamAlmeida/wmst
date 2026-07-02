@@ -4,6 +4,7 @@ import { computed } from 'vue';
 import { MessageCircle, Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-vue-next';
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import Reveal from '@/components/public/Reveal.vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 interface Contact { whatsapp: string; phone: string; email: string; address: string; hours: string; }
 interface Service { slug: string; title: string; whatsapp: string; }
@@ -19,25 +20,25 @@ const props = defineProps<{
 const copy = computed(() => {
     const map = {
         pt_BR: {
-            title: 'Contato WMST | Fale com nosso time em ate 15 minutos',
-            description: 'Fale com a WMST por WhatsApp, telefone ou e-mail. Diagnostico gratuito e proposta personalizada em ate 24h.',
+            title: 'Contato WMST | Fale com nosso time em até 15 minutos',
+            description: 'Fale com a WMST por WhatsApp, telefone ou e-mail. Diagnóstico gratuito e proposta personalizada em até 24h.',
             eyebrow: 'Fale com a gente',
             heading: 'Vamos conversar sobre',
-            highlight: 'seu proximo projeto',
-            description2: 'Resposta humana em ate 15 minutos via WhatsApp em horario comercial. Atendimento 24/7 para clientes ativos.',
+            highlight: 'seu próximo projeto',
+            description2: 'Resposta humana em até 15 minutos via WhatsApp em horário comercial. Atendimento 24/7 para clientes ativos.',
             channelsTitle: 'Canais',
             channelsHighlight: 'de atendimento',
             whatsappLabel: 'WhatsApp Business',
-            whatsappDesc: 'Resposta em ate 15 minutos em horario comercial.',
+            whatsappDesc: 'Resposta em até 15 minutos em horário comercial.',
             phoneLabel: 'Telefone',
             phoneDesc: 'Ligação direta para falar com nosso comercial.',
             emailLabel: 'E-mail',
-            emailDesc: 'Para propostas, parcerias e duvidas tecnicas.',
-            addressLabel: 'Endereco',
-            hoursLabel: 'Horario',
-            quickTitle: 'Acesso rapido',
+            emailDesc: 'Para propostas, parcerias e dúvidas técnicas.',
+            addressLabel: 'Endereço',
+            hoursLabel: 'Horário',
+            quickTitle: 'Acesso rápido',
             quickHighlight: 'por solução',
-            quickDescription: 'Quer falar diretamente sobre uma solução especifica? Escolha abaixo e ja inicie a conversa.',
+            quickDescription: 'Quer falar diretamente sobre uma solução específica? Escolha abaixo e já inicie a conversa.',
             startNow: 'Iniciar conversa',
             ctaWhatsapp: 'Iniciar conversa no WhatsApp',
         },
@@ -117,16 +118,16 @@ const orgSchema = computed(() => JSON.stringify({
     </Head>
 
     <!-- HERO -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 py-24 text-white">
-            <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 25% 25%, rgba(37, 211, 102, 0.4), transparent 50%), radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.3), transparent 50%);"></div>
+        <section class="relative overflow-hidden bg-hero-dark py-24 text-white">
+            <div class="pointer-events-none absolute inset-0 bg-brand-grid opacity-[0.08]" />
             <div class="relative mx-auto max-w-5xl px-4 text-center md:px-8">
                 <Reveal>
-                    <p class="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-brand-2)]">{{ copy.eyebrow }}</p>
+                    <p class="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-brand-2">{{ copy.eyebrow }}</p>
                     <h1 class="font-display text-4xl font-bold leading-tight md:text-6xl">
-                        {{ copy.heading }} <span class="gradient-text">{{ copy.highlight }}</span>
+                        {{ copy.heading }} <span class="gradient-text-light">{{ copy.highlight }}</span>
                     </h1>
                     <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-zinc-300">{{ copy.description2 }}</p>
-                    <a :href="contact.whatsapp" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#1fb955]">
+                    <a v-spotlight :href="contact.whatsapp" target="_blank" rel="noopener noreferrer" class="spotlight-btn mt-8 inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#1fb955]">
                         <MessageCircle class="h-5 w-5" /> {{ copy.ctaWhatsapp }}
                     </a>
                 </Reveal>
@@ -139,47 +140,47 @@ const orgSchema = computed(() => JSON.stringify({
                 <SectionHeading :title="copy.channelsTitle + ' '" :highlight="copy.channelsHighlight" />
                 <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     <Reveal>
-                        <a :href="contact.whatsapp" target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#25D366]/40 hover:shadow-xl">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366] text-white">
+                        <a v-spotlight :href="contact.whatsapp" target="_blank" rel="noopener noreferrer" class="group spotlight-card flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand-2 text-white">
                                 <MessageCircle class="h-6 w-6" />
                             </div>
                             <h3 class="mt-4 font-display text-lg font-semibold text-zinc-900">{{ copy.whatsappLabel }}</h3>
                             <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">{{ copy.whatsappDesc }}</p>
-                            <p class="mt-4 text-sm font-semibold text-[#25D366] group-hover:underline">{{ contact.phone }}</p>
+                            <p class="mt-4 text-sm font-semibold text-(--wmst-green-700) group-hover:underline">{{ contact.phone }}</p>
                         </a>
                     </Reveal>
                     <Reveal :delay="80">
-                        <a :href="`tel:${contact.phone.replace(/\D/g, '')}`" class="group flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[color:var(--color-brand)]/40 hover:shadow-xl">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] text-white">
+                        <a v-spotlight :href="`tel:${contact.phone.replace(/\D/g, '')}`" class="group spotlight-card flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand-2 text-white">
                                 <Phone class="h-6 w-6" />
                             </div>
                             <h3 class="mt-4 font-display text-lg font-semibold text-zinc-900">{{ copy.phoneLabel }}</h3>
                             <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">{{ copy.phoneDesc }}</p>
-                            <p class="mt-4 text-sm font-semibold text-[color:var(--color-brand)] group-hover:underline">{{ contact.phone }}</p>
+                            <p class="mt-4 text-sm font-semibold text-(--wmst-green-700) group-hover:underline">{{ contact.phone }}</p>
                         </a>
                     </Reveal>
                     <Reveal :delay="160">
-                        <a :href="`mailto:${contact.email}`" class="group flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[color:var(--color-brand-2)]/40 hover:shadow-xl">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--color-brand-2)] to-[color:var(--color-brand)] text-white">
+                        <a v-spotlight :href="`mailto:${contact.email}`" class="group spotlight-card flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand-2 text-white">
                                 <Mail class="h-6 w-6" />
                             </div>
                             <h3 class="mt-4 font-display text-lg font-semibold text-zinc-900">{{ copy.emailLabel }}</h3>
                             <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">{{ copy.emailDesc }}</p>
-                            <p class="mt-4 text-sm font-semibold text-[color:var(--color-brand-2)] group-hover:underline">{{ contact.email }}</p>
+                            <p class="mt-4 text-sm font-semibold text-(--wmst-green-700) group-hover:underline">{{ contact.email }}</p>
                         </a>
                     </Reveal>
                 </div>
 
                 <div class="mt-8 grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-6 md:grid-cols-2">
                     <div class="flex items-start gap-3">
-                        <MapPin class="mt-0.5 h-5 w-5 text-[color:var(--color-brand)]" />
+                        <MapPin class="mt-0.5 h-5 w-5 text-(--wmst-green-700)" />
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ copy.addressLabel }}</p>
                             <p class="mt-0.5 text-sm font-medium text-zinc-800">{{ contact.address }}</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <Clock class="mt-0.5 h-5 w-5 text-[color:var(--color-brand-2)]" />
+                        <Clock class="mt-0.5 h-5 w-5 text-(--wmst-green-700)" />
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ copy.hoursLabel }}</p>
                             <p class="mt-0.5 text-sm font-medium text-zinc-800">{{ contact.hours }}</p>
@@ -195,9 +196,9 @@ const orgSchema = computed(() => JSON.stringify({
                 <SectionHeading :title="copy.quickTitle + ' '" :highlight="copy.quickHighlight" :description="copy.quickDescription" />
                 <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     <Reveal v-for="(s, i) in services" :key="s.slug" :delay="i * 60">
-                        <a :href="s.whatsapp" target="_blank" rel="noopener noreferrer" class="group flex h-full items-center justify-between gap-3 rounded-xl border border-zinc-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-[#25D366]/40 hover:shadow-lg">
+                        <a v-spotlight :href="s.whatsapp" target="_blank" rel="noopener noreferrer" class="group spotlight-card flex h-full items-center justify-between gap-3 rounded-xl border border-zinc-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
                             <div class="flex items-start gap-3">
-                                <CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
+                                <CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-brand-2" />
                                 <div>
                                     <p class="text-sm font-semibold text-zinc-900">{{ s.title }}</p>
                                     <p class="mt-0.5 text-xs text-zinc-500">{{ copy.startNow }}</p>

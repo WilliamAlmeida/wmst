@@ -4,6 +4,7 @@ import { ref, watch } from 'vue';
 import { Search, Tag as TagIcon, Clock, ArrowRight, Sparkles } from 'lucide-vue-next';
 import Reveal from '@/components/public/Reveal.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
 
@@ -175,7 +176,7 @@ const blogSchema = JSON.stringify({
     <section v-if="featured && !filters.category && !filters.q" class="bg-white pb-12 pt-4">
         <div class="mx-auto max-w-7xl px-4 md:px-8">
             <Reveal>
-                <Link :href="postUrl(featured.slug)" class="group grid gap-6 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-xl md:grid-cols-2">
+                <Link v-spotlight :href="postUrl(featured.slug)" class="group spotlight-card grid gap-6 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-xl md:grid-cols-2">
                     <div class="relative aspect-[16/10] overflow-hidden bg-zinc-100 md:aspect-auto">
                         <img
                             v-if="featured.featured_image_url"
@@ -232,7 +233,7 @@ const blogSchema = JSON.stringify({
             </div>
             <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <Reveal v-for="(post, i) in posts.data" :key="post.id" :delay="(i % 3) * 80">
-                    <Link :href="postUrl(post.slug)" class="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-[color:var(--color-brand)]/40 hover:shadow-xl">
+                    <Link v-spotlight :href="postUrl(post.slug)" class="group spotlight-card flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                         <div class="relative aspect-[16/9] overflow-hidden bg-zinc-100">
                             <img
                                 v-if="post.featured_image_url"

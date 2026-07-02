@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next';
+import ScanFrame from './ScanFrame.vue';
+import ZoomableImage from './ZoomableImage.vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 defineProps<{
     name: string;
@@ -17,13 +20,14 @@ defineProps<{
 
 <template>
     <article
-        class="grid items-center gap-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm md:grid-cols-2 md:gap-12 md:p-10"
+        v-spotlight
+        class="spotlight-card grid items-center gap-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm md:grid-cols-2 md:gap-12 md:p-10"
         :class="reverse ? 'md:[&>div:first-child]:order-2' : ''"
     >
         <div>
             <span
                 v-if="badge"
-                class="inline-flex rounded-full border border-[color:var(--color-brand)]/20 bg-[color:var(--color-brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--color-brand)]"
+                class="inline-flex rounded-full border border-brand-2/25 bg-brand-2-soft px-3 py-1 text-xs font-semibold text-(--wmst-green-700)"
             >
                 {{ badge }}
             </span>
@@ -45,7 +49,8 @@ defineProps<{
                 :href="ctaUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-6 inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-700"
+                v-spotlight
+                class="spotlight-btn mt-6 inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-(--wmst-navy-700)"
             >
                 {{ ctaLabel ?? 'Conhecer' }}
                 <ArrowRight class="h-4 w-4" />
@@ -53,17 +58,18 @@ defineProps<{
         </div>
 
         <div class="relative">
-            <div class="absolute -inset-6 rounded-3xl bg-gradient-to-br from-[color:var(--color-brand-soft)] via-transparent to-[color:var(--color-brand-2-soft)] blur-2xl" />
-            <div class="relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 shadow-xl">
-                <img
-                    :src="mockup || '/images/mockup-dashboard.png'"
-                    :alt="`${name} mockup`"
-                    class="h-full w-full object-cover"
-                    loading="lazy"
-                    width="800"
-                    height="500"
-                />
-            </div>
+            <div class="absolute -inset-6 rounded-3xl bg-gradient-to-br from-brand-soft via-transparent to-brand-2-soft blur-2xl" />
+            <ScanFrame size="md">
+                <div class="relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 shadow-xl">
+                    <ZoomableImage
+                        :src="mockup || '/images/mockup-dashboard.png'"
+                        :alt="`${name} mockup`"
+                        img-class="h-full w-full object-cover"
+                        :width="800"
+                        :height="500"
+                    />
+                </div>
+            </ScanFrame>
         </div>
     </article>
 </template>

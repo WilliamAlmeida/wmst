@@ -3,6 +3,8 @@ import { Head, Link } from '@inertiajs/vue3';
 import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-vue-next';
 import Reveal from '@/components/public/Reveal.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
+import ScanFrame from '@/components/public/ScanFrame.vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
 
@@ -32,7 +34,7 @@ const titleByLocale: Record<Locale, string> = {
 };
 
 const copy: Record<Locale, { eyebrow: string; title: string; subtitle: string; cta: string; details: string }> = {
-    pt_BR: { eyebrow: 'Produtos WMST', title: 'Solucoes prontas para o seu setor', subtitle: 'Plataformas verticais desenvolvidas e evoluidas ha anos, com cases reais e ROI comprovado.', cta: 'Quero saber mais', details: 'Ver detalhes' },
+    pt_BR: { eyebrow: 'Produtos WMST', title: 'Soluções prontas para o seu setor', subtitle: 'Plataformas verticais desenvolvidas e evoluídas há anos, com cases reais e ROI comprovado.', cta: 'Quero saber mais', details: 'Ver detalhes' },
     es: { eyebrow: 'Productos WMST', title: 'Soluciones listas para tu sector', subtitle: 'Plataformas verticales desarrolladas y evolucionadas durante anos, con casos reales y ROI comprobado.', cta: 'Quiero saber mas', details: 'Ver detalles' },
     en: { eyebrow: 'WMST Products', title: 'Ready-made solutions for your sector', subtitle: 'Vertical platforms built and evolved for years, with real cases and proven ROI.', cta: 'I want to learn more', details: 'See details' },
 };
@@ -73,7 +75,7 @@ const softwareSchema = JSON.stringify(
         <div class="pointer-events-none absolute inset-0 bg-brand-grid opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
         <div class="relative mx-auto max-w-7xl px-4 pt-16 pb-14 md:px-8 md:pt-24 md:pb-20">
             <Reveal>
-                <span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-brand)]/20 bg-[color:var(--color-brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--color-brand)]">
+                <span class="inline-flex items-center gap-2 rounded-full border border-brand-2/25 bg-brand-2-soft px-3 py-1 text-xs font-semibold text-(--wmst-green-700)">
                     <Sparkles class="h-3.5 w-3.5" />
                     {{ copy[locale].eyebrow }}
                 </span>
@@ -89,35 +91,40 @@ const softwareSchema = JSON.stringify(
     <section class="bg-zinc-50 py-20">
         <div class="mx-auto max-w-7xl space-y-12 px-4 md:px-8">
             <Reveal v-for="(product, i) in products" :key="product.slug">
-                <article class="grid items-center gap-8 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-lg md:grid-cols-2 md:gap-0 px-3">
+                <article v-spotlight class="spotlight-card grid items-center gap-8 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-lg md:grid-cols-2 md:gap-0">
                     <!-- Image side -->
                     <div
-                        class="relative flex min-h-[320px] items-center justify-center overflow-hidden bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)] p-10 rounded-lg"
+                        class="relative flex min-h-[340px] flex-col items-center justify-center gap-7 overflow-hidden bg-gradient-to-br from-brand via-(--wmst-navy-700) to-(--wmst-navy-900) p-8 md:p-10"
                         :class="i % 2 === 1 ? 'md:order-2' : ''"
                     >
-                        <div class="absolute -inset-4 scale-110 blur-2xl opacity-40 bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)]" />
-                        <img
-                            :src="product.logo"
-                            :alt="product.name"
-                            class="relative z-10 h-28 w-28 rounded-2xl object-contain shadow-2xl md:h-40 md:w-40 bg-white -translate-y-1/4"
-                            loading="lazy"
-                        />
-                        <!-- Metrics floating pills -->
-                        <div class="absolute bottom-4 left-4 right-4 flex flex-wrap justify-center gap-2">
+                        <div class="pointer-events-none absolute inset-0 bg-brand-grid opacity-[0.06]" />
+                        <ScanFrame size="md">
+                            <div class="flex h-32 w-32 items-center justify-center rounded-2xl bg-white p-4 shadow-xl md:h-36 md:w-36">
+                                <img
+                                    :src="product.logo"
+                                    :alt="product.name"
+                                    class="h-full w-full object-contain"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                        </ScanFrame>
+                        <!-- Metrics -->
+                        <div class="relative flex flex-wrap justify-center gap-2">
                             <span
                                 v-for="m in product.metrics"
                                 :key="m.label"
-                                class="inline-flex flex-col items-center rounded-2xl bg-white/90 px-3 py-2 text-center shadow backdrop-blur"
+                                class="inline-flex flex-col items-center rounded-xl border border-white/10 bg-white/10 px-3 py-2 text-center backdrop-blur"
                             >
-                                <span class="font-display text-xl font-bold text-[color:var(--color-brand)]">{{ m.value }}</span>
-                                <span class="text-[10px] text-zinc-500">{{ m.label }}</span>
+                                <span class="font-display text-lg font-bold text-brand-2">{{ m.value }}</span>
+                                <span class="text-[10px] text-white/60">{{ m.label }}</span>
                             </span>
                         </div>
                     </div>
 
                     <!-- Content side -->
                     <div class="flex flex-col justify-center p-8 md:p-12">
-                        <span class="inline-flex w-fit rounded-full border border-[color:var(--color-brand)]/20 bg-[color:var(--color-brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--color-brand)]">
+                        <span class="inline-flex w-fit rounded-full border border-brand-2/25 bg-brand-2-soft px-3 py-1 text-xs font-semibold text-(--wmst-green-700)">
                             {{ product.badge }}
                         </span>
                         <h2 class="mt-4 font-display text-3xl font-bold text-zinc-900">{{ product.name }}</h2>
@@ -138,7 +145,8 @@ const softwareSchema = JSON.stringify(
                         <div class="mt-8 flex flex-wrap gap-3">
                             <Link
                                 :href="productUrl(product.slug)"
-                                class="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-zinc-700"
+                                v-spotlight
+                                class="spotlight-btn inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-(--wmst-navy-700)"
                             >
                                 {{ copy[locale].details }}
                                 <ArrowRight class="h-4 w-4" />
@@ -147,7 +155,8 @@ const softwareSchema = JSON.stringify(
                                 :href="product.whatsapp"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1fb955]"
+                                v-spotlight
+                                class="spotlight-btn inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1fb955]"
                             >
                                 {{ copy[locale].cta }}
                             </a>

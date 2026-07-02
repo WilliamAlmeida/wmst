@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 defineProps<{
     icon: Component;
@@ -10,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="group relative flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[color:var(--color-brand)]/40 hover:shadow-xl">
+    <div v-spotlight class="group spotlight-card relative flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
         <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)] text-[color:var(--color-brand)] transition-transform group-hover:scale-110">
             <component :is="icon" class="h-6 w-6" />
         </div>

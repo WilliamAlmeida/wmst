@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useForm, usePage } from '@inertiajs/vue3';
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { X, Sparkles, CheckCircle2 } from 'lucide-vue-next';
+import { vSpotlight } from '@/directives/spotlight';
 import TrialSignupController from '@/actions/App/Http/Controllers/Public/TrialSignupController';
 
 type Locale = 'pt_BR' | 'es' | 'en';
@@ -37,6 +38,11 @@ const trialForm = useForm({
 });
 
 const created = ref<{ status: string; url: string; agent: string } | null>(null);
+const mounted = ref(false);
+
+onMounted(() => {
+    mounted.value = true;
+});
 
 watch(
     () => page.props.flash?.trialSignup,
@@ -64,15 +70,15 @@ const close = (): void => {
 </script>
 
 <template>
-    <Teleport to="body">
+    <Teleport to="body" :disabled="!mounted">
         <transition name="fade">
             <div
                 v-if="open"
                 class="fixed inset-0 z-50 flex items-end justify-center bg-zinc-950/60 p-0 backdrop-blur-sm md:items-center md:p-6"
                 @click.self="close"
             >
-                <div class="relative w-full max-w-2xl overflow-hidden rounded-t-3xl bg-white shadow-2xl md:rounded-3xl">
-                    <div class="bg-gradient-to-r from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] px-6 py-5 text-white">
+                <div class="relative w-full max-w-2xl overflow-hidden rounded-t-3xl bg-white shadow-2xl md:rounded-3xl pt-2 px-2">
+                    <div class="bg-gradient-to-r from-brand via-(--wmst-navy-700) to-brand-2 px-6 py-5 text-white rounded-t-2xl">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
                                 <Sparkles class="h-5 w-5" />
@@ -148,8 +154,9 @@ const close = (): void => {
                                 {{ trialForm.errors.consent_accepted }}
                             </p>
                             <button
+                                v-spotlight
                                 type="submit"
-                                class="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-90 disabled:opacity-50 md:col-span-2"
+                                class="spotlight-btn inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-brand via-(--wmst-navy-700) to-brand-2 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-90 disabled:opacity-50 md:col-span-2"
                                 :disabled="trialForm.processing"
                             >
                                 <Sparkles class="h-4 w-4" />

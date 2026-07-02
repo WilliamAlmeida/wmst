@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3';
 import { ArrowRight, Sparkles, MessageCircle, CheckCircle2 } from 'lucide-vue-next';
 import Reveal from '@/components/public/Reveal.vue';
+import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
 
@@ -30,7 +31,7 @@ const titleByLocale: Record<Locale, string> = {
 };
 
 const copy: Record<Locale, { eyebrow: string; title: string; subtitle: string; cta: string; details: string; includesLabel: string }> = {
-    pt_BR: { eyebrow: 'Servicos', title: 'Tudo o que você precisa para crescer', subtitle: 'Automações, IA e desenvolvimento sob medida para empresas que querem resultados mensuráveis.', cta: 'Falar com especialista', details: 'Ver detalhes', includesLabel: 'O que esta incluido' },
+    pt_BR: { eyebrow: 'Serviços', title: 'Tudo o que você precisa para crescer', subtitle: 'Automações, IA e desenvolvimento sob medida para empresas que querem resultados mensuráveis.', cta: 'Falar com especialista', details: 'Ver detalhes', includesLabel: 'O que está incluído' },
     es: { eyebrow: 'Servicios', title: 'Todo lo que necesitas para crecer', subtitle: 'Automatizaciones, IA y desarrollo a medida para empresas que quieren resultados medibles.', cta: 'Hablar con especialista', details: 'Ver detalles', includesLabel: 'Que esta incluido' },
     en: { eyebrow: 'Services', title: 'Everything you need to grow', subtitle: 'Automation, AI and custom development for companies that want measurable results.', cta: 'Talk to a specialist', details: 'See details', includesLabel: 'What is included' },
 };
@@ -72,7 +73,7 @@ const serviceListSchema = JSON.stringify({
         <div class="pointer-events-none absolute inset-0 bg-brand-grid opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
         <div class="relative mx-auto max-w-7xl px-4 pt-16 pb-14 md:px-8 md:pt-24 md:pb-20">
             <Reveal>
-                <span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-brand)]/20 bg-[color:var(--color-brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--color-brand)]">
+                <span class="inline-flex items-center gap-2 rounded-full border border-brand-2/25 bg-brand-2-soft px-3 py-1 text-xs font-semibold text-(--wmst-green-700)">
                     <Sparkles class="h-3.5 w-3.5" />
                     {{ copy[locale].eyebrow }}
                 </span>
@@ -90,29 +91,30 @@ const serviceListSchema = JSON.stringify({
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <Reveal v-for="(service, i) in services" :key="service.slug" :delay="(i % 3) * 80">
                     <Link
+                        v-spotlight
                         :href="serviceUrl(service.slug)"
-                        class="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[color:var(--color-brand)]/40 hover:shadow-xl"
+                        class="group spotlight-card flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
                     >
-                        <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)] text-[color:var(--color-brand)] transition-transform group-hover:-rotate-6 group-hover:scale-110">
+                        <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-soft to-brand-2-soft text-brand transition-transform group-hover:-rotate-6 group-hover:scale-110">
                             <Sparkles class="h-5 w-5" />
                         </div>
-                        <span class="inline-flex w-fit rounded-md border border-[color:var(--color-brand)]/20 px-2 py-0.5 text-xs font-semibold text-[color:var(--color-brand)]">
+                        <span class="inline-flex w-fit rounded-md border border-brand/15 bg-brand-soft px-2 py-0.5 text-xs font-semibold text-brand">
                             {{ service.badge }}
                         </span>
-                        <h2 class="mt-3 font-display text-lg font-semibold text-zinc-900 group-hover:text-[color:var(--color-brand)]">
+                        <h2 class="mt-3 font-display text-lg font-semibold text-zinc-900 group-hover:text-brand">
                             {{ service.title }}
                         </h2>
-                        <p class="mt-1 text-sm font-semibold text-emerald-600">{{ service.highlight }}</p>
+                        <p class="mt-1 text-sm font-semibold text-(--wmst-green-700)">{{ service.highlight }}</p>
                         <p class="mt-3 flex-1 text-sm leading-relaxed text-zinc-600">{{ service.description }}</p>
 
                         <ul class="mt-4 space-y-1.5 border-t border-zinc-100 pt-4 text-xs text-zinc-600">
                             <li v-for="d in service.deliverables.slice(0, 3)" :key="d" class="flex items-start gap-2">
-                                <CheckCircle2 class="mt-px h-3.5 w-3.5 shrink-0 text-[color:var(--color-brand)]" />
+                                <CheckCircle2 class="mt-px h-3.5 w-3.5 shrink-0 text-(--wmst-green-700)" />
                                 {{ d }}
                             </li>
                         </ul>
 
-                        <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-900 group-hover:text-[color:var(--color-brand)]">
+                        <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-900 group-hover:text-brand">
                             {{ copy[locale].details }}
                             <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </span>
@@ -126,14 +128,15 @@ const serviceListSchema = JSON.stringify({
     <section class="bg-white py-16">
         <div class="mx-auto max-w-4xl px-4 text-center md:px-8">
             <Reveal>
-                <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] px-8 py-12 text-white shadow-2xl">
-                    <h2 class="font-display text-3xl font-bold">Não sabe por onde comecar?</h2>
-                    <p class="mt-3 text-base text-white/90">Nosso time faz um diagnostico gratuito e aponta as maiores oportunidades para o seu negócio.</p>
+                <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-brand via-(--wmst-navy-700) to-brand-2 px-8 py-12 text-white shadow-2xl">
+                    <h2 class="font-display text-3xl font-bold">Não sabe por onde começar?</h2>
+                    <p class="mt-3 text-base text-white/90">Nosso time faz um diagnóstico gratuito e aponta as maiores oportunidades para o seu negócio.</p>
                     <a
+                        v-spotlight
                         href="https://wa.me/5512982184879?text=Ol%C3%A1%2C%20gostaria%20de%20um%20diagn%C3%B3stico%20gratuito"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-zinc-900 shadow transition hover:bg-zinc-100"
+                        class="spotlight-btn-dark mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-zinc-900 shadow transition hover:bg-zinc-100"
                     >
                         <MessageCircle class="h-4 w-4 text-[#25D366]" />
                         {{ copy[locale].cta }}

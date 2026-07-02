@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import AppLogoIcon from '@/components/AppLogoIcon.vue';
 import {
     Card,
     CardContent,
@@ -18,22 +17,19 @@ defineProps<{
 
 <template>
     <div
-        class="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10"
+        class="relative flex min-h-svh flex-col items-center justify-center gap-6 overflow-hidden bg-background p-6 md:p-10 [--primary:#16233f] [--primary-foreground:#ffffff] [--ring:#16233f]"
     >
-        <div class="flex w-full max-w-md flex-col gap-6">
+        <div class="pointer-events-none absolute inset-0 bg-brand-radial" />
+        <div class="relative flex w-full max-w-md flex-col gap-6">
             <Link
                 :href="home()"
                 class="flex items-center gap-2 self-center font-medium"
             >
-                <div class="flex h-9 w-9 items-center justify-center">
-                    <AppLogoIcon
-                        class="size-9 fill-current text-black dark:text-white"
-                    />
-                </div>
+                <img src="/images/logotipo-wmst.png" alt="WMST" class="h-12 w-12 object-contain" width="48" height="48" />
             </Link>
 
             <div class="flex flex-col gap-6">
-                <Card class="rounded-xl">
+                <Card class="rounded-2xl shadow-xl">
                     <CardHeader class="px-10 pt-8 pb-0 text-center">
                         <CardTitle class="text-xl">{{ title }}</CardTitle>
                         <CardDescription>

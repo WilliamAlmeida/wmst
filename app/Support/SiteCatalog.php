@@ -169,7 +169,6 @@ class SiteCatalog
                 'metrics' => [
                     ['label' => self::pick($locale, ['pt_BR' => 'Plano inicial', 'es' => 'Plan inicial', 'en' => 'Starting plan']), 'value' => 'R$ 98,99/mes'],
                     ['label' => self::pick($locale, ['pt_BR' => 'Trial gratuito', 'es' => 'Trial gratis', 'en' => 'Free trial']), 'value' => '7-30 dias'],
-                    ['label' => self::pick($locale, ['pt_BR' => 'Contas Instagram', 'es' => 'Cuentas Instagram', 'en' => 'Instagram accounts']), 'value' => 'Ilimitado'],
                     ['label' => self::pick($locale, ['pt_BR' => 'API & Webhooks', 'es' => 'API y Webhooks', 'en' => 'API & Webhooks']), 'value' => '100%'],
                 ],
                 'tech' => ['Laravel', 'Vue', 'Instagram Graph API', 'OAuth 2.0', 'API REST', 'Webhooks', 'Multi-tenant'],

@@ -47,6 +47,7 @@ This project has domain-specific skills available. You MUST activate the relevan
 - You must follow all existing code conventions used in this application. When creating or editing a file, check sibling files for the correct structure, approach, and naming.
 - Use descriptive names for variables and methods. For example, `isRegisteredForDiscounts`, not `discount()`.
 - Check for existing components to reuse before writing a new one.
+- Always preserve correct Brazilian Portuguese accents and diacritics in user-facing UI text, labels, buttons, headings, validation messages, alerts, empty states, and documentation shown inside the product. Do not normalize visible text by removing accents. Use `ação`, not `acao`; `coração`, not `coracao`; `é`, not `e`.
 
 ## Verification Scripts
 
