@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogPostAgentController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BlogTagController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Public\AgentShareLinkAccessController;
 use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\CompanyController;
@@ -110,6 +111,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::post('ai-agents/{aiAgent}/share-links', [AgentShareLinkController::class, 'store'])->name('agent-share-links.store');
         Route::patch('share-links/{agentShareLink}/revoke', [AgentShareLinkController::class, 'revoke'])->name('agent-share-links.revoke');
+
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::post('users', [UserController::class, 'store'])->name('users.store');
+        Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 });
 

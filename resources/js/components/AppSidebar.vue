@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Bot, FolderGit2, LayoutGrid, Newspaper, Sparkles } from 'lucide-vue-next';
+import { BookOpen, Bot, FolderGit2, LayoutGrid, Newspaper, Sparkles, Users } from 'lucide-vue-next';
 import AiAgentController from '@/actions/App/Http/Controllers/Admin/AiAgentController';
 import BlogPostAgentController from '@/actions/App/Http/Controllers/Admin/BlogPostAgentController';
 import BlogPostController from '@/actions/App/Http/Controllers/Admin/BlogPostController';
+import UserController from '@/actions/App/Http/Controllers/Admin/UserController';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -40,6 +41,11 @@ const mainNavItems: NavItem[] = [
         title: 'Agente de Postagem',
         href: BlogPostAgentController.index(),
         icon: Sparkles,
+    },
+    {
+        title: 'Usuários',
+        href: UserController.index(),
+        icon: Users,
     },
 ];
 
