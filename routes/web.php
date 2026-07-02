@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogPostAgentController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BlogTagController;
+use App\Http\Controllers\Admin\McpController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Public\AgentShareLinkAccessController;
 use App\Http\Controllers\Public\BlogController;
@@ -116,6 +117,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('users', [UserController::class, 'store'])->name('users.store');
         Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update');
         Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+        Route::get('mcp', [McpController::class, 'index'])->name('mcp.index');
     });
 });
 

@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'mcp' => [
+        // Token estático (Bearer) exigido pelo servidor MCP web em produção.
+        'token' => env('MCP_TOKEN'),
+    ],
+
 ];
