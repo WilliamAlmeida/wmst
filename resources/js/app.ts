@@ -31,14 +31,18 @@ createInertiaApp({
     },
 });
 
-// This will set light / dark mode on page load...
-initializeTheme();
+// Código só-de-browser: no SSR (Node) window/navigator não existem, então
+// tudo que toca o DOM precisa ficar atrás desta guarda para não quebrar o render.
+if (typeof window !== 'undefined') {
+    // Define light/dark no carregamento.
+    initializeTheme();
 
-// PWA: registra o service worker (somente em produção, para não conflitar com o HMR do Vite).
-if (import.meta.env.PROD && 'serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        void navigator.serviceWorker.register('/sw.js').catch(() => {
-            // Falha no registro do SW não deve quebrar a aplicação.
+    // PWA: registra o service worker (só em produção, para não conflitar com o HMR do Vite).
+    if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            void navigator.serviceWorker.register('/sw.js').catch(() => {
+                // Falha no registro do SW não deve quebrar a aplicação.
+            });
         });
-    });
+    }
 }

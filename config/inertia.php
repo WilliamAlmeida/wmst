@@ -18,7 +18,8 @@ return [
     'ssr' => [
         'enabled' => true,
         'url' => 'http://127.0.0.1:13714',
-        // 'bundle' => base_path('bootstrap/ssr/ssr.mjs'),
+        // O plugin @inertiajs/vite compila o entry (app.ts) para bootstrap/ssr/app.js.
+        'bundle' => base_path('bootstrap/ssr/app.js'),
 
     ],
 
