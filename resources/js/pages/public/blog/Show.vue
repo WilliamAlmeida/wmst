@@ -5,6 +5,7 @@ import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, Sparkles, MessageCircle
 import AnimatedHeroBg from '@/components/public/hero/AnimatedHeroBg.vue';
 import PostCoverFallback from '@/components/public/hero/PostCoverFallback.vue';
 import Reveal from '@/components/public/Reveal.vue';
+import { useSeo } from '@/composables/useSeo';
 import { useTextToSpeech } from '@/composables/useTextToSpeech';
 import { vSpotlight } from '@/directives/spotlight';
 
@@ -61,20 +62,22 @@ const props = withDefaults(
 const pageTitle = computed(() => props.post.seo_title || props.post.title);
 const pageDescription = computed(() => props.post.seo_description || props.post.excerpt || props.post.title);
 
-const ogImage = computed(() => props.post.featured_image_url || '/images/logo-wmst.png');
+const { siteUrl, absoluteImage } = useSeo();
+const ogImage = computed(() => absoluteImage(props.post.featured_image_url));
+const homeUrl = props.locale === 'pt_BR' ? `${siteUrl()}/` : `${siteUrl()}/${props.locale}`;
 
 const articleSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: props.post.title,
-    image: [props.post.featured_image_url].filter(Boolean),
+    image: [ogImage.value],
     datePublished: props.post.published_at,
     dateModified: props.post.published_at,
     author: { '@type': 'Person', name: props.post.author?.name ?? 'WMST' },
     publisher: {
         '@type': 'Organization',
         name: 'WMST',
-        logo: { '@type': 'ImageObject', url: '/images/logo-wmst.png' },
+        logo: { '@type': 'ImageObject', url: absoluteImage('/images/logo-wmst.png') },
     },
     description: pageDescription.value,
     mainEntityOfPage: { '@type': 'WebPage', '@id': props.canonicalUrl },
@@ -84,7 +87,7 @@ const breadcrumbSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: props.locale === 'pt_BR' ? '/' : `/${props.locale}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: homeUrl },
         { '@type': 'ListItem', position: 2, name: 'Blog', item: props.blogUrl },
         { '@type': 'ListItem', position: 3, name: props.post.title, item: props.canonicalUrl },
     ],
@@ -181,7 +184,9 @@ const share = async (): Promise<void> => {
         <meta property="og:description" :content="pageDescription" />
         <meta property="og:url" :content="canonicalUrl" />
         <meta property="og:image" :content="ogImage" />
+        <meta property="og:site_name" content="WMST" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" :content="ogImage" />
         <meta v-if="post.published_at" property="article:published_time" :content="post.published_at" />
         <component :is="'script'" type="application/ld+json" v-html="articleSchema" />
         <component :is="'script'" type="application/ld+json" v-html="breadcrumbSchema" />

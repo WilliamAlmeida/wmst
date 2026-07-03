@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, Sparkles, ChevronRight } from 'lucide-vue-next';
 import { computed } from 'vue';
 import Reveal from '@/components/public/Reveal.vue';
+import { useSeo } from '@/composables/useSeo';
 import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
@@ -83,6 +84,9 @@ const breadcrumbSchema = computed(() =>
         ],
     }),
 );
+
+const { defaultOgImage } = useSeo();
+const ogImage = defaultOgImage();
 </script>
 
 <template>
@@ -96,7 +100,11 @@ const breadcrumbSchema = computed(() =>
         <meta property="og:title" :content="`${service.title} - WMST`" />
         <meta property="og:description" :content="service.description" />
         <meta property="og:url" :content="canonicalUrl" />
-        <meta property="og:image" content="/images/logo-wmst.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" :content="ogImage" />
+        <meta property="og:site_name" content="WMST" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" :content="ogImage" />
         <component :is="'script'" type="application/ld+json" v-html="serviceSchema" />
         <component :is="'script'" type="application/ld+json" v-html="breadcrumbSchema" />
     </Head>

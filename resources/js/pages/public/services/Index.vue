@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3';
 import { ArrowRight, Sparkles, MessageCircle, CheckCircle2 } from 'lucide-vue-next';
 import Reveal from '@/components/public/Reveal.vue';
+import { useSeo } from '@/composables/useSeo';
 import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
@@ -51,6 +52,9 @@ const serviceListSchema = JSON.stringify({
         url: `${props.canonicalUrl.replace('/solucoes', '')}${serviceUrl(s.slug)}`,
     })),
 });
+
+const { defaultOgImage } = useSeo();
+const ogImage = defaultOgImage();
 </script>
 
 <template>
@@ -64,7 +68,10 @@ const serviceListSchema = JSON.stringify({
         <meta property="og:title" :content="titleByLocale[locale]" />
         <meta property="og:description" :content="copy[locale].subtitle" />
         <meta property="og:url" :content="canonicalUrl" />
-        <meta property="og:image" content="/images/logo-wmst.png" />
+        <meta property="og:image" :content="ogImage" />
+        <meta property="og:site_name" content="WMST" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" :content="ogImage" />
         <component :is="'script'" type="application/ld+json" v-html="serviceListSchema" />
     </Head>
 

@@ -19,6 +19,7 @@ import {
 } from 'lucide-vue-next';
 
 import ParticleNetworkBg from '@/components/public/hero/ParticleNetworkBg.vue';
+import { useSeo } from '@/composables/useSeo';
 import Reveal from '@/components/public/Reveal.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import StatTile from '@/components/public/StatTile.vue';
@@ -163,11 +164,16 @@ const testimonials = [
     { name: 'Roberto Lima', role: 'Proprietário', company: 'Delivery Express', testimonial: 'O IBOX Delivery nos colocou no mesmo nível dos grandes players. Sistema robusto, suporte excepcional e resultados desde o primeiro dia.' },
 ];
 
+const siteOrigin = props.alternateUrls.pt_BR.replace(/\/$/, '');
+
 const organizationSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'WMST',
+    legalName: 'WMST — W.M Soluções Tecnológicas',
     url: props.alternateUrls.pt_BR,
+    logo: `${siteOrigin}/images/logo-wmst.png`,
+    image: `${siteOrigin}/images/og-default.png`,
     sameAs: [props.alternateUrls.pt_BR],
     description: copy.value.subtitle,
     contactPoint: {
@@ -185,6 +191,22 @@ const serviceSchema = JSON.stringify({
     serviceType: 'Desenvolvimento de software, automação e IA aplicada',
     provider: { '@type': 'Organization', name: 'WMST' },
 });
+
+const { siteUrl, defaultOgImage } = useSeo();
+const ogImage = computed(() => defaultOgImage());
+
+const websiteSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'WMST',
+    url: siteUrl(),
+    inLanguage: 'pt-BR',
+    potentialAction: {
+        '@type': 'SearchAction',
+        target: `${siteUrl()}/blog?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+    },
+});
 </script>
 
 <template>
@@ -199,9 +221,14 @@ const serviceSchema = JSON.stringify({
         <meta property="og:title" :content="`WMST - ${copy.titleA} ${copy.titleB}`" />
         <meta property="og:description" :content="copy.subtitle" />
         <meta property="og:url" :content="alternateUrls[locale]" />
-        <meta property="og:image" content="/images/logo-wmst.png" />
+        <meta property="og:image" :content="ogImage" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="WMST" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" :content="ogImage" />
         <component :is="'script'" type="application/ld+json" v-html="organizationSchema" />
+        <component :is="'script'" type="application/ld+json" v-html="websiteSchema" />
         <component :is="'script'" type="application/ld+json" v-html="serviceSchema" />
     </Head>
 

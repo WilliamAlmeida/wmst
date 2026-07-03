@@ -5,6 +5,7 @@ import { Search, Tag as TagIcon, Clock, ArrowRight, Sparkles } from 'lucide-vue-
 import PostCoverFallback from '@/components/public/hero/PostCoverFallback.vue';
 import Reveal from '@/components/public/Reveal.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
+import { useSeo } from '@/composables/useSeo';
 import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
@@ -104,6 +105,9 @@ const blogSchema = JSON.stringify({
     url: props.canonicalUrl,
     description: descriptionByLocale[props.locale],
 });
+
+const { defaultOgImage } = useSeo();
+const ogImage = defaultOgImage();
 </script>
 
 <template>
@@ -118,8 +122,10 @@ const blogSchema = JSON.stringify({
         <meta property="og:title" :content="titleByLocale[locale]" />
         <meta property="og:description" :content="descriptionByLocale[locale]" />
         <meta property="og:url" :content="canonicalUrl" />
-        <meta property="og:image" content="/images/logo-wmst.png" />
+        <meta property="og:image" :content="ogImage" />
+        <meta property="og:site_name" content="WMST" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" :content="ogImage" />
         <component :is="'script'" type="application/ld+json" v-html="blogSchema" />
     </Head>
 

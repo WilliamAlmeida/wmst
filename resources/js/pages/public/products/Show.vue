@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, Sparkles, ChevronRi
 import { computed } from 'vue';
 import Reveal from '@/components/public/Reveal.vue';
 import ScanFrame from '@/components/public/ScanFrame.vue';
+import { useSeo } from '@/composables/useSeo';
 import { vSpotlight } from '@/directives/spotlight';
 import { vTilt } from '@/directives/tilt';
 
@@ -141,6 +142,11 @@ const breadcrumbSchema = computed(() =>
         ],
     }),
 );
+
+// Usa o banner social padrão (1200x630) em vez do logo quadrado: renderiza
+// corretamente em cards large-image do X/Facebook/WhatsApp.
+const { defaultOgImage } = useSeo();
+const ogImage = defaultOgImage();
 </script>
 
 <template>
@@ -154,7 +160,11 @@ const breadcrumbSchema = computed(() =>
         <meta property="og:title" :content="`${product.name} - WMST`" />
         <meta property="og:description" :content="product.tagline" />
         <meta property="og:url" :content="canonicalUrl" />
-        <meta property="og:image" :content="product.logo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" :content="ogImage" />
+        <meta property="og:site_name" content="WMST" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" :content="ogImage" />
         <component :is="'script'" type="application/ld+json" v-html="softwareSchema" />
         <component :is="'script'" type="application/ld+json" v-html="breadcrumbSchema" />
     </Head>
