@@ -30,6 +30,8 @@ interface AiAgent {
     provider: string | null;
     model: string | null;
     is_active: boolean;
+    max_interactions: number;
+    max_message_length: number;
     share_links_count: number;
 }
 
@@ -108,6 +110,8 @@ const agentForm = useForm({
     provider: 'openai',
     model: 'gpt-4o-mini',
     is_active: true,
+    max_interactions: 20,
+    max_message_length: 500,
 });
 
 const openCreateAgent = (): void => {
@@ -117,6 +121,8 @@ const openCreateAgent = (): void => {
     agentForm.provider = 'openai';
     agentForm.model = 'gpt-4o-mini';
     agentForm.is_active = true;
+    agentForm.max_interactions = 20;
+    agentForm.max_message_length = 500;
     agentModalOpen.value = true;
 };
 
@@ -130,6 +136,8 @@ const openEditAgent = (agent: AiAgent): void => {
     agentForm.provider = agent.provider ?? '';
     agentForm.model = agent.model ?? '';
     agentForm.is_active = agent.is_active;
+    agentForm.max_interactions = agent.max_interactions ?? 20;
+    agentForm.max_message_length = agent.max_message_length ?? 500;
     agentModalOpen.value = true;
 };
 
@@ -639,6 +647,19 @@ const activeAgents = computed(() => props.agents.data.filter((agent) => agent.is
                         </p>
                         <p v-if="improveError" class="text-xs text-red-600">{{ improveError }}</p>
                         <InputError :message="agentForm.errors.system_prompt" />
+                    </div>
+
+                    <div class="grid gap-2 md:grid-cols-2">
+                        <div class="grid gap-2">
+                            <Label for="agent-max-interactions">Limite de interações (demonstração)</Label>
+                            <Input id="agent-max-interactions" v-model.number="agentForm.max_interactions" type="number" min="1" max="500" />
+                            <InputError :message="agentForm.errors.max_interactions" />
+                        </div>
+                        <div class="grid gap-2">
+                            <Label for="agent-max-message-length">Tamanho máx. da mensagem (caracteres)</Label>
+                            <Input id="agent-max-message-length" v-model.number="agentForm.max_message_length" type="number" min="50" max="5000" />
+                            <InputError :message="agentForm.errors.max_message_length" />
+                        </div>
                     </div>
 
                     <label class="flex items-center gap-2 text-sm">

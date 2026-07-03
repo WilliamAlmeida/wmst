@@ -13,6 +13,9 @@ createInertiaApp({
         switch (true) {
             case name === 'Welcome':
                 return null;
+            // Páginas de chat têm layout próprio (foco total, sem header/footer).
+            case name.startsWith('chat/'):
+                return null;
             case name.startsWith('public/'):
                 return PublicLayout;
             case name.startsWith('auth/'):
