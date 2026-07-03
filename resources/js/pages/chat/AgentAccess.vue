@@ -16,6 +16,7 @@ import { Label } from '@/components/ui/label';
 import { useSpeechToText } from '@/composables/useSpeechToText';
 import { vSpotlight } from '@/directives/spotlight';
 import { renderMarkdown } from '@/lib/markdown';
+import { maskBrazilPhone } from '@/lib/phone';
 
 type Locale = 'pt_BR' | 'es' | 'en';
 
@@ -65,39 +66,7 @@ const formErrors = ref<{ name?: string; phone?: string; reason?: string; general
 
 // Máscara de telefone brasileiro: +55 (DD) XXXXX-XXXX
 const formatPhone = (event: Event): void => {
-    const target = event.target as HTMLInputElement;
-    let digits = target.value.replace(/\D/g, '');
-
-    if (!digits.startsWith('55')) {
-        digits = '55' + digits;
-    }
-
-    digits = digits.slice(0, 13); // 55 + até 11 dígitos
-
-    const ddd = digits.slice(2, 4);
-    const rest = digits.slice(4);
-
-    let out = '+55';
-
-    if (ddd) {
-        out += ` (${ddd}`;
-        if (ddd.length === 2) {
-            out += ')';
-        }
-    }
-
-    if (rest) {
-        out += ' ';
-        if (rest.length <= 4) {
-            out += rest;
-        } else if (rest.length <= 8) {
-            out += `${rest.slice(0, 4)}-${rest.slice(4)}`;
-        } else {
-            out += `${rest.slice(0, 5)}-${rest.slice(5, 9)}`;
-        }
-    }
-
-    form.value.phone = out;
+    form.value.phone = maskBrazilPhone((event.target as HTMLInputElement).value);
 };
 
 const validateForm = (): boolean => {

@@ -3,6 +3,7 @@ import { useForm, usePage } from '@inertiajs/vue3';
 import { onMounted, ref, watch } from 'vue';
 import { X, Sparkles, CheckCircle2 } from 'lucide-vue-next';
 import { vSpotlight } from '@/directives/spotlight';
+import { maskBrazilPhone } from '@/lib/phone';
 import TrialSignupController from '@/actions/App/Http/Controllers/Public/TrialSignupController';
 
 type Locale = 'pt_BR' | 'es' | 'en';
@@ -122,7 +123,7 @@ const close = (): void => {
                             </div>
                             <div class="grid gap-1">
                                 <label for="t-phone" class="text-sm font-medium text-zinc-700">Telefone</label>
-                                <input id="t-phone" v-model="trialForm.phone" class="h-10 rounded-lg border border-zinc-300 px-3 text-sm focus:border-[color:var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[color:var(--color-brand)]/20" />
+                                <input id="t-phone" :value="trialForm.phone" inputmode="tel" autocomplete="tel" placeholder="+55 (12) 98218-4879" maxlength="19" class="h-10 rounded-lg border border-zinc-300 px-3 text-sm focus:border-[color:var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[color:var(--color-brand)]/20" @input="trialForm.phone = maskBrazilPhone(($event.target as HTMLInputElement).value)" />
                             </div>
                             <div class="grid gap-1">
                                 <label for="t-product" class="text-sm font-medium text-zinc-700">Interesse principal</label>
