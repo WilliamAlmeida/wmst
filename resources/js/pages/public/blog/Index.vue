@@ -2,6 +2,7 @@
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import { Search, Tag as TagIcon, Clock, ArrowRight, Sparkles } from 'lucide-vue-next';
+import PostCoverFallback from '@/components/public/hero/PostCoverFallback.vue';
 import Reveal from '@/components/public/Reveal.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import { vSpotlight } from '@/directives/spotlight';
@@ -185,9 +186,7 @@ const blogSchema = JSON.stringify({
                             class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                             loading="eager"
                         />
-                        <div v-else class="flex h-full w-full items-center justify-center bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)]">
-                            <span class="font-display text-4xl gradient-text">WMST</span>
-                        </div>
+                        <PostCoverFallback v-else size="lg" />
                         <span class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-[color:var(--color-brand)] shadow">
                             <Sparkles class="h-3 w-3" />
                             {{ labels[locale].featured }}
@@ -242,9 +241,7 @@ const blogSchema = JSON.stringify({
                                 class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                 loading="lazy"
                             />
-                            <div v-else class="flex h-full w-full items-center justify-center bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)]">
-                                <span class="font-display text-2xl gradient-text">WMST</span>
-                            </div>
+                            <PostCoverFallback v-else />
                         </div>
                         <div class="flex flex-1 flex-col p-5">
                             <p v-if="post.category" class="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-brand)]">

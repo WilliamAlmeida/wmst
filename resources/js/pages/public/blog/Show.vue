@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import { computed, onMounted, ref } from 'vue';
-import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, Sparkles, MessageCircle, ListTree, Eye, Pencil } from 'lucide-vue-next';
+import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, Sparkles, MessageCircle, ListTree, Eye, Pencil, Volume2, Pause, Play, Square } from 'lucide-vue-next';
+import AnimatedHeroBg from '@/components/public/hero/AnimatedHeroBg.vue';
+import PostCoverFallback from '@/components/public/hero/PostCoverFallback.vue';
 import Reveal from '@/components/public/Reveal.vue';
+import { useTextToSpeech } from '@/composables/useTextToSpeech';
 import { vSpotlight } from '@/directives/spotlight';
 
 type Locale = 'pt_BR' | 'es' | 'en';
@@ -106,6 +109,26 @@ onMounted(() => {
     headings.forEach((h) => obs.observe(h));
 });
 
+// Leitura em voz alta (Web Speech API, grátis no navegador).
+const speechLangs: Record<Locale, string> = { pt_BR: 'pt-BR', es: 'es-ES', en: 'en-US' };
+const tts = useTextToSpeech(speechLangs[props.locale]);
+
+const articleText = (): string => {
+    const el = document.createElement('div');
+    el.innerHTML = props.post.content_html;
+
+    return [props.post.title, props.post.excerpt ?? '', el.textContent ?? ''].join('. ');
+};
+
+const toggleListen = (): void => tts.toggle(articleText());
+
+const listenLabel = computed(() => {
+    if (tts.status.value === 'playing') { return 'Pausar'; }
+    if (tts.status.value === 'paused') { return 'Continuar'; }
+
+    return 'Ouvir artigo';
+});
+
 const share = async (): Promise<void> => {
     if (typeof navigator !== 'undefined' && navigator.share) {
         await navigator.share({ title: props.post.title, url: props.canonicalUrl });
@@ -154,28 +177,31 @@ const share = async (): Promise<void> => {
     </div>
 
     <!-- HEADER / COVER -->
-    <section class="relative overflow-hidden bg-brand-radial">
-        <div class="pointer-events-none absolute inset-0 bg-brand-grid opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+    <section class="relative overflow-hidden bg-hero-dark text-white">
+        <div class="pointer-events-none absolute inset-0 bg-brand-grid-light [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+
+        <!-- Background animado sorteado a cada visita (partículas / feixes / hexágonos) -->
+        <AnimatedHeroBg />
         <div class="relative mx-auto max-w-4xl px-4 pt-12 pb-8 md:px-8 md:pt-20 md:pb-12">
-            <Link :href="blogUrl" class="inline-flex items-center gap-1 text-sm text-zinc-600 hover:text-[color:var(--color-brand)]">
+            <Link :href="blogUrl" class="inline-flex items-center gap-1 text-sm text-zinc-300 hover:text-white">
                 <ArrowLeft class="h-4 w-4" />
                 Voltar para o blog
             </Link>
             <Reveal>
-                <p v-if="post.category" class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-brand)]">
+                <p v-if="post.category" class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-2">
                     {{ post.category.name }}
                 </p>
-                <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-zinc-900 md:text-5xl">
+                <h1 class="mt-3 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
                     {{ post.title }}
                 </h1>
-                <p v-if="post.excerpt" class="mt-4 max-w-3xl text-lg text-zinc-600">{{ post.excerpt }}</p>
+                <p v-if="post.excerpt" class="mt-4 max-w-3xl text-lg text-zinc-300">{{ post.excerpt }}</p>
 
-                <div class="mt-6 flex flex-wrap items-center gap-5 text-sm text-zinc-600">
+                <div class="mt-6 flex flex-wrap items-center gap-5 text-sm text-zinc-300">
                     <span v-if="post.author" class="inline-flex items-center gap-2">
-                        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[color:var(--color-brand)] to-[color:var(--color-brand-2)] text-xs font-semibold text-white">
+                        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[color:var(--color-brand-2)] to-[color:var(--color-brand)] text-xs font-semibold text-white">
                             {{ post.author.name.charAt(0) }}
                         </span>
-                        <span class="font-medium text-zinc-900">{{ post.author.name }}</span>
+                        <span class="font-medium text-white">{{ post.author.name }}</span>
                     </span>
                     <span class="inline-flex items-center gap-1.5">
                         <Calendar class="h-4 w-4" />
@@ -185,16 +211,39 @@ const share = async (): Promise<void> => {
                         <Clock class="h-4 w-4" />
                         {{ post.reading_time_minutes }} min de leitura
                     </span>
-                    <button type="button" class="ml-auto inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-xs hover:border-[color:var(--color-brand)]" @click="share">
-                        <Share2 class="h-3.5 w-3.5" />
-                        Compartilhar
-                    </button>
+                    <span class="ml-auto inline-flex items-center gap-2">
+                        <button
+                            v-if="tts.supported.value"
+                            type="button"
+                            class="inline-flex items-center gap-1.5 rounded-md border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-white backdrop-blur hover:border-[color:var(--color-brand-2)]"
+                            :class="tts.status.value !== 'idle' ? 'border-[color:var(--color-brand-2)] text-[color:var(--color-brand-2)]' : ''"
+                            @click="toggleListen"
+                        >
+                            <Pause v-if="tts.status.value === 'playing'" class="h-3.5 w-3.5" />
+                            <Play v-else-if="tts.status.value === 'paused'" class="h-3.5 w-3.5" />
+                            <Volume2 v-else class="h-3.5 w-3.5" />
+                            {{ listenLabel }}
+                        </button>
+                        <button
+                            v-if="tts.supported.value && tts.status.value !== 'idle'"
+                            type="button"
+                            title="Parar leitura"
+                            class="inline-flex items-center rounded-md border border-white/20 bg-white/10 p-1.5 text-white backdrop-blur hover:border-red-400 hover:text-red-400"
+                            @click="tts.stop"
+                        >
+                            <Square class="h-3.5 w-3.5" />
+                        </button>
+                        <button type="button" class="inline-flex items-center gap-1.5 rounded-md border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-white backdrop-blur hover:border-[color:var(--color-brand-2)]" @click="share">
+                            <Share2 class="h-3.5 w-3.5" />
+                            Compartilhar
+                        </button>
+                    </span>
                 </div>
             </Reveal>
         </div>
 
         <div v-if="post.featured_image_url" class="mx-auto max-w-5xl px-4 pb-10 md:px-8">
-            <div class="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-2xl">
+            <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-white shadow-2xl">
                 <img :src="post.featured_image_url" :alt="post.title" class="aspect-[16/9] w-full object-cover" loading="eager" fetchpriority="high" decoding="async" />
             </div>
         </div>
@@ -285,9 +334,7 @@ const share = async (): Promise<void> => {
                 >
                     <div class="relative aspect-[16/9] overflow-hidden bg-zinc-100">
                         <img v-if="related.featured_image_url" :src="related.featured_image_url" :alt="related.title" class="h-full w-full object-cover transition group-hover:scale-105" loading="lazy" decoding="async" />
-                        <div v-else class="flex h-full w-full items-center justify-center bg-gradient-to-br from-[color:var(--color-brand-soft)] to-[color:var(--color-brand-2-soft)]">
-                            <span class="font-display text-2xl gradient-text">WMST</span>
-                        </div>
+                        <PostCoverFallback v-else />
                     </div>
                     <div class="flex flex-1 flex-col p-5">
                         <p v-if="related.category" class="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-brand)]">{{ related.category.name }}</p>

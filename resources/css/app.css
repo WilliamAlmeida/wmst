@@ -154,6 +154,92 @@
         background-size: 40px 40px;
     }
 
+    /* Variante do grid para fundos escuros (linhas claras). */
+    .bg-brand-grid-light {
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+
+    /*
+     * Feixe de luz vertical caindo (usar com FallingBeamsBg.vue, que sorteia
+     * posição/cor/tempo). A cor vem de `color` inline via currentColor.
+     */
+    .beam-fall {
+        top: -18rem;
+        background: linear-gradient(to bottom, transparent, currentColor 60%, currentColor);
+        animation: beam-fall linear infinite;
+    }
+
+    .beam-fall::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 7px;
+        height: 7px;
+        border-radius: 9999px;
+        background: currentColor;
+        box-shadow: 0 0 10px currentColor;
+    }
+
+    @keyframes beam-fall {
+        to {
+            transform: translateY(64rem);
+        }
+    }
+
+    /*
+     * Colmeia de hexágonos (usar com HexGridBg.vue). Células base quase
+     * invisíveis; as .hex-cell-lit pulsam em verde com delays aleatórios.
+     */
+    .hex-row {
+        display: flex;
+        gap: 4px;
+        margin-top: -17px;
+    }
+
+    .hex-row:first-child {
+        margin-top: -20px;
+    }
+
+    .hex-row-offset {
+        margin-left: -34px;
+    }
+
+    .hex-cell {
+        flex: none;
+        width: 64px;
+        height: 73px;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        background: rgba(255, 255, 255, 0.035);
+    }
+
+    .hex-cell-lit {
+        background: rgba(53, 194, 74, 0.08);
+        animation: hex-pulse ease-in-out infinite;
+    }
+
+    @keyframes hex-pulse {
+        0%,
+        100% {
+            background-color: rgba(53, 194, 74, 0.06);
+        }
+
+        50% {
+            background-color: rgba(53, 194, 74, 0.42);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .beam-fall,
+        .hex-cell-lit {
+            animation: none;
+        }
+    }
+
     .reveal {
         opacity: 0;
         transform: translateY(16px);

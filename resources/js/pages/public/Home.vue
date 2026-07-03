@@ -18,6 +18,7 @@ import {
     CheckCircle2,
 } from 'lucide-vue-next';
 
+import ParticleNetworkBg from '@/components/public/hero/ParticleNetworkBg.vue';
 import Reveal from '@/components/public/Reveal.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import StatTile from '@/components/public/StatTile.vue';
@@ -207,6 +208,9 @@ const serviceSchema = JSON.stringify({
     <!-- HERO -->
     <section class="relative overflow-hidden bg-brand-radial">
         <div class="pointer-events-none absolute inset-0 bg-brand-grid opacity-[0.35] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+        <div class="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" aria-hidden="true">
+            <ParticleNetworkBg variant="light" />
+        </div>
         <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:grid-cols-2 md:gap-16 md:px-8 md:py-24 lg:py-32">
             <Reveal>
                 <span class="inline-flex items-center gap-2 rounded-full border border-brand-2/25 bg-brand-2-soft px-3 py-1 text-xs font-semibold text-(--wmst-green-700)">
