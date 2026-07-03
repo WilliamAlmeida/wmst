@@ -62,36 +62,10 @@ const props = withDefaults(
 const pageTitle = computed(() => props.post.seo_title || props.post.title);
 const pageDescription = computed(() => props.post.seo_description || props.post.excerpt || props.post.title);
 
-const { siteUrl, absoluteImage } = useSeo();
+// Article e BreadcrumbList são renderizados server-side no blade (App\Support\Seo
+// via BlogController), fora daqui para não duplicar o structured data.
+const { absoluteImage } = useSeo();
 const ogImage = computed(() => absoluteImage(props.post.featured_image_url));
-const homeUrl = props.locale === 'pt_BR' ? `${siteUrl()}/` : `${siteUrl()}/${props.locale}`;
-
-const articleSchema = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: props.post.title,
-    image: [ogImage.value],
-    datePublished: props.post.published_at,
-    dateModified: props.post.published_at,
-    author: { '@type': 'Person', name: props.post.author?.name ?? 'WMST' },
-    publisher: {
-        '@type': 'Organization',
-        name: 'WMST',
-        logo: { '@type': 'ImageObject', url: absoluteImage('/images/logo-wmst.png') },
-    },
-    description: pageDescription.value,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': props.canonicalUrl },
-});
-
-const breadcrumbSchema = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: homeUrl },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: props.blogUrl },
-        { '@type': 'ListItem', position: 3, name: props.post.title, item: props.canonicalUrl },
-    ],
-});
 
 const relatedUrl = (slug: string): string => {
     return props.locale === 'pt_BR' ? `/blog/${slug}` : `/${props.locale}/blog/${slug}`;
@@ -188,8 +162,6 @@ const share = async (): Promise<void> => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" :content="ogImage" />
         <meta v-if="post.published_at" property="article:published_time" :content="post.published_at" />
-        <component :is="'script'" type="application/ld+json" v-html="articleSchema" />
-        <component :is="'script'" type="application/ld+json" v-html="breadcrumbSchema" />
     </Head>
 
     <!-- PREVIEW BANNER -->

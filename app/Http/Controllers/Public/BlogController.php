@@ -6,6 +6,7 @@ use App\Enums\BlogPostStatus;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use App\Support\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -64,8 +65,15 @@ class BlogController extends Controller
             ->filter(fn (BlogCategory $cat): bool => ($cat->posts_count ?? 0) > 0)
             ->values();
 
+        $blogUrl = $activeLocale === 'pt_BR' ? url('/blog') : url('/'.$activeLocale.'/blog');
+
         return Inertia::render('public/blog/Index', [
             'locale' => $activeLocale,
+            'seo' => Seo::make([
+                'title' => 'Blog WMST — IA, automação e produto digital',
+                'description' => 'Conteúdos sobre IA aplicada, produto digital, growth e automação de processos para PMEs.',
+                'url' => $blogUrl,
+            ]),
             'posts' => $posts,
             'featured' => $featured ? $this->transformCard($featured, withAuthor: true) : null,
             'categories' => $categories,
@@ -73,7 +81,7 @@ class BlogController extends Controller
                 'category' => $categorySlug,
                 'q' => $search,
             ],
-            'canonicalUrl' => $activeLocale === 'pt_BR' ? url('/blog') : url('/'.$activeLocale.'/blog'),
+            'canonicalUrl' => $blogUrl,
             'alternateUrls' => [
                 'pt_BR' => url('/blog'),
                 'es' => url('/es/blog'),
@@ -155,9 +163,59 @@ class BlogController extends Controller
         $displayDate = $post->published_at
             ?? ($isPreview ? ($post->scheduled_for ?? $post->updated_at) : null);
 
+        $canonicalUrl = $activeLocale === 'pt_BR' ? url($path) : url('/'.$activeLocale.$path);
+        $siteOrigin = rtrim(url('/'), '/');
+
+        $ogImage = $post->featured_image_url;
+        if (! $ogImage) {
+            $ogImage = $siteOrigin.'/images/og-default.png';
+        } elseif (! str_starts_with($ogImage, 'http://') && ! str_starts_with($ogImage, 'https://')) {
+            $ogImage = $siteOrigin.'/'.ltrim($ogImage, '/');
+        }
+
+        $homeUrl = $activeLocale === 'pt_BR' ? $siteOrigin : $siteOrigin.'/'.$activeLocale;
+
+        $schemas = [
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'Article',
+                'headline' => $post->title,
+                'image' => [$ogImage],
+                'datePublished' => $post->published_at?->toIso8601String(),
+                'dateModified' => $post->updated_at?->toIso8601String(),
+                'author' => ['@type' => 'Person', 'name' => $post->author?->name ?? 'WMST'],
+                'publisher' => [
+                    '@type' => 'Organization',
+                    'name' => 'WMST',
+                    'logo' => ['@type' => 'ImageObject', 'url' => $siteOrigin.'/images/logo-wmst.png'],
+                ],
+                'description' => $post->seo_description ?: $post->excerpt,
+                'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => $canonicalUrl],
+            ],
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => $homeUrl],
+                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'Blog', 'item' => $activeLocale === 'pt_BR' ? $siteOrigin.'/blog' : $siteOrigin.'/'.$activeLocale.'/blog'],
+                    ['@type' => 'ListItem', 'position' => 3, 'name' => $post->title, 'item' => $canonicalUrl],
+                ],
+            ],
+        ];
+
         return Inertia::render('public/blog/Show', [
             'locale' => $activeLocale,
             'isPreview' => $isPreview,
+            'seo' => Seo::make([
+                // seo_title já costuma vir com a marca; só adiciona no fallback.
+                'title' => $post->seo_title ?: $post->title.' | WMST',
+                'description' => $post->seo_description ?: $post->excerpt,
+                'image' => $ogImage,
+                'url' => $canonicalUrl,
+                'type' => 'article',
+                'publishedTime' => $post->published_at?->toIso8601String(),
+                'schemas' => $isPreview ? [] : $schemas,
+            ]),
             'post' => [
                 'id' => $post->id,
                 'title' => $post->title,
@@ -176,7 +234,7 @@ class BlogController extends Controller
                 'author' => $post->author,
             ],
             'relatedPosts' => $relatedPosts,
-            'canonicalUrl' => $activeLocale === 'pt_BR' ? url($path) : url('/'.$activeLocale.$path),
+            'canonicalUrl' => $canonicalUrl,
             'alternateUrls' => [
                 'pt_BR' => url($path),
                 'es' => url('/es'.$path),

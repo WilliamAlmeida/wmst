@@ -5,6 +5,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        {{-- SEO server-side (visível a crawlers sem JS). Ver App\Support\Seo. --}}
+        @php($seo = data_get($page, 'props.seo', []))
+        @if(! empty($seo))
+            <meta name="description" content="{{ $seo['description'] ?? '' }}">
+            <link rel="canonical" href="{{ $seo['url'] ?? url()->current() }}">
+            <meta property="og:type" content="{{ $seo['type'] ?? 'website' }}">
+            <meta property="og:site_name" content="{{ $seo['siteName'] ?? 'WMST' }}">
+            <meta property="og:title" content="{{ $seo['title'] ?? '' }}">
+            <meta property="og:description" content="{{ $seo['description'] ?? '' }}">
+            <meta property="og:url" content="{{ $seo['url'] ?? url()->current() }}">
+            <meta property="og:image" content="{{ $seo['image'] ?? '' }}">
+            <meta property="og:image:width" content="{{ $seo['imageWidth'] ?? 1200 }}">
+            <meta property="og:image:height" content="{{ $seo['imageHeight'] ?? 630 }}">
+            @if(($seo['type'] ?? null) === 'article' && ! empty($seo['publishedTime']))
+                <meta property="article:published_time" content="{{ $seo['publishedTime'] }}">
+            @endif
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="{{ $seo['title'] ?? '' }}">
+            <meta name="twitter:description" content="{{ $seo['description'] ?? '' }}">
+            <meta name="twitter:image" content="{{ $seo['image'] ?? '' }}">
+            @foreach(($seo['schemas'] ?? []) as $schema)
+                <script type="application/ld+json">{!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+            @endforeach
+        @endif
+
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
             (function() {
@@ -50,7 +75,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         <x-inertia::head>
-            <title>{{ config('app.name', 'Laravel') }}</title>
+            <title>{{ $seo['title'] ?? config('app.name', 'Laravel') }}</title>
         </x-inertia::head>
     </head>
     <body class="font-sans antialiased">

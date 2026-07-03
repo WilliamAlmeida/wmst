@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Support\Seo;
 use App\Support\SiteCatalog;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,10 +20,17 @@ class ProductsController extends Controller
 
         $products = SiteCatalog::products($activeLocale);
 
+        $canonicalUrl = $activeLocale === 'pt_BR' ? url('/produtos') : url('/'.$activeLocale.'/produtos');
+
         return Inertia::render('public/products/Index', [
             'locale' => $activeLocale,
+            'seo' => Seo::make([
+                'title' => 'Produtos WMST — SaaS para clínicas, delivery e marketing',
+                'description' => 'Conheça o Agenda Clinic, IBOX Delivery, Conecta e outras soluções da WMST para automatizar e escalar o seu negócio.',
+                'url' => $canonicalUrl,
+            ]),
             'products' => $products,
-            'canonicalUrl' => $activeLocale === 'pt_BR' ? url('/produtos') : url('/'.$activeLocale.'/produtos'),
+            'canonicalUrl' => $canonicalUrl,
             'alternateUrls' => [
                 'pt_BR' => url('/produtos'),
                 'es' => url('/es/produtos'),
@@ -50,12 +58,18 @@ class ProductsController extends Controller
         ));
 
         $path = '/produtos/'.$resolvedSlug;
+        $canonicalUrl = $activeLocale === 'pt_BR' ? url($path) : url('/'.$activeLocale.$path);
 
         return Inertia::render('public/products/Show', [
             'locale' => $activeLocale,
+            'seo' => Seo::make([
+                'title' => $product['name'].' — WMST',
+                'description' => $product['tagline'] ?? $product['description'] ?? null,
+                'url' => $canonicalUrl,
+            ]),
             'product' => $product,
             'related' => $related,
-            'canonicalUrl' => $activeLocale === 'pt_BR' ? url($path) : url('/'.$activeLocale.$path),
+            'canonicalUrl' => $canonicalUrl,
             'alternateUrls' => [
                 'pt_BR' => url($path),
                 'es' => url('/es'.$path),

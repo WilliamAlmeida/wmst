@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Support\Seo;
 use App\Support\SiteCatalog;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,10 +20,17 @@ class ServicesController extends Controller
 
         $services = SiteCatalog::services($activeLocale);
 
+        $canonicalUrl = $activeLocale === 'pt_BR' ? url('/solucoes') : url('/'.$activeLocale.'/solucoes');
+
         return Inertia::render('public/services/Index', [
             'locale' => $activeLocale,
+            'seo' => Seo::make([
+                'title' => 'Soluções WMST — automação, IA e sistemas sob medida',
+                'description' => 'Automação de WhatsApp e Instagram, IA aplicada, integração de sistemas e desenvolvimento sob medida para PMEs.',
+                'url' => $canonicalUrl,
+            ]),
             'services' => $services,
-            'canonicalUrl' => $activeLocale === 'pt_BR' ? url('/solucoes') : url('/'.$activeLocale.'/solucoes'),
+            'canonicalUrl' => $canonicalUrl,
             'alternateUrls' => [
                 'pt_BR' => url('/solucoes'),
                 'es' => url('/es/solucoes'),
@@ -50,12 +58,18 @@ class ServicesController extends Controller
         ));
 
         $path = '/solucoes/'.$resolvedSlug;
+        $canonicalUrl = $activeLocale === 'pt_BR' ? url($path) : url('/'.$activeLocale.$path);
 
         return Inertia::render('public/services/Show', [
             'locale' => $activeLocale,
+            'seo' => Seo::make([
+                'title' => $service['title'].' — WMST',
+                'description' => $service['description'] ?? null,
+                'url' => $canonicalUrl,
+            ]),
             'service' => $service,
             'related' => array_slice($related, 0, 3),
-            'canonicalUrl' => $activeLocale === 'pt_BR' ? url($path) : url('/'.$activeLocale.$path),
+            'canonicalUrl' => $canonicalUrl,
             'alternateUrls' => [
                 'pt_BR' => url($path),
                 'es' => url('/es'.$path),
