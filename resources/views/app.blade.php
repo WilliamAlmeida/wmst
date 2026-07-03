@@ -36,6 +36,15 @@
         <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+        {{-- PWA --}}
+        <link rel="manifest" href="/manifest.webmanifest">
+        <meta name="theme-color" content="#16233f">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="WMST">
+        <meta name="application-name" content="WMST">
+
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 

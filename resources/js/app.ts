@@ -33,3 +33,12 @@ createInertiaApp({
 
 // This will set light / dark mode on page load...
 initializeTheme();
+
+// PWA: registra o service worker (somente em produção, para não conflitar com o HMR do Vite).
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        void navigator.serviceWorker.register('/sw.js').catch(() => {
+            // Falha no registro do SW não deve quebrar a aplicação.
+        });
+    });
+}
