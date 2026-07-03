@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { Bot, LayoutGrid, Newspaper, Plug, Sparkles, Users } from 'lucide-vue-next';
+import { Bot, LayoutGrid, MessagesSquare, Newspaper, Plug, Sparkles, Users } from 'lucide-vue-next';
+import AgentChatSessionController from '@/actions/App/Http/Controllers/Admin/AgentChatSessionController';
 import AiAgentController from '@/actions/App/Http/Controllers/Admin/AiAgentController';
 import BlogPostAgentController from '@/actions/App/Http/Controllers/Admin/BlogPostAgentController';
 import BlogPostController from '@/actions/App/Http/Controllers/Admin/BlogPostController';
@@ -37,6 +38,11 @@ const mainNavItems: NavItem[] = [
         title: 'Agentes IA',
         href: AiAgentController.index(),
         icon: Bot,
+    },
+    {
+        title: 'Sessões de Chat',
+        href: AgentChatSessionController.index(),
+        icon: MessagesSquare,
     },
     {
         title: 'Agente de Postagem',
