@@ -45,10 +45,11 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'trialSignup' => $request->session()->get('trialSignup'),
             ],
-            // Metadados de SEO compartilhados: og:image precisa ser URL absoluta
-            // para as prévias de WhatsApp/Facebook/X funcionarem.
+            // Metadados de SEO compartilhados: og:image precisa ser URL absoluta.
+            // url() respeita o esquema da requisição (https), evitando o http
+            // estático do config('app.url').
             'seo' => [
-                'siteUrl' => rtrim(config('app.url'), '/'),
+                'siteUrl' => rtrim(url('/'), '/'),
                 'defaultOgImage' => url('/images/og-default.png'),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',

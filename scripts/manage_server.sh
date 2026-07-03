@@ -11,6 +11,7 @@ usage() {
     echo "Uso: $0 {start-queue|stop-queue}"
     echo "Uso: $0 {start-schedule|stop-schedule}"
     echo "Uso: $0 {start-horizon|stop-horizon}"
+    echo "Uso: $0 {start-ssr|stop-ssr}"
     exit 1
 }
 
@@ -139,6 +140,29 @@ stop_horizon() {
     fi
 }
 
+# Função para iniciar o servidor SSR do Inertia
+# Renderiza as páginas (e as meta tags de SEO) no servidor. Sem este processo,
+# o site cai no client-side e as tags de SEO ficam invisíveis a crawlers.
+start_ssr() {
+    echo "Compilando bundle SSR (npm run build:ssr)..."
+    npm run build:ssr
+    echo "Iniciando o Inertia SSR (nome: wmst-ssr)..."
+    pm2 start "php artisan inertia:start-ssr" --name wmst-ssr
+}
+
+# Função para parar o servidor SSR do Inertia
+stop_ssr() {
+    echo "Parando o Inertia SSR (nome: wmst-ssr)..."
+    if pm2 list | grep -q "wmst-ssr"; then
+        php artisan inertia:stop-ssr &> /dev/null
+        pm2 stop wmst-ssr &> /dev/null
+        pm2 delete wmst-ssr &> /dev/null
+        echo "Inertia SSR parado com sucesso."
+    else
+        echo "Inertia SSR não está em execução."
+    fi
+}
+
 # Função para iniciar Caddy com FrankenPHP
 start_caddy() {
     # Verifica se o FrankenPHP está instalado
@@ -216,6 +240,12 @@ case "$1" in
         ;;
     stop-horizon)
         stop_horizon
+        ;;
+    start-ssr)
+        start_ssr
+        ;;
+    stop-ssr)
+        stop_ssr
         ;;
     *)
         usage
