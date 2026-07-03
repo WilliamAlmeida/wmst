@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Ai\Agents\PromptImproverAgent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAiAgentRequest;
 use App\Http\Requests\Admin\UpdateAiAgentRequest;
@@ -14,9 +15,12 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
+use Throwable;
 
 class AiAgentController extends Controller
 {
+    public function __construct(private PromptImproverAgent $promptImproverAgent) {}
+
     public function index(Request $request): JsonResponse|InertiaResponse
     {
         $agents = AiAgent::query()
@@ -50,6 +54,13 @@ class AiAgentController extends Controller
                     'created_at',
                 ]),
             'shareBaseUrl' => url('/share'),
+            // Provedores de texto/chat do config/ai.php, excluindo os que não são
+            // LLMs de conversa (áudio/TTS e embeddings/rerank).
+            'providers' => collect(config('ai.providers', []))
+                ->keys()
+                ->reject(fn (string $provider): bool => in_array($provider, ['eleven', 'jina', 'voyageai'], true))
+                ->values()
+                ->all(),
         ]);
     }
 
@@ -99,6 +110,47 @@ class AiAgentController extends Controller
         }
 
         return response()->noContent();
+    }
+
+    /**
+     * Usa um agente de IA (laravel/ai) para reescrever/melhorar o system prompt.
+     */
+    public function improvePrompt(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'current_prompt' => ['required', 'string', 'max:20000'],
+            'name' => ['nullable', 'string', 'max:120'],
+        ]);
+
+        $name = trim((string) ($validated['name'] ?? '')) ?: 'Agente';
+        $current = $validated['current_prompt'];
+
+        $userPrompt = <<<PROMPT
+        Nome do agente: {$name}
+
+        Prompt atual do agente:
+        {$current}
+
+        Reescreva e melhore o prompt acima seguindo as regras. Responda em português do Brasil.
+        PROMPT;
+
+        try {
+            $response = $this->promptImproverAgent->prompt($userPrompt);
+            $structured = json_decode((string) $response, true);
+
+            if (is_array($structured) && ! empty($structured['improved_prompt'])) {
+                return response()->json([
+                    'improved_prompt' => (string) $structured['improved_prompt'],
+                    'summary' => (string) ($structured['summary'] ?? ''),
+                ]);
+            }
+        } catch (Throwable) {
+            // cai na resposta de erro abaixo
+        }
+
+        return response()->json([
+            'message' => 'Não foi possível melhorar o prompt agora. Verifique a configuração do provedor de IA (config/ai.php) e tente novamente.',
+        ], 422);
     }
 
     private function uniqueSlug(string $baseSlug, ?int $ignoreId = null): string
