@@ -32,6 +32,9 @@ Route::get('/blog', [BlogController::class, 'index'])
 Route::get('/blog/{slug}', [BlogController::class, 'show'])
     ->name('blog.show');
 
+Route::post('/blog/{blogPost}/view', [BlogController::class, 'registerView'])
+    ->name('blog.view');
+
 Route::get('/produtos', [ProductsController::class, 'index'])
     ->defaults('locale', 'pt_BR')
     ->name('products.index');

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Public;
 
+use App\Enums\BlogPostStatus;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
@@ -111,6 +113,20 @@ class BlogController extends Controller
         $blogPost->load(['author:id,name', 'category:id,name,slug', 'tags:id,name,slug']);
 
         return $this->renderPostPage($blogPost, $activeLocale, isPreview: true);
+    }
+
+    /**
+     * Contabiliza 1 visualização do post. A deduplicação por visitante
+     * (mesma pessoa não conta 2x em 24h) é feita no cliente via localStorage;
+     * aqui apenas incrementamos, e somente para posts publicados.
+     */
+    public function registerView(BlogPost $blogPost): Response
+    {
+        if ($blogPost->status === BlogPostStatus::Published && $blogPost->published_at !== null) {
+            $blogPost->increment('views_count');
+        }
+
+        return response()->noContent();
     }
 
     private function renderPostPage(BlogPost $post, string $activeLocale, bool $isPreview): InertiaResponse

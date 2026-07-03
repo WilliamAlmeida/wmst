@@ -107,7 +107,36 @@ onMounted(() => {
         });
     }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
     headings.forEach((h) => obs.observe(h));
+
+    registerView();
 });
+
+// Registra 1 view por visitante a cada 24h (dedup via localStorage), nunca no preview.
+const registerView = (): void => {
+    if (props.isPreview || typeof window === 'undefined') { return; }
+
+    const key = `wmst_post_view_${props.post.id}`;
+    const dayMs = 24 * 60 * 60 * 1000;
+
+    try {
+        const last = Number(window.localStorage.getItem(key) ?? '0');
+        if (Date.now() - last < dayMs) { return; }
+    } catch {
+        // localStorage indisponível (modo privado): conta a view mesmo assim.
+    }
+
+    const csrf = (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement | null)?.content ?? '';
+    void fetch(`/blog/${props.post.id}/view`, {
+        method: 'POST',
+        headers: { 'X-CSRF-TOKEN': csrf, 'X-Requested-With': 'XMLHttpRequest' },
+        credentials: 'same-origin',
+        keepalive: true,
+    })
+        .then(() => {
+            try { window.localStorage.setItem(key, String(Date.now())); } catch { /* ignora */ }
+        })
+        .catch(() => { /* silencioso: contagem de view não deve afetar a página */ });
+};
 
 // Leitura em voz alta (Web Speech API, grátis no navegador).
 const speechLangs: Record<Locale, string> = { pt_BR: 'pt-BR', es: 'es-ES', en: 'en-US' };

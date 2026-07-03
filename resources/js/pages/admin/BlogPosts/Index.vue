@@ -42,6 +42,7 @@ interface BlogPostItem {
     status: 'draft' | 'scheduled' | 'published';
     scheduled_for?: string | null;
     published_at: string | null;
+    views_count: number;
     category?: { id: number; name: string } | null;
     author?: { id: number; name: string } | null;
     tags?: Array<{ id: number; name: string }>;
@@ -350,6 +351,7 @@ const removePost = (post: BlogPostItem): void => {
                             <th class="px-2 py-2 font-medium">Idioma</th>
                             <th class="px-2 py-2 font-medium">Status</th>
                             <th class="px-2 py-2 font-medium">Categoria</th>
+                            <th class="px-2 py-2 font-medium">Views</th>
                             <th class="px-2 py-2 font-medium">Ações</th>
                         </tr>
                     </thead>
@@ -410,6 +412,12 @@ const removePost = (post: BlogPostItem): void => {
                                     </option>
                                 </select>
                                 <span v-else>{{ post.category?.name ?? '-' }}</span>
+                            </td>
+                            <td class="px-2 py-3">
+                                <span class="inline-flex items-center gap-1 text-zinc-600" :title="`${post.views_count} visualizações`">
+                                    <Eye class="h-3.5 w-3.5" />
+                                    {{ post.views_count }}
+                                </span>
                             </td>
                             <td class="px-2 py-3">
                                 <div v-if="isEditing(post.id)" class="flex flex-wrap gap-2">
@@ -482,7 +490,7 @@ const removePost = (post: BlogPostItem): void => {
                             </td>
                         </tr>
                         <tr v-if="posts.data.length === 0">
-                            <td colspan="5" class="px-2 py-8 text-center text-sm text-muted-foreground">
+                            <td colspan="6" class="px-2 py-8 text-center text-sm text-muted-foreground">
                                 Nenhum post ainda. Clique em “Novo Post” para começar.
                             </td>
                         </tr>
