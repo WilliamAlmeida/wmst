@@ -33,6 +33,8 @@ class UpdateAiAgentRequest extends FormRequest
             'model' => ['sometimes', 'nullable', 'string', 'max:120'],
             'is_active' => ['sometimes', 'boolean'],
             'metadata' => ['sometimes', 'nullable', 'array'],
+            'max_interactions' => ['sometimes', 'integer', 'min:1', 'max:500'],
+            'max_message_length' => ['sometimes', 'integer', 'min:50', 'max:5000'],
         ];
     }
 }

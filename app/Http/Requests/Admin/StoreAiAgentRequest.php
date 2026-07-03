@@ -31,6 +31,8 @@ class StoreAiAgentRequest extends FormRequest
             'model' => ['nullable', 'string', 'max:120'],
             'is_active' => ['sometimes', 'boolean'],
             'metadata' => ['nullable', 'array'],
+            'max_interactions' => ['sometimes', 'integer', 'min:1', 'max:500'],
+            'max_message_length' => ['sometimes', 'integer', 'min:50', 'max:5000'],
         ];
     }
 }

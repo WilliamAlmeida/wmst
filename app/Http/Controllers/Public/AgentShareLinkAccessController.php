@@ -32,7 +32,7 @@ class AgentShareLinkAccessController extends Controller
                 return response()->json($payload, 404);
             }
 
-            return Inertia::render('public/AgentAccess', [
+            return Inertia::render('chat/AgentAccess', [
                 ...$payload,
                 'locale' => $locale,
                 'agent' => null,
@@ -52,7 +52,7 @@ class AgentShareLinkAccessController extends Controller
                 return response()->json($payload, 403);
             }
 
-            return Inertia::render('public/AgentAccess', [
+            return Inertia::render('chat/AgentAccess', [
                 ...$payload,
                 'locale' => $locale,
                 'agent' => $shareLink->agent,
@@ -96,7 +96,7 @@ class AgentShareLinkAccessController extends Controller
             return response()->json($payload);
         }
 
-        return Inertia::render('public/AgentAccess', [
+        return Inertia::render('chat/AgentAccess', [
             ...$payload,
             'locale' => $locale,
             'homeUrl' => $locale === 'pt_BR' ? url('/') : url('/'.$locale),

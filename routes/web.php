@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AgentChatSessionController;
 use App\Http\Controllers\Admin\AgentShareLinkController;
 use App\Http\Controllers\Admin\AiAgentController;
 use App\Http\Controllers\Admin\BlogCategoryController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Admin\McpController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Public\AgentChatController;
 use App\Http\Controllers\Public\AgentShareLinkAccessController;
 use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\CompanyController;
@@ -116,6 +118,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('ai-agents/{aiAgent}/share-links', [AgentShareLinkController::class, 'store'])->name('agent-share-links.store');
         Route::patch('share-links/{agentShareLink}/revoke', [AgentShareLinkController::class, 'revoke'])->name('agent-share-links.revoke');
 
+        Route::get('chat-sessions', [AgentChatSessionController::class, 'index'])->name('chat-sessions.index');
+        Route::get('chat-sessions/{chatSession}', [AgentChatSessionController::class, 'show'])->name('chat-sessions.show');
+
         Route::get('users', [UserController::class, 'index'])->name('users.index');
         Route::post('users', [UserController::class, 'store'])->name('users.store');
         Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update');
@@ -127,5 +132,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('share/{token}', [AgentShareLinkAccessController::class, 'show'])->name('share-links.show');
 Route::post('share/{token}/events', [AgentShareLinkAccessController::class, 'storeEvent'])->name('share-links.events.store');
+
+Route::post('share/{token}/chat', [AgentChatController::class, 'start'])
+    ->middleware('throttle:6,1')
+    ->name('share-links.chat.start');
+Route::get('share/{token}/chat/{sessionToken}', [AgentChatController::class, 'show'])
+    ->middleware('throttle:30,1')
+    ->name('share-links.chat.show');
+Route::post('share/{token}/chat/{sessionToken}/message', [AgentChatController::class, 'message'])
+    ->middleware('throttle:20,1')
+    ->name('share-links.chat.message');
 
 require __DIR__.'/settings.php';
