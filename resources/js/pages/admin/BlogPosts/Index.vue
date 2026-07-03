@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { FolderTree, Plus, Tag as TagIcon } from 'lucide-vue-next';
 import BlogCategoryController from '@/actions/App/Http/Controllers/Admin/BlogCategoryController';
 import BlogPostAgentController from '@/actions/App/Http/Controllers/Admin/BlogPostAgentController';
 import BlogPostController from '@/actions/App/Http/Controllers/Admin/BlogPostController';
@@ -9,6 +10,13 @@ import Heading from '@/components/Heading.vue';
 import InputError from '@/components/InputError.vue';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
@@ -72,20 +80,8 @@ defineOptions({
     },
 });
 
-const createForm = useForm({
-    blog_category_id: '',
-    locale: 'pt_BR',
-    title: '',
-    slug: '',
-    excerpt: '',
-    content: '',
-    seo_title: '',
-    seo_description: '',
-    featured_image_path: '',
-    status: 'draft' as 'draft' | 'scheduled' | 'published',
-    scheduled_for: '',
-    tag_ids: [] as number[],
-});
+const showCategories = ref(false);
+const showTags = ref(false);
 
 const categoryForm = useForm({
     locale: 'pt_BR' as 'pt_BR' | 'es' | 'en',
@@ -145,27 +141,6 @@ const applyFilters = (): void => {
             replace: true,
         },
     );
-};
-
-const submitCreate = (): void => {
-    createForm
-        .transform((data) => ({
-            ...data,
-            blog_category_id: data.blog_category_id ? Number(data.blog_category_id) : null,
-            scheduled_for: data.scheduled_for || null,
-        }))
-        .post(BlogPostController.store.url(), {
-            preserveScroll: true,
-            onSuccess: () => {
-                createForm.reset('title', 'slug', 'excerpt', 'content', 'scheduled_for', 'tag_ids');
-                createForm.status = 'draft';
-                createForm.blog_category_id = '';
-                createForm.locale = 'pt_BR';
-                createForm.seo_title = '';
-                createForm.seo_description = '';
-                createForm.featured_image_path = '';
-            },
-        });
 };
 
 const submitCategory = (): void => {
@@ -295,278 +270,42 @@ const removePost = (post: BlogPostItem): void => {
         preserveScroll: true,
     });
 };
-
-const toggleTag = (tagId: number): void => {
-    if (createForm.tag_ids.includes(tagId)) {
-        createForm.tag_ids = createForm.tag_ids.filter((id) => id !== tagId);
-
-        return;
-    }
-
-    createForm.tag_ids = [...createForm.tag_ids, tagId];
-};
 </script>
 
 <template>
     <Head title="Blog Admin" />
 
-    <div class="space-y-8 p-4">
+    <div class="space-y-6 p-4">
         <div class="flex flex-wrap items-center justify-between gap-3">
             <Heading
                 title="Gestão de Blog"
                 description="Crie e gerencie conteúdos do site público em pt_BR, es e en."
             />
 
-            <Link
-                :href="BlogPostAgentController.index()"
-                class="inline-flex items-center rounded-md border border-zinc-300 px-3 py-2 text-sm font-medium hover:bg-zinc-100"
-            >
-                Abrir agente de postagem
-            </Link>
+            <div class="flex flex-wrap items-center gap-2">
+                <Button type="button" variant="outline" @click="showCategories = true">
+                    <FolderTree class="h-4 w-4" />
+                    Categorias
+                </Button>
+                <Button type="button" variant="outline" @click="showTags = true">
+                    <TagIcon class="h-4 w-4" />
+                    Tags
+                </Button>
+                <Link
+                    :href="BlogPostAgentController.index()"
+                    class="inline-flex items-center rounded-md border border-zinc-300 px-3 py-2 text-sm font-medium hover:bg-zinc-100"
+                >
+                    Agente de postagem
+                </Link>
+                <Link
+                    :href="BlogPostController.create()"
+                    class="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+                >
+                    <Plus class="h-4 w-4" />
+                    Novo Post
+                </Link>
+            </div>
         </div>
-
-        <section class="rounded-xl border p-4 md:p-6">
-            <h2 class="mb-4 text-lg font-semibold">Novo Post</h2>
-
-            <form class="grid gap-4" @submit.prevent="submitCreate">
-                <div class="grid gap-2 md:grid-cols-3">
-                    <div class="grid gap-2">
-                        <Label for="locale">Idioma</Label>
-                        <select
-                            id="locale"
-                            v-model="createForm.locale"
-                            class="h-10 rounded-md border px-3 text-sm"
-                        >
-                            <option value="pt_BR">pt_BR</option>
-                            <option value="es">es</option>
-                            <option value="en">en</option>
-                        </select>
-                        <InputError :message="createForm.errors.locale" />
-                    </div>
-
-                    <div class="grid gap-2 md:col-span-2">
-                        <Label for="title">Título</Label>
-                        <Input id="title" v-model="createForm.title" placeholder="Título do post" />
-                        <InputError :message="createForm.errors.title" />
-                    </div>
-                </div>
-
-                <div class="grid gap-2 md:grid-cols-2">
-                    <div class="grid gap-2">
-                        <Label for="slug">Slug (opcional)</Label>
-                        <Input id="slug" v-model="createForm.slug" placeholder="slug-do-post" />
-                        <InputError :message="createForm.errors.slug" />
-                    </div>
-
-                    <div class="grid gap-2">
-                        <Label for="category">Categoria</Label>
-                        <select
-                            id="category"
-                            v-model="createForm.blog_category_id"
-                            class="h-10 rounded-md border px-3 text-sm"
-                        >
-                            <option value="">Sem categoria</option>
-                            <option
-                                v-for="category in categories.filter((item) => item.locale === createForm.locale)"
-                                :key="category.id"
-                                :value="String(category.id)"
-                            >
-                                {{ category.name }}
-                            </option>
-                        </select>
-                        <InputError :message="createForm.errors.blog_category_id" />
-                    </div>
-                </div>
-
-                <div class="grid gap-2">
-                    <Label for="excerpt">Resumo</Label>
-                    <textarea
-                        id="excerpt"
-                        v-model="createForm.excerpt"
-                        class="min-h-20 rounded-md border px-3 py-2 text-sm"
-                        placeholder="Resumo para listagens e SEO"
-                    />
-                    <InputError :message="createForm.errors.excerpt" />
-                </div>
-
-                <div class="grid gap-2">
-                    <Label for="content">Conteúdo</Label>
-                    <textarea
-                        id="content"
-                        v-model="createForm.content"
-                        class="min-h-40 rounded-md border px-3 py-2 text-sm"
-                        placeholder="Conteúdo completo do post"
-                    />
-                    <InputError :message="createForm.errors.content" />
-                </div>
-
-                <div class="grid gap-2 md:grid-cols-2">
-                    <div class="grid gap-2">
-                        <Label for="seo_title">SEO title</Label>
-                        <Input id="seo_title" v-model="createForm.seo_title" placeholder="Título para SEO" />
-                        <InputError :message="createForm.errors.seo_title" />
-                    </div>
-                    <div class="grid gap-2">
-                        <Label for="featured_image_path">Imagem destacada (path/url)</Label>
-                        <Input id="featured_image_path" v-model="createForm.featured_image_path" placeholder="blog/posts/capa.webp" />
-                        <InputError :message="createForm.errors.featured_image_path" />
-                    </div>
-                </div>
-
-                <div class="grid gap-2">
-                    <Label for="seo_description">SEO description</Label>
-                    <textarea
-                        id="seo_description"
-                        v-model="createForm.seo_description"
-                        class="min-h-20 rounded-md border px-3 py-2 text-sm"
-                        placeholder="Descrição para snippet do Google"
-                    />
-                    <InputError :message="createForm.errors.seo_description" />
-                </div>
-
-                <div class="grid gap-2 md:grid-cols-2">
-                    <div class="grid gap-2">
-                        <Label for="status">Status</Label>
-                        <select
-                            id="status"
-                            v-model="createForm.status"
-                            class="h-10 rounded-md border px-3 text-sm"
-                        >
-                            <option v-for="status in statuses" :key="status" :value="status">
-                                {{ status }}
-                            </option>
-                        </select>
-                        <InputError :message="createForm.errors.status" />
-                    </div>
-
-                    <div class="grid gap-2">
-                        <Label for="scheduled_for">Agendado para</Label>
-                        <Input
-                            id="scheduled_for"
-                            v-model="createForm.scheduled_for"
-                            type="datetime-local"
-                        />
-                        <InputError :message="createForm.errors.scheduled_for" />
-                    </div>
-                </div>
-
-                <div class="grid gap-2">
-                    <Label>Tags</Label>
-                    <div class="flex flex-wrap gap-2">
-                        <button
-                            v-for="tag in tags.filter((item) => item.locale === createForm.locale)"
-                            :key="tag.id"
-                            class="rounded-full border px-3 py-1 text-xs"
-                            type="button"
-                            :class="createForm.tag_ids.includes(tag.id) ? 'border-black bg-black text-white' : ''"
-                            @click="toggleTag(tag.id)"
-                        >
-                            {{ tag.name }}
-                        </button>
-                    </div>
-                </div>
-
-                <div class="flex justify-end">
-                    <Button :disabled="createForm.processing" type="submit">
-                        Criar post
-                    </Button>
-                </div>
-            </form>
-        </section>
-
-        <section class="grid gap-4 rounded-xl border p-4 md:grid-cols-2 md:p-6">
-            <article class="space-y-4">
-                <h2 class="text-lg font-semibold">Categorias</h2>
-
-                <form class="grid gap-2 md:grid-cols-3" @submit.prevent="submitCategory">
-                    <select v-model="categoryForm.locale" class="h-10 rounded-md border px-3 text-sm">
-                        <option value="pt_BR">pt_BR</option>
-                        <option value="es">es</option>
-                        <option value="en">en</option>
-                    </select>
-                    <Input v-model="categoryForm.name" placeholder="Nome" />
-                    <Input v-model="categoryForm.slug" placeholder="slug-opcional" />
-                    <Button class="md:col-span-3" :disabled="categoryForm.processing" type="submit">Criar categoria</Button>
-                </form>
-
-                <ul class="grid gap-2">
-                    <li
-                        v-for="category in categories"
-                        :key="category.id"
-                        class="grid gap-2 rounded-lg border p-3"
-                    >
-                        <template v-if="editingCategoryId === category.id">
-                            <select v-model="editCategoryForm.locale" class="h-9 rounded-md border px-2 text-xs">
-                                <option value="pt_BR">pt_BR</option>
-                                <option value="es">es</option>
-                                <option value="en">en</option>
-                            </select>
-                            <Input v-model="editCategoryForm.name" placeholder="Nome" />
-                            <Input v-model="editCategoryForm.slug" placeholder="slug" />
-                            <div class="flex gap-2">
-                                <Button size="sm" type="button" @click="saveEditCategory(category.id)">Salvar</Button>
-                                <Button size="sm" type="button" variant="outline" @click="editingCategoryId = null">Cancelar</Button>
-                            </div>
-                        </template>
-                        <template v-else>
-                            <div class="flex items-center justify-between gap-3">
-                                <p class="text-sm font-medium">{{ category.name }} <span class="text-xs text-zinc-500">({{ category.locale }})</span></p>
-                                <div class="flex gap-2">
-                                    <Button size="sm" type="button" variant="outline" @click="startEditCategory(category)">Editar</Button>
-                                    <Button size="sm" type="button" variant="destructive" @click="removeCategory(category.id)">Excluir</Button>
-                                </div>
-                            </div>
-                        </template>
-                    </li>
-                </ul>
-            </article>
-
-            <article class="space-y-4">
-                <h2 class="text-lg font-semibold">Tags</h2>
-
-                <form class="grid gap-2 md:grid-cols-3" @submit.prevent="submitTag">
-                    <select v-model="tagForm.locale" class="h-10 rounded-md border px-3 text-sm">
-                        <option value="pt_BR">pt_BR</option>
-                        <option value="es">es</option>
-                        <option value="en">en</option>
-                    </select>
-                    <Input v-model="tagForm.name" placeholder="Nome" />
-                    <Input v-model="tagForm.slug" placeholder="slug-opcional" />
-                    <Button class="md:col-span-3" :disabled="tagForm.processing" type="submit">Criar tag</Button>
-                </form>
-
-                <ul class="grid gap-2">
-                    <li
-                        v-for="tag in tags"
-                        :key="tag.id"
-                        class="grid gap-2 rounded-lg border p-3"
-                    >
-                        <template v-if="editingTagId === tag.id">
-                            <select v-model="editTagForm.locale" class="h-9 rounded-md border px-2 text-xs">
-                                <option value="pt_BR">pt_BR</option>
-                                <option value="es">es</option>
-                                <option value="en">en</option>
-                            </select>
-                            <Input v-model="editTagForm.name" placeholder="Nome" />
-                            <Input v-model="editTagForm.slug" placeholder="slug" />
-                            <div class="flex gap-2">
-                                <Button size="sm" type="button" @click="saveEditTag(tag.id)">Salvar</Button>
-                                <Button size="sm" type="button" variant="outline" @click="editingTagId = null">Cancelar</Button>
-                            </div>
-                        </template>
-                        <template v-else>
-                            <div class="flex items-center justify-between gap-3">
-                                <p class="text-sm font-medium">{{ tag.name }} <span class="text-xs text-zinc-500">({{ tag.locale }})</span></p>
-                                <div class="flex gap-2">
-                                    <Button size="sm" type="button" variant="outline" @click="startEditTag(tag)">Editar</Button>
-                                    <Button size="sm" type="button" variant="destructive" @click="removeTag(tag.id)">Excluir</Button>
-                                </div>
-                            </div>
-                        </template>
-                    </li>
-                </ul>
-            </article>
-        </section>
 
         <section class="rounded-xl border p-4 md:p-6">
             <div class="mb-4 flex flex-wrap items-end gap-3">
@@ -692,11 +431,19 @@ const toggleTag = (tagId: number): void => {
                                     </Button>
                                 </div>
                                 <div v-else class="flex flex-wrap gap-2">
+                                    <a
+                                        :href="`/dashboard/blog-posts/${post.id}/preview`"
+                                        target="_blank"
+                                        rel="noopener"
+                                        class="inline-flex items-center rounded-md border border-zinc-300 px-2.5 py-1.5 text-xs"
+                                    >
+                                        Visualizar
+                                    </a>
                                     <Link
                                         :href="BlogPostController.edit.url(post.id)"
                                         class="inline-flex items-center rounded-md border border-zinc-300 px-2.5 py-1.5 text-xs"
                                     >
-                                        Editar pagina
+                                        Editar página
                                     </Link>
                                     <Button
                                         size="sm"
@@ -704,7 +451,7 @@ const toggleTag = (tagId: number): void => {
                                         variant="outline"
                                         @click="startEdit(post)"
                                     >
-                                        Editar
+                                        Edição rápida
                                     </Button>
                                     <Button
                                         size="sm"
@@ -725,6 +472,11 @@ const toggleTag = (tagId: number): void => {
                                 </div>
                             </td>
                         </tr>
+                        <tr v-if="posts.data.length === 0">
+                            <td colspan="5" class="px-2 py-8 text-center text-sm text-muted-foreground">
+                                Nenhum post ainda. Clique em “Novo Post” para começar.
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -741,5 +493,117 @@ const toggleTag = (tagId: number): void => {
                 />
             </div>
         </section>
+
+        <!-- MODAL: CATEGORIAS -->
+        <Dialog :open="showCategories" @update:open="showCategories = $event">
+            <DialogContent class="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
+                <DialogHeader>
+                    <DialogTitle>Categorias</DialogTitle>
+                    <DialogDescription>Organize os posts por categoria (por idioma).</DialogDescription>
+                </DialogHeader>
+
+                <form class="grid gap-2 md:grid-cols-3" @submit.prevent="submitCategory">
+                    <select v-model="categoryForm.locale" class="h-10 rounded-md border px-3 text-sm">
+                        <option value="pt_BR">pt_BR</option>
+                        <option value="es">es</option>
+                        <option value="en">en</option>
+                    </select>
+                    <Input v-model="categoryForm.name" placeholder="Nome" />
+                    <Input v-model="categoryForm.slug" placeholder="slug-opcional" />
+                    <InputError class="md:col-span-3" :message="categoryForm.errors.name" />
+                    <Button class="md:col-span-3" :disabled="categoryForm.processing" type="submit">Criar categoria</Button>
+                </form>
+
+                <ul class="grid gap-2">
+                    <li
+                        v-for="category in categories"
+                        :key="category.id"
+                        class="grid gap-2 rounded-lg border p-3"
+                    >
+                        <template v-if="editingCategoryId === category.id">
+                            <select v-model="editCategoryForm.locale" class="h-9 rounded-md border px-2 text-xs">
+                                <option value="pt_BR">pt_BR</option>
+                                <option value="es">es</option>
+                                <option value="en">en</option>
+                            </select>
+                            <Input v-model="editCategoryForm.name" placeholder="Nome" />
+                            <Input v-model="editCategoryForm.slug" placeholder="slug" />
+                            <div class="flex gap-2">
+                                <Button size="sm" type="button" @click="saveEditCategory(category.id)">Salvar</Button>
+                                <Button size="sm" type="button" variant="outline" @click="editingCategoryId = null">Cancelar</Button>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="flex items-center justify-between gap-3">
+                                <p class="text-sm font-medium">{{ category.name }} <span class="text-xs text-zinc-500">({{ category.locale }})</span></p>
+                                <div class="flex gap-2">
+                                    <Button size="sm" type="button" variant="outline" @click="startEditCategory(category)">Editar</Button>
+                                    <Button size="sm" type="button" variant="destructive" @click="removeCategory(category.id)">Excluir</Button>
+                                </div>
+                            </div>
+                        </template>
+                    </li>
+                    <li v-if="categories.length === 0" class="rounded-lg border border-dashed p-4 text-center text-sm text-muted-foreground">
+                        Nenhuma categoria ainda.
+                    </li>
+                </ul>
+            </DialogContent>
+        </Dialog>
+
+        <!-- MODAL: TAGS -->
+        <Dialog :open="showTags" @update:open="showTags = $event">
+            <DialogContent class="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
+                <DialogHeader>
+                    <DialogTitle>Tags</DialogTitle>
+                    <DialogDescription>Etiquetas para agrupar posts por tema (por idioma).</DialogDescription>
+                </DialogHeader>
+
+                <form class="grid gap-2 md:grid-cols-3" @submit.prevent="submitTag">
+                    <select v-model="tagForm.locale" class="h-10 rounded-md border px-3 text-sm">
+                        <option value="pt_BR">pt_BR</option>
+                        <option value="es">es</option>
+                        <option value="en">en</option>
+                    </select>
+                    <Input v-model="tagForm.name" placeholder="Nome" />
+                    <Input v-model="tagForm.slug" placeholder="slug-opcional" />
+                    <InputError class="md:col-span-3" :message="tagForm.errors.name" />
+                    <Button class="md:col-span-3" :disabled="tagForm.processing" type="submit">Criar tag</Button>
+                </form>
+
+                <ul class="grid gap-2">
+                    <li
+                        v-for="tag in tags"
+                        :key="tag.id"
+                        class="grid gap-2 rounded-lg border p-3"
+                    >
+                        <template v-if="editingTagId === tag.id">
+                            <select v-model="editTagForm.locale" class="h-9 rounded-md border px-2 text-xs">
+                                <option value="pt_BR">pt_BR</option>
+                                <option value="es">es</option>
+                                <option value="en">en</option>
+                            </select>
+                            <Input v-model="editTagForm.name" placeholder="Nome" />
+                            <Input v-model="editTagForm.slug" placeholder="slug" />
+                            <div class="flex gap-2">
+                                <Button size="sm" type="button" @click="saveEditTag(tag.id)">Salvar</Button>
+                                <Button size="sm" type="button" variant="outline" @click="editingTagId = null">Cancelar</Button>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="flex items-center justify-between gap-3">
+                                <p class="text-sm font-medium">{{ tag.name }} <span class="text-xs text-zinc-500">({{ tag.locale }})</span></p>
+                                <div class="flex gap-2">
+                                    <Button size="sm" type="button" variant="outline" @click="startEditTag(tag)">Editar</Button>
+                                    <Button size="sm" type="button" variant="destructive" @click="removeTag(tag.id)">Excluir</Button>
+                                </div>
+                            </div>
+                        </template>
+                    </li>
+                    <li v-if="tags.length === 0" class="rounded-lg border border-dashed p-4 text-center text-sm text-muted-foreground">
+                        Nenhuma tag ainda.
+                    </li>
+                </ul>
+            </DialogContent>
+        </Dialog>
     </div>
 </template>

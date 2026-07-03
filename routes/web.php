@@ -87,6 +87,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('dashboard')->name('admin.')->group(function () {
         Route::get('blog-posts', [BlogPostController::class, 'index'])->name('blog-posts.index');
+        Route::get('blog-posts/create', [BlogPostController::class, 'create'])->name('blog-posts.create');
+        Route::get('blog-posts/{blogPost}/preview', [BlogController::class, 'preview'])->name('blog-posts.preview');
         Route::get('blog-posts/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('blog-posts.edit');
         Route::post('blog-posts', [BlogPostController::class, 'store'])->name('blog-posts.store');
         Route::patch('blog-posts/{blogPost}', [BlogPostController::class, 'update'])->name('blog-posts.update');
@@ -106,6 +108,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('blog-tags/{blogTag}', [BlogTagController::class, 'destroy'])->name('blog-tags.destroy');
 
         Route::get('ai-agents', [AiAgentController::class, 'index'])->name('ai-agents.index');
+        Route::post('ai-agents/improve-prompt', [AiAgentController::class, 'improvePrompt'])->name('ai-agents.improve-prompt');
         Route::post('ai-agents', [AiAgentController::class, 'store'])->name('ai-agents.store');
         Route::patch('ai-agents/{aiAgent}', [AiAgentController::class, 'update'])->name('ai-agents.update');
         Route::delete('ai-agents/{aiAgent}', [AiAgentController::class, 'destroy'])->name('ai-agents.destroy');

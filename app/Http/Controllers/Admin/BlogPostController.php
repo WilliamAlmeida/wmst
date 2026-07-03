@@ -66,6 +66,24 @@ class BlogPostController extends Controller
         ]);
     }
 
+    public function create(): InertiaResponse
+    {
+        return Inertia::render('admin/BlogPosts/Create', [
+            'categories' => BlogCategory::query()
+                ->where('is_active', true)
+                ->orderBy('name')
+                ->get(['id', 'locale', 'name', 'slug']),
+            'tags' => BlogTag::query()
+                ->orderBy('name')
+                ->get(['id', 'locale', 'name', 'slug']),
+            'statuses' => [
+                BlogPostStatus::Draft->value,
+                BlogPostStatus::Scheduled->value,
+                BlogPostStatus::Published->value,
+            ],
+        ]);
+    }
+
     public function store(StoreBlogPostRequest $request): JsonResponse|RedirectResponse
     {
         $validated = $request->validated();

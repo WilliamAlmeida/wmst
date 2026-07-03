@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import { computed, onMounted, ref } from 'vue';
-import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, Sparkles, MessageCircle, ListTree } from 'lucide-vue-next';
+import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, Sparkles, MessageCircle, ListTree, Eye, Pencil } from 'lucide-vue-next';
 import Reveal from '@/components/public/Reveal.vue';
 import { vSpotlight } from '@/directives/spotlight';
 
@@ -42,14 +42,18 @@ interface RelatedPost {
     category?: { id: number; name: string; slug: string } | null;
 }
 
-const props = defineProps<{
-    locale: Locale;
-    post: Post;
-    relatedPosts: RelatedPost[];
-    canonicalUrl: string;
-    alternateUrls: Record<Locale, string>;
-    blogUrl: string;
-}>();
+const props = withDefaults(
+    defineProps<{
+        locale: Locale;
+        post: Post;
+        relatedPosts: RelatedPost[];
+        canonicalUrl: string;
+        alternateUrls: Record<Locale, string>;
+        blogUrl: string;
+        isPreview?: boolean;
+    }>(),
+    { isPreview: false },
+);
 
 const pageTitle = computed(() => props.post.seo_title || props.post.title);
 const pageDescription = computed(() => props.post.seo_description || props.post.excerpt || props.post.title);
@@ -112,7 +116,8 @@ const share = async (): Promise<void> => {
 </script>
 
 <template>
-    <Head :title="pageTitle">
+    <Head :title="isPreview ? `[Prévia] ${pageTitle}` : pageTitle">
+        <meta v-if="isPreview" name="robots" content="noindex, nofollow" />
         <meta name="description" :content="pageDescription" />
         <link rel="canonical" :href="canonicalUrl" />
         <link rel="alternate" hreflang="pt-BR" :href="alternateUrls.pt_BR" />
@@ -129,6 +134,24 @@ const share = async (): Promise<void> => {
         <component :is="'script'" type="application/ld+json" v-html="articleSchema" />
         <component :is="'script'" type="application/ld+json" v-html="breadcrumbSchema" />
     </Head>
+
+    <!-- PREVIEW BANNER -->
+    <div
+        v-if="isPreview"
+        class="sticky top-0 z-50 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 border-b border-amber-300 bg-amber-100 px-4 py-2 text-sm text-amber-900"
+    >
+        <span class="inline-flex items-center gap-1.5 font-semibold">
+            <Eye class="h-4 w-4" />
+            Modo prévia — este post ainda não está publicado.
+        </span>
+        <a
+            :href="`/dashboard/blog-posts/${post.id}/edit`"
+            class="inline-flex items-center gap-1.5 rounded-md border border-amber-400 bg-white/70 px-2.5 py-1 text-xs font-medium hover:bg-white"
+        >
+            <Pencil class="h-3.5 w-3.5" />
+            Editar post
+        </a>
+    </div>
 
     <!-- HEADER / COVER -->
     <section class="relative overflow-hidden bg-brand-radial">

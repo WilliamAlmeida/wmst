@@ -94,6 +94,27 @@ class BlogController extends Controller
             ->with(['author:id,name', 'category:id,name,slug', 'tags:id,name,slug'])
             ->firstOrFail();
 
+        return $this->renderPostPage($post, $activeLocale, isPreview: false);
+    }
+
+    /**
+     * Pré-visualização (somente para usuários autenticados do painel):
+     * renderiza a página pública do post ignorando o escopo published,
+     * permitindo revisar rascunhos e agendados antes de publicar.
+     */
+    public function preview(BlogPost $blogPost): InertiaResponse
+    {
+        $activeLocale = $this->resolveLocale($blogPost->locale);
+
+        app()->setLocale($activeLocale);
+
+        $blogPost->load(['author:id,name', 'category:id,name,slug', 'tags:id,name,slug']);
+
+        return $this->renderPostPage($blogPost, $activeLocale, isPreview: true);
+    }
+
+    private function renderPostPage(BlogPost $post, string $activeLocale, bool $isPreview): InertiaResponse
+    {
         [$contentHtml, $toc] = $this->renderContent($post->content);
 
         $relatedPosts = BlogPost::query()
@@ -113,8 +134,14 @@ class BlogController extends Controller
         $path = '/blog/'.$post->slug;
         $blogPath = '/blog';
 
+        // Rascunho ainda não tem published_at; para o preview mostramos uma
+        // data de referência (agendamento ou última edição) só para exibição.
+        $displayDate = $post->published_at
+            ?? ($isPreview ? ($post->scheduled_for ?? $post->updated_at) : null);
+
         return Inertia::render('public/blog/Show', [
             'locale' => $activeLocale,
+            'isPreview' => $isPreview,
             'post' => [
                 'id' => $post->id,
                 'title' => $post->title,
@@ -126,8 +153,8 @@ class BlogController extends Controller
                 'seo_title' => $post->seo_title,
                 'seo_description' => $post->seo_description,
                 'featured_image_url' => $post->featured_image_url,
-                'published_at' => $post->published_at?->toIso8601String(),
-                'published_at_human' => $post->published_at?->translatedFormat('d \d\e F \d\e Y'),
+                'published_at' => $displayDate?->toIso8601String(),
+                'published_at_human' => $displayDate?->translatedFormat('d \d\e F \d\e Y'),
                 'category' => $post->category,
                 'tags' => $post->tags,
                 'author' => $post->author,
