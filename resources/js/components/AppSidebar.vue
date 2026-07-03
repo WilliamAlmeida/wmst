@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Bot, FolderGit2, LayoutGrid, Newspaper, Plug, Sparkles, Users } from 'lucide-vue-next';
+import { Bot, LayoutGrid, Newspaper, Plug, Sparkles, Users } from 'lucide-vue-next';
 import AiAgentController from '@/actions/App/Http/Controllers/Admin/AiAgentController';
 import BlogPostAgentController from '@/actions/App/Http/Controllers/Admin/BlogPostAgentController';
 import BlogPostController from '@/actions/App/Http/Controllers/Admin/BlogPostController';
@@ -56,16 +56,16 @@ const mainNavItems: NavItem[] = [
 ];
 
 const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
+    // {
+    //     title: 'Repository',
+    //     href: 'https://github.com/laravel/vue-starter-kit',
+    //     icon: FolderGit2,
+    // },
+    // {
+    //     title: 'Documentation',
+    //     href: 'https://laravel.com/docs/starter-kits#vue',
+    //     icon: BookOpen,
+    // },
 ];
 </script>
 
