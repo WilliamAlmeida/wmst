@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-vue-next';
 import BlogPostController from '@/actions/App/Http/Controllers/Admin/BlogPostController';
 import Heading from '@/components/Heading.vue';
 import InputError from '@/components/InputError.vue';
+import MarkdownEditor from '@/components/MarkdownEditor.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -154,12 +155,7 @@ const toggleTag = (tagId: number): void => {
 
                 <div class="grid gap-2">
                     <Label for="content">Conteúdo</Label>
-                    <textarea
-                        id="content"
-                        v-model="form.content"
-                        class="min-h-64 rounded-md border px-3 py-2 font-mono text-sm"
-                        placeholder="Conteúdo completo do post (markdown ou HTML)"
-                    />
+                    <MarkdownEditor v-model="form.content" placeholder="Conteúdo completo do post em Markdown…" />
                     <InputError :message="form.errors.content" />
                 </div>
 
