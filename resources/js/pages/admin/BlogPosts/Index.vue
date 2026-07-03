@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import { FolderTree, Plus, Tag as TagIcon } from 'lucide-vue-next';
+import { Eye, FolderTree, Plus, SquarePen, Tag as TagIcon, Trash2, Undo2, Upload, Zap } from 'lucide-vue-next';
 import BlogCategoryController from '@/actions/App/Http/Controllers/Admin/BlogCategoryController';
 import BlogPostAgentController from '@/actions/App/Http/Controllers/Admin/BlogPostAgentController';
 import BlogPostController from '@/actions/App/Http/Controllers/Admin/BlogPostController';
@@ -430,45 +430,54 @@ const removePost = (post: BlogPostItem): void => {
                                         Cancelar
                                     </Button>
                                 </div>
-                                <div v-else class="flex flex-wrap gap-2">
+                                <div v-else class="flex items-center gap-1">
                                     <a
                                         :href="`/dashboard/blog-posts/${post.id}/preview`"
                                         target="_blank"
                                         rel="noopener"
-                                        class="inline-flex items-center rounded-md border border-zinc-300 px-2.5 py-1.5 text-xs"
+                                        title="Visualizar"
+                                        aria-label="Visualizar"
+                                        class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900"
                                     >
-                                        Visualizar
+                                        <Eye class="h-4 w-4" />
                                     </a>
                                     <Link
                                         :href="BlogPostController.edit.url(post.id)"
-                                        class="inline-flex items-center rounded-md border border-zinc-300 px-2.5 py-1.5 text-xs"
+                                        title="Editar página"
+                                        aria-label="Editar página"
+                                        class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900"
                                     >
-                                        Editar página
+                                        <SquarePen class="h-4 w-4" />
                                     </Link>
-                                    <Button
-                                        size="sm"
+                                    <button
                                         type="button"
-                                        variant="outline"
+                                        title="Edição rápida"
+                                        aria-label="Edição rápida"
+                                        class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900"
                                         @click="startEdit(post)"
                                     >
-                                        Edição rápida
-                                    </Button>
-                                    <Button
-                                        size="sm"
+                                        <Zap class="h-4 w-4" />
+                                    </button>
+                                    <button
                                         type="button"
-                                        variant="outline"
+                                        :title="post.status === 'published' ? 'Voltar para rascunho' : 'Publicar'"
+                                        :aria-label="post.status === 'published' ? 'Voltar para rascunho' : 'Publicar'"
+                                        class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 hover:bg-zinc-100"
+                                        :class="post.status === 'published' ? 'text-amber-600' : 'text-emerald-600'"
                                         @click="toggleStatus(post)"
                                     >
-                                        {{ post.status === 'published' ? 'Voltar rascunho' : 'Publicar' }}
-                                    </Button>
-                                    <Button
-                                        size="sm"
+                                        <Undo2 v-if="post.status === 'published'" class="h-4 w-4" />
+                                        <Upload v-else class="h-4 w-4" />
+                                    </button>
+                                    <button
                                         type="button"
-                                        variant="destructive"
+                                        title="Excluir"
+                                        aria-label="Excluir"
+                                        class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-red-200 text-red-600 hover:bg-red-50"
                                         @click="removePost(post)"
                                     >
-                                        Excluir
-                                    </Button>
+                                        <Trash2 class="h-4 w-4" />
+                                    </button>
                                 </div>
                             </td>
                         </tr>
