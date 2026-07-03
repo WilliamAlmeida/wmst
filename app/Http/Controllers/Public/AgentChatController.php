@@ -29,6 +29,11 @@ class AgentChatController extends Controller
             return response()->json(['message' => 'Este link não está mais disponível.'], 410);
         }
 
+        // Iniciar uma sessão NOVA exige um uso disponível.
+        if ($this->linkUnavailable($link) || ! $link->hasRemainingUses()) {
+            return response()->json(['message' => 'Este link não está mais disponível.'], 410);
+        }
+
         $validated = $request->validated();
 
         $screening = $this->chatService->screenVisitor([
@@ -54,6 +59,9 @@ class AgentChatController extends Controller
             'screening_notes' => $screening['notes'],
             'status' => 'active',
         ]);
+
+        // Consome o uso do link apenas agora, ao criar a sessão (não a cada visita).
+        $link->markUsed();
 
         // Mensagem de abertura gerada pela IA (opcional: não bloqueia o início se falhar
         // e não conta como interação do visitante).
@@ -90,7 +98,7 @@ class AgentChatController extends Controller
      */
     public function show(Request $request, string $token, string $sessionToken): JsonResponse
     {
-        $link = $this->resolveLink($token, requireUsable: false);
+        $link = $this->resolveLink($token);
 
         if ($link === null) {
             return response()->json(['message' => 'Este link não está mais disponível.'], 410);
@@ -102,8 +110,9 @@ class AgentChatController extends Controller
             return response()->json(['message' => 'Sessão não encontrada.'], 404);
         }
 
-        // Sessão ativa só continua se o link ainda puder ser usado e o agente estiver ativo.
-        if (! $session->isCompleted() && (! $link->canBeUsed() || ! $link->agent->is_active)) {
+        // Retomar uma sessão ativa não gasta uso; só é bloqueada se o link foi
+        // revogado/expirou ou o agente foi desativado.
+        if (! $session->isCompleted() && $this->linkUnavailable($link)) {
             return response()->json(['message' => 'Este link não está mais disponível.'], 410);
         }
 
@@ -140,6 +149,10 @@ class AgentChatController extends Controller
 
         if ($session === null) {
             return response()->json(['message' => 'Sessão não encontrada.'], 404);
+        }
+
+        if ($this->linkUnavailable($link)) {
+            return response()->json(['message' => 'Este link não está mais disponível.'], 410);
         }
 
         $agent = $link->agent;
@@ -226,7 +239,7 @@ class AgentChatController extends Controller
         ]);
     }
 
-    private function resolveLink(string $token, bool $requireUsable = true): ?AgentShareLink
+    private function resolveLink(string $token): ?AgentShareLink
     {
         $link = AgentShareLink::query()
             ->with('agent')
@@ -237,11 +250,17 @@ class AgentChatController extends Controller
             return null;
         }
 
-        if ($requireUsable && (! $link->canBeUsed() || ! $link->agent->is_active)) {
-            return null;
-        }
-
         return $link;
+    }
+
+    /**
+     * Indisponível para todos (inclusive retomada): revogado, expirado ou
+     * agente inativo. Esgotamento de usos NÃO entra aqui — só impede iniciar
+     * uma sessão nova, não continuar uma já existente.
+     */
+    private function linkUnavailable(AgentShareLink $link): bool
+    {
+        return $link->isRevoked() || $link->isExpired() || ! $link->agent->is_active;
     }
 
     private function resolveSession(AgentShareLink $link, string $sessionToken): ?AgentChatSession

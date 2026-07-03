@@ -31,7 +31,7 @@ const props = defineProps<{
     reason?: string;
     homeUrl: string;
     agent?: { id: number; name: string; slug: string; description?: string | null } | null;
-    link?: { token: string; usage_type?: string; remaining_uses?: number | null; expires_at?: string | null } | null;
+    link?: { token: string; usage_type?: string; remaining_uses?: number | null; expires_at?: string | null; can_start?: boolean } | null;
 }>();
 
 const csrfToken = (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement | null)?.content ?? '';
@@ -43,6 +43,20 @@ const phase = ref<Phase>(props.status === 'ok' ? 'form' : 'unavailable');
 const introOpen = ref(false);
 const thanksOpen = ref(false);
 const restoring = ref(props.status === 'ok');
+const blockedMessage = ref<string | null>(null);
+
+// Sem sessão salva: mostra o formulário se ainda há usos; senão, bloqueia
+// (o link já atingiu o limite de acessos, mas quem já tem sessão pode retomar).
+const enterFormOrBlock = (): void => {
+    if (props.link?.can_start) {
+        introOpen.value = true;
+
+        return;
+    }
+
+    phase.value = 'unavailable';
+    blockedMessage.value = 'Este link de demonstração já atingiu o limite de acessos.';
+};
 
 /* ---------------- Formulário de identificação ---------------- */
 
@@ -187,7 +201,7 @@ onMounted(async () => {
 
     if (!saved) {
         restoring.value = false;
-        introOpen.value = true;
+        enterFormOrBlock();
 
         return;
     }
@@ -203,7 +217,7 @@ onMounted(async () => {
 
     if (!ok || !body) {
         localStorage.removeItem(storageKey.value);
-        introOpen.value = true;
+        enterFormOrBlock();
 
         return;
     }
@@ -447,7 +461,7 @@ const unavailableTitle = computed(() => (props.status === 'invalid' ? 'Link inv�
             >
                 <Lock class="mx-auto h-10 w-10 text-white/40" />
                 <h1 class="mt-4 text-xl font-semibold">{{ unavailableTitle }}</h1>
-                <p class="mt-2 text-sm text-white/70">{{ message ?? 'Este link não está mais disponível.' }}</p>
+                <p class="mt-2 text-sm text-white/70">{{ blockedMessage ?? message ?? 'Este link não está mais disponível.' }}</p>
                 <a
                     :href="`${homeUrl}#trial`"
                     class="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#35C24A] px-4 py-2 text-sm font-semibold text-[#16233F] hover:bg-[#2fae42]"

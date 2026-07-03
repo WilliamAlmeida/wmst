@@ -18,7 +18,7 @@ class AgentShareLinkAccessController extends Controller
         app()->setLocale($locale);
 
         $shareLink = AgentShareLink::query()
-            ->with('agent:id,name,slug,description')
+            ->with('agent:id,name,slug,description,is_active')
             ->where('token', $token)
             ->first();
 
@@ -41,10 +41,18 @@ class AgentShareLinkAccessController extends Controller
             ]);
         }
 
-        if (! $shareLink->canBeUsed()) {
+        // Bloqueio real (para todos, inclusive quem tenta retomar uma sessão):
+        // link revogado, expirado ou agente desativado. Esgotamento de usos NÃO
+        // bloqueia a página — quem já tem sessão pode retomar; quem não tem verá
+        // que não pode iniciar (can_start = false).
+        $agentInactive = ! (bool) ($shareLink->agent->is_active ?? false);
+
+        if ($shareLink->isRevoked() || $shareLink->isExpired() || $agentInactive) {
+            $reason = $shareLink->isRevoked() ? 'revoked' : ($shareLink->isExpired() ? 'expired' : 'inactive');
+
             $payload = [
                 'status' => 'blocked',
-                'reason' => $shareLink->unavailabilityReason(),
+                'reason' => $reason,
                 'message' => 'Este link não está mais disponível.',
             ];
 
@@ -58,14 +66,13 @@ class AgentShareLinkAccessController extends Controller
                 'agent' => $shareLink->agent,
                 'link' => [
                     'token' => $shareLink->token,
-                    'reason' => $shareLink->unavailabilityReason(),
+                    'reason' => $reason,
                 ],
                 'homeUrl' => $locale === 'pt_BR' ? url('/') : url('/'.$locale),
             ]);
         }
 
-        $shareLink->markUsed();
-
+        // Registra a visita (analytics) — sem consumir uso do link.
         $shareLink->visits()->create([
             'user_id' => $request->user()?->id,
             'ip_address' => $request->ip(),
@@ -77,14 +84,13 @@ class AgentShareLinkAccessController extends Controller
             ],
         ]);
 
-        $shareLink->refresh();
-
         $payload = [
             'status' => 'ok',
             'agent' => $shareLink->agent,
             'link' => [
                 'token' => $shareLink->token,
                 'usage_type' => $shareLink->usage_type,
+                'can_start' => $shareLink->hasRemainingUses(),
                 'remaining_uses' => $shareLink->remainingUses(),
                 'expires_at' => ($shareLink->expiry_type->value === 'fixed_datetime'
                     ? $shareLink->expires_at
