@@ -45,10 +45,12 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'trialSignup' => $request->session()->get('trialSignup'),
             ],
-            // SEO renderizado server-side (ver App\Support\Seo e app.blade.php).
-            // Baseline por requisição; cada controller pode sobrescrever passando
-            // 'seo' => Seo::make([...]) no Inertia::render.
-            'seo' => \App\Support\Seo::make(url: $request->url()),
+            // Metadados de SEO compartilhados: og:image precisa ser URL absoluta
+            // para as prévias de WhatsApp/Facebook/X funcionarem.
+            'seo' => [
+                'siteUrl' => rtrim(config('app.url'), '/'),
+                'defaultOgImage' => url('/images/og-default.png'),
+            ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }

@@ -164,8 +164,27 @@ const testimonials = [
     { name: 'Roberto Lima', role: 'Proprietário', company: 'Delivery Express', testimonial: 'O IBOX Delivery nos colocou no mesmo nível dos grandes players. Sistema robusto, suporte excepcional e resultados desde o primeiro dia.' },
 ];
 
-// Organization e WebSite são renderizados server-side no blade (App\Support\Seo
-// via HomeController), então ficam fora daqui para não duplicar o structured data.
+const siteOrigin = props.alternateUrls.pt_BR.replace(/\/$/, '');
+
+const organizationSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'WMST',
+    legalName: 'WMST — W.M Soluções Tecnológicas',
+    url: props.alternateUrls.pt_BR,
+    logo: `${siteOrigin}/images/logo-wmst.png`,
+    image: `${siteOrigin}/images/og-default.png`,
+    sameAs: [props.alternateUrls.pt_BR],
+    description: copy.value.subtitle,
+    contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+55-12-98218-4879',
+        contactType: 'sales',
+        areaServed: 'BR',
+        availableLanguage: ['pt-BR', 'es', 'en'],
+    },
+});
+
 const serviceSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -173,8 +192,21 @@ const serviceSchema = JSON.stringify({
     provider: { '@type': 'Organization', name: 'WMST' },
 });
 
-const { defaultOgImage } = useSeo();
+const { siteUrl, defaultOgImage } = useSeo();
 const ogImage = computed(() => defaultOgImage());
+
+const websiteSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'WMST',
+    url: siteUrl(),
+    inLanguage: 'pt-BR',
+    potentialAction: {
+        '@type': 'SearchAction',
+        target: `${siteUrl()}/blog?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+    },
+});
 </script>
 
 <template>
@@ -195,6 +227,8 @@ const ogImage = computed(() => defaultOgImage());
         <meta property="og:site_name" content="WMST" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" :content="ogImage" />
+        <component :is="'script'" type="application/ld+json" v-html="organizationSchema" />
+        <component :is="'script'" type="application/ld+json" v-html="websiteSchema" />
         <component :is="'script'" type="application/ld+json" v-html="serviceSchema" />
     </Head>
 
