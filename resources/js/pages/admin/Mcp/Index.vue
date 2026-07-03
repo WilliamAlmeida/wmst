@@ -191,7 +191,7 @@ const copy = async (key: string, value: string): Promise<void> => {
                 Fluxo recomendado: taxonomias → listar/inspecionar → criar/atualizar. Locales: pt_BR (padrão), es, en. Conteúdo aceita markdown ou HTML.
             </p>
 
-            <div class="mt-4 grid gap-3 md:grid-cols-2">
+            <div class="mt-4 grid max-h-96 gap-3 overflow-y-auto pr-1 md:grid-cols-2">
                 <article v-for="tool in tools" :key="tool.name" class="rounded-lg border border-border bg-muted/20 p-4">
                     <code class="text-sm font-semibold text-[color:var(--color-brand)]">{{ tool.name }}</code>
                     <p class="mt-1 text-sm text-foreground">{{ tool.summary }}</p>

@@ -30,6 +30,29 @@ trait InteractsWithBlog
     }
 
     /**
+     * Gera um slug único por locale para uma taxonomia (categoria ou tag).
+     *
+     * @param  class-string<\Illuminate\Database\Eloquent\Model>  $modelClass
+     */
+    protected function uniqueTaxonomySlug(string $modelClass, string $baseSlug, string $locale, ?int $ignoreId = null): string
+    {
+        $slug = $baseSlug !== '' ? $baseSlug : Str::random(8);
+        $candidate = $slug;
+        $counter = 1;
+
+        while ($modelClass::query()
+            ->where('locale', $locale)
+            ->where('slug', $candidate)
+            ->when($ignoreId !== null, fn ($query) => $query->whereKeyNot($ignoreId))
+            ->exists()) {
+            $candidate = $slug.'-'.$counter;
+            $counter++;
+        }
+
+        return $candidate;
+    }
+
+    /**
      * O autor padrão dos posts criados via MCP é o primeiro usuário (admin).
      * O servidor MCP local roda no console, sem usuário autenticado.
      */

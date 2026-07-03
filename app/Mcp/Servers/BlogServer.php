@@ -2,12 +2,18 @@
 
 namespace App\Mcp\Servers;
 
+use App\Mcp\Tools\CreateBlogCategory;
 use App\Mcp\Tools\CreateBlogPost;
+use App\Mcp\Tools\CreateBlogTag;
+use App\Mcp\Tools\DeleteBlogCategory;
 use App\Mcp\Tools\DeleteBlogPost;
+use App\Mcp\Tools\DeleteBlogTag;
 use App\Mcp\Tools\GetBlogPost;
 use App\Mcp\Tools\ListBlogPosts;
 use App\Mcp\Tools\ListBlogTaxonomies;
+use App\Mcp\Tools\UpdateBlogCategory;
 use App\Mcp\Tools\UpdateBlogPost;
+use App\Mcp\Tools\UpdateBlogTag;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
 use Laravel\Mcp\Server\Attributes\Name;
@@ -27,6 +33,11 @@ Fluxo recomendado:
 4. Use update-blog-post enviando o id e apenas os campos a alterar.
 5. delete-blog-post remove definitivamente.
 
+Taxonomias (categorias e tags):
+- create-blog-category / update-blog-category / delete-blog-category
+- create-blog-tag / update-blog-tag / delete-blog-tag
+Crie a categoria/tag antes de referenciá-la em category_id / tag_ids de um post.
+
 Locales suportados: pt_BR (padrão), es, en. O conteúdo aceita markdown ou HTML.
 TXT)]
 class BlogServer extends Server
@@ -38,6 +49,12 @@ class BlogServer extends Server
         CreateBlogPost::class,
         UpdateBlogPost::class,
         DeleteBlogPost::class,
+        CreateBlogCategory::class,
+        UpdateBlogCategory::class,
+        DeleteBlogCategory::class,
+        CreateBlogTag::class,
+        UpdateBlogTag::class,
+        DeleteBlogTag::class,
     ];
 
     protected array $resources = [

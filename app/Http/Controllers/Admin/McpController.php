@@ -54,6 +54,36 @@ class McpController extends Controller
                     'summary' => 'Remove um post definitivamente.',
                     'usage' => 'Ação irreversível.',
                 ],
+                [
+                    'name' => 'create-blog-category',
+                    'summary' => 'Cria uma categoria (name + locale).',
+                    'usage' => 'Slug gerado se omitido. is_active padrão true.',
+                ],
+                [
+                    'name' => 'update-blog-category',
+                    'summary' => 'Atualiza uma categoria pelo id.',
+                    'usage' => 'Envie apenas os campos que mudam.',
+                ],
+                [
+                    'name' => 'delete-blog-category',
+                    'summary' => 'Remove uma categoria definitivamente.',
+                    'usage' => 'Os posts vinculados ficam sem categoria.',
+                ],
+                [
+                    'name' => 'create-blog-tag',
+                    'summary' => 'Cria uma tag (name + locale).',
+                    'usage' => 'Slug gerado se omitido.',
+                ],
+                [
+                    'name' => 'update-blog-tag',
+                    'summary' => 'Atualiza uma tag pelo id.',
+                    'usage' => 'Envie apenas os campos que mudam.',
+                ],
+                [
+                    'name' => 'delete-blog-tag',
+                    'summary' => 'Remove uma tag definitivamente.',
+                    'usage' => 'Os vínculos com posts são desfeitos.',
+                ],
             ],
         ]);
     }
