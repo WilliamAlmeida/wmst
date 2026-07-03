@@ -107,7 +107,10 @@ class BlogPost extends Model
     {
         return Attribute::make(
             get: function (): int {
-                $words = str_word_count(strip_tags((string) ($this->attributes['content'] ?? '')));
+                // str_word_count quebra palavras acentuadas (pt-BR); contamos
+                // tokens separados por espaço, com suporte a unicode.
+                $text = trim(strip_tags((string) ($this->attributes['content'] ?? '')));
+                $words = $text === '' ? 0 : count(preg_split('/\s+/u', $text) ?: []);
 
                 return max(1, (int) ceil($words / 220));
             },

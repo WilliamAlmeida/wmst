@@ -128,7 +128,7 @@ class BlogController extends Controller
             ->with(['category:id,name,slug'])
             ->orderByDesc('published_at')
             ->limit(3)
-            ->get(['id', 'title', 'slug', 'excerpt', 'published_at', 'featured_image_path', 'blog_category_id'])
+            ->get(['id', 'title', 'slug', 'excerpt', 'content', 'published_at', 'featured_image_path', 'blog_category_id'])
             ->map(fn (BlogPost $p): array => $this->transformCard($p));
 
         $path = '/blog/'.$post->slug;
@@ -194,8 +194,10 @@ class BlogController extends Controller
 
                 $toc[] = ['id' => $id, 'text' => $text, 'level' => $level];
 
+                // Mantém o id (alvo do sumário lateral) mas sem <a>: o título
+                // não deve virar link clicável — a navegação é feita pelo Sumário.
                 return sprintf(
-                    '<h%1$d id="%2$s" class="scroll-mt-24"><a href="#%2$s" class="anchor">%3$s</a></h%1$d>',
+                    '<h%1$d id="%2$s" class="scroll-mt-24">%3$s</h%1$d>',
                     $level,
                     $id,
                     e($text),
