@@ -29,3 +29,6 @@ yarn-error.log
 /old_system
 sftp-config.json
 /docs
+
+# MCP local do projeto — contém token de produção, não versionar
+/.mcp.json
