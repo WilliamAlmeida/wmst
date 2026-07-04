@@ -23,8 +23,8 @@ class SiteCatalog
                     'en' => 'The complete platform for clinic and healthcare professional management with AI',
                 ]),
                 'description' => self::pick($locale, [
-                    'pt_BR' => 'Sistema #1 em agendamento médico do Brasil. Atendimento automatico 24/7 via WhatsApp e Instagram com agentes de IA, calendario inteligente, CRM, prontuario, financeiro e API REST. Mais de 5.000 profissionais ja confiam.',
-                    'es' => 'Sistema #1 en agendamiento médico de Brasil. Atencion automatica 24/7 via WhatsApp e Instagram con agentes de IA, calendario inteligente, CRM, historial, finanzas y API REST. Mas de 5.000 profesionales ya confian.',
+                    'pt_BR' => 'Sistema #1 em agendamento médico do Brasil. Atendimento automatico 24/7 via WhatsApp e Instagram com agentes de IA, calendario inteligente, CRM, prontuario, financeiro e API REST. Mais de 100 profissionais ja confiam.',
+                    'es' => 'Sistema #1 en agendamiento médico de Brasil. Atencion automatica 24/7 via WhatsApp e Instagram con agentes de IA, calendario inteligente, CRM, historial, finanzas y API REST. Mas de 100 profesionales ya confian.',
                     'en' => 'The #1 medical scheduling system in Brazil. 24/7 automated service via WhatsApp and Instagram with AI agents, smart calendar, CRM, EMR, finance and REST API. Trusted by over 5,000 healthcare professionals.',
                 ]),
                 'logo' => '/images/logotipo-agendaclinic.png',
@@ -63,7 +63,7 @@ class SiteCatalog
                     ],
                 ],
                 'metrics' => [
-                    ['label' => self::pick($locale, ['pt_BR' => 'Profissionais usando', 'es' => 'Profesionales usando', 'en' => 'Professionals using']), 'value' => '5.000+'],
+                    ['label' => self::pick($locale, ['pt_BR' => 'Profissionais usando', 'es' => 'Profesionales usando', 'en' => 'Professionals using']), 'value' => '100+'],
                     ['label' => self::pick($locale, ['pt_BR' => 'Redução de faltas', 'es' => 'Reduccion de faltas', 'en' => 'No-show reduction']), 'value' => '-60%'],
                     ['label' => self::pick($locale, ['pt_BR' => 'Horas economizadas/semana', 'es' => 'Horas ahorradas/semana', 'en' => 'Hours saved per week']), 'value' => '15h'],
                     ['label' => self::pick($locale, ['pt_BR' => 'Satisfação dos clientes', 'es' => 'Satisfaccion de clientes', 'en' => 'Customer satisfaction']), 'value' => '98%'],
@@ -167,7 +167,7 @@ class SiteCatalog
                     ['icon' => 'LayoutDashboard', 'title' => self::pick($locale, ['pt_BR' => 'Dashboard personalizavel', 'es' => 'Dashboard personalizable', 'en' => 'Personalized dashboard']), 'description' => self::pick($locale, ['pt_BR' => 'Paineis por agencia e por conta Instagram, visualização de tokens, webhooks e metricas.', 'es' => 'Paneles por agencia y cuenta Instagram, visualizacion de tokens, webhooks y metricas.', 'en' => 'Per-agency and per-account dashboards, token, webhook and metric visualization.'])],
                 ],
                 'metrics' => [
-                    ['label' => self::pick($locale, ['pt_BR' => 'Plano inicial', 'es' => 'Plan inicial', 'en' => 'Starting plan']), 'value' => 'R$ 98,99/mes'],
+                    ['label' => self::pick($locale, ['pt_BR' => 'Postagem Automática', 'es' => 'Publicacion automatica', 'en' => 'Automated posting']), 'value' => 'IA'],
                     ['label' => self::pick($locale, ['pt_BR' => 'Trial gratuito', 'es' => 'Trial gratis', 'en' => 'Free trial']), 'value' => '7-30 dias'],
                     ['label' => self::pick($locale, ['pt_BR' => 'API & Webhooks', 'es' => 'API y Webhooks', 'en' => 'API & Webhooks']), 'value' => '100%'],
                 ],

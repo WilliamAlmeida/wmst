@@ -104,9 +104,9 @@ const products = [
     {
         name: 'Agenda Clinic',
         tagline: 'Gestão para clínicas e operação de atendimento',
-        description: 'Sistema completo de agendamento com IA, lembretes automáticos para clínicas.', // prontuario e gestão financeira
+        description: 'Sistema completo de agendamento com IA, lembretes automáticos para clínicas com gestão financeira.', // prontuario
         logo: '/images/logotipo-agendaclinic.png',
-        bullets: ['Agenda inteligente com IA', 'Lembretes via WhatsApp'], // 'Prontuario eletronico', 'Financeiro integrado'
+        bullets: ['Agenda inteligente com IA', 'Lembretes via WhatsApp', 'Disparo em massa', 'E muito mais...'], // 'Prontuario eletronico', 'Financeiro integrado'
         badge: 'Health-Tech',
         ctaUrl: 'https://wa.me/5512982184879?text=' + encodeURIComponent('Olá, quero conhecer o Agenda Clinic!'),
         mockup: '/images/mockup-agendaclinic.avif',
