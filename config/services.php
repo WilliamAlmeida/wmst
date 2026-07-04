@@ -40,4 +40,13 @@ return [
         'token' => env('MCP_TOKEN'),
     ],
 
+    'google' => [
+        // Caminho para o JSON da service account (fora do git).
+        'credentials' => env('GOOGLE_SA_CREDENTIALS', storage_path('app/google/service-account.json')),
+        // Propriedade do Search Console (propriedade de domínio).
+        'gsc_site' => env('GSC_SITE_URL', 'sc-domain:wmst.com.br'),
+        // ID numérico da propriedade GA4.
+        'ga4_property' => env('GA4_PROPERTY_ID', '544115334'),
+    ],
+
 ];
