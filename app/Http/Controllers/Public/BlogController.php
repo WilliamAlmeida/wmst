@@ -201,7 +201,11 @@ class BlogController extends Controller
             '/<h([23])>(.*?)<\/h\1>/i',
             function (array $match) use (&$toc): string {
                 $level = (int) $match[1];
-                $text = trim(strip_tags($match[2]));
+                // strip_tags remove tags internas; html_entity_decode desfaz o
+                // escape do CommonMark (ex.: &quot; nas aspas do título) para o
+                // texto não ser escapado outra vez por e() abaixo — senão vira
+                // &amp;quot; e aparece literal ("&quot;") na página e no sumário.
+                $text = html_entity_decode(trim(strip_tags($match[2])), ENT_QUOTES | ENT_HTML5, 'UTF-8');
                 $id = Str::slug($text);
 
                 if ($id === '') {
