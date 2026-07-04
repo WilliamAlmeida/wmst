@@ -8,7 +8,15 @@ import SettingsLayout from '@/layouts/settings/Layout.vue';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
-    title: (title) => (title ? `${title} - ${appName}` : appName),
+    title: (title) => {
+        if (! title) {
+            return appName;
+        }
+
+        // Evita duplicar a marca: se o título da página já cita a WMST, não
+        // anexa o sufixo global (senão vira "... WMST - W.M. Soluções Tecnológicas").
+        return /WMST|Soluções Tecnológicas/i.test(title) ? title : `${title} - ${appName}`;
+    },
     layout: (name) => {
         switch (true) {
             case name === 'Welcome':
