@@ -57,7 +57,7 @@ const trialOpen = ref(false);
 const wpp = (text: string): string => `${props.whatsappBase}${encodeURIComponent(text)}`;
 
 const copy = computed(() => {
-    const map: Record<Locale, { eyebrow: string; titleA: string; titleB: string; subtitle: string; ctaTrial: string; ctaWhats: string; blog: string }> = {
+    const map: Record<Locale, { eyebrow: string; titleA: string; titleB: string; subtitle: string; ctaTrial: string; ctaWhats: string; blog: string; metaTitle: string; metaDescription: string }> = {
         pt_BR: {
             eyebrow: '+15 anos transformando negócios com tecnologia',
             titleA: 'Automatize, escale e lucre mais com',
@@ -67,6 +67,9 @@ const copy = computed(() => {
             ctaTrial: 'Testar agente IA',
             ctaWhats: 'Falar com a WMST',
             blog: 'Ver o blog',
+            metaTitle: 'WMST — WM Soluções Tecnológicas | Software, Automação e IA para PMEs',
+            metaDescription:
+                'A WM Soluções Tecnológicas (WMST) cria software sob medida, automação de WhatsApp e Instagram e IA para PMEs em todo o Brasil — de Lorena-SP e do Vale do Paraíba para o país inteiro.',
         },
         es: {
             eyebrow: '+15 anos transformando negócios con tecnologia',
@@ -77,6 +80,9 @@ const copy = computed(() => {
             ctaTrial: 'Probar agente IA',
             ctaWhats: 'Hablar con WMST',
             blog: 'Ver el blog',
+            metaTitle: 'WMST — WM Soluções Tecnológicas | Software, Automatización e IA para PYMEs',
+            metaDescription:
+                'WM Soluções Tecnológicas (WMST): software a medida, automatización de WhatsApp e Instagram e IA para PYMEs. Atención 100% remota en todo Brasil.',
         },
         en: {
             eyebrow: '15+ years transforming businesses with technology',
@@ -87,6 +93,9 @@ const copy = computed(() => {
             ctaTrial: 'Try AI agent',
             ctaWhats: 'Talk to WMST',
             blog: 'Visit the blog',
+            metaTitle: 'WMST — WM Soluções Tecnológicas | Custom Software, Automation & AI for SMBs',
+            metaDescription:
+                'WM Soluções Tecnológicas (WMST) builds custom software, WhatsApp and Instagram automation, and AI for small and mid-sized businesses — 100% remote across Brazil.',
         },
     };
 
@@ -171,11 +180,19 @@ const organizationSchema = JSON.stringify({
     '@type': 'Organization',
     name: 'WMST',
     legalName: 'WMST — W.M Soluções Tecnológicas',
+    alternateName: ['WM Soluções Tecnológicas', 'WM Soluções', 'WM Software', 'WM Tecnologia'],
     url: props.alternateUrls.pt_BR,
     logo: `${siteOrigin}/images/logo-wmst.png`,
     image: `${siteOrigin}/images/og-default.png`,
     sameAs: [props.alternateUrls.pt_BR],
     description: copy.value.subtitle,
+    areaServed: { '@type': 'Country', name: 'Brasil' },
+    address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Lorena',
+        addressRegion: 'SP',
+        addressCountry: 'BR',
+    },
     contactPoint: {
         '@type': 'ContactPoint',
         telephone: '+55-12-98218-4879',
@@ -210,16 +227,16 @@ const websiteSchema = JSON.stringify({
 </script>
 
 <template>
-    <Head :title="`WMST - ${copy.titleA} ${copy.titleB}`">
-        <meta name="description" :content="copy.subtitle" />
+    <Head :title="copy.metaTitle">
+        <meta name="description" :content="copy.metaDescription" />
         <link rel="canonical" :href="alternateUrls[locale]" />
         <link rel="alternate" hreflang="pt-BR" :href="alternateUrls.pt_BR" />
         <link rel="alternate" hreflang="es" :href="alternateUrls.es" />
         <link rel="alternate" hreflang="en" :href="alternateUrls.en" />
         <link rel="alternate" hreflang="x-default" :href="alternateUrls.pt_BR" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" :content="`WMST - ${copy.titleA} ${copy.titleB}`" />
-        <meta property="og:description" :content="copy.subtitle" />
+        <meta property="og:title" :content="copy.metaTitle" />
+        <meta property="og:description" :content="copy.metaDescription" />
         <meta property="og:url" :content="alternateUrls[locale]" />
         <meta property="og:image" :content="ogImage" />
         <meta property="og:image:width" content="1200" />
