@@ -1,8 +1,4 @@
 {
     "mcpServers": {
-        "wmst-blog": {
-            "command": "php",
-            "args": ["artisan", "mcp:start", "wmst-blog"]
-        }
     }
 }
