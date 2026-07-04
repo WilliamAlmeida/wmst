@@ -5,6 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        {{-- Google tag (gtag.js) — só no domínio de produção, para não poluir as
+             métricas com acessos de dev/staging (wmst.supremus.com, localhost). --}}
+        @if (in_array(request()->getHost(), ['wmst.com.br', 'www.wmst.com.br'], true))
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDZK9C774V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MDZK9C774V');
+        </script>
+        @endif
+
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
             (function() {
