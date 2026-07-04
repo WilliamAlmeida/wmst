@@ -42,7 +42,9 @@ return [
 
     'google' => [
         // Caminho para o JSON da service account (fora do git).
-        'credentials' => env('GOOGLE_SA_CREDENTIALS', storage_path('app/google/service-account.json')),
+        // Usa ?: para que GOOGLE_SA_CREDENTIALS vazio caia no padrão (env() vazio
+        // retorna '' e não dispararia o default).
+        'credentials' => env('GOOGLE_SA_CREDENTIALS') ?: storage_path('app/google/service-account.json'),
         // Propriedade do Search Console (propriedade de domínio).
         'gsc_site' => env('GSC_SITE_URL', 'sc-domain:wmst.com.br'),
         // ID numérico da propriedade GA4.
